@@ -1,0 +1,12 @@
+const express =require("express")
+const {addToCart,getCartByUserId,deleteCartByUserId,deleteProductFromCart,updateCartItemQuantity,updateCartItemColor,updateCartItemSize} =require("../controller/cart")
+const auth =require("../middlewear/authentication")
+const cartRouter =express.Router()
+cartRouter.post("/",auth,addToCart)
+cartRouter.get("/",auth,getCartByUserId)
+cartRouter.delete("/",auth,deleteCartByUserId)
+cartRouter.delete("/del",auth ,deleteProductFromCart)
+cartRouter.put("/",auth,updateCartItemQuantity)
+cartRouter.put("/color", auth , updateCartItemColor)
+cartRouter.put("/size",auth ,updateCartItemSize)
+module.exports=cartRouter

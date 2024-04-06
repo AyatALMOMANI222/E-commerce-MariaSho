@@ -1,0 +1,51 @@
+.bar{
+    height: 24px;
+  display: grid;
+  grid-template-columns:70% 20%;
+  justify-content: center;
+  
+  span{
+    margin-left: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .login-language{
+    display: grid;
+    grid-template-columns: 30% 30%;
+    justify-content: space-around;
+  }
+  .login{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    .login-icon{
+        margin-top: 2px;
+    }
+   
+  }
+  .login-signup{
+    background-color: white;
+    z-index: 490;
+    color: black;
+    font-size: smaller;
+    padding: 20px;
+    padding-top: "none";
+    width: 115px;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   border-radius: 3px;
+  position: relative;
+  right: 42px;
+  margin-top: 2px;
+.custom-class{
+    background-color:rgb(227 92 180);
+}
+.sign{
+   cursor: pointer;
+}
+}
+.signup{
+    display: flex;
+    flex-direction: column;
+}
+}

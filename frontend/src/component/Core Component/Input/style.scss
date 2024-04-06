@@ -1,0 +1,52 @@
+@use"../../../colors/style.scss";
+
+.input-container {
+  .label-container {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--element-color);
+    line-height: 30px;
+    .star {
+      color: var(--error-static);
+    }
+  }
+  .text-field-container {
+    position: relative;
+  
+    .text-field {
+      width: calc(100% - 19px);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      height: 35px;
+      outline: none;
+      padding-left: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 20px;
+      color: var(--element-color);
+      background: var(--background-color);
+    }
+    &::placeholder {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 20px;
+      color:var(--placeholder-color);
+    }
+    & .error-msg {
+      border: 1px solid var(--error-static);
+    }
+    .input-icon{
+     position: absolute; 
+     right: 20px;
+     top: 21%;
+    }
+  }
+  .error-msg-container {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: var(--error-static);
+  }
+}
