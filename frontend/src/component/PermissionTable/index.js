@@ -9,7 +9,7 @@ const PermissionTable = () => {
 
   const [data, setData] = useState([]);
   const [permissions, setPermissions] = useState([]);
-r
+
   useEffect(() => {
     const fetchData = async () => {
       try {

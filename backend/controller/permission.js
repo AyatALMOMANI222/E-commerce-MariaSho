@@ -2,7 +2,7 @@ const connection = require("../models/db");
 
 const addPermission = (req, res) => {
     const { name, description } = req.body;
-    const user_id = req.token.user_id;
+    const user_id = req.params.id;
   console.log(req.token);
     const checkPermissionQuery = "SELECT * FROM UserPermissions WHERE user_id = ? AND permission_id IN (SELECT id FROM Permissions WHERE name = ?)";
     const checkPermissionData = [user_id, name];
@@ -50,10 +50,36 @@ const addPermission = (req, res) => {
   };
   
 
+  const getPermissionByUserId = (req, res) => {
+    const user_id = req.params.id;
+
+    const query = `
+        SELECT Permissions.name, Permissions.description
+        FROM Permissions
+        INNER JOIN UserPermissions ON Permissions.id = UserPermissions.permission_id
+        WHERE UserPermissions.user_id = ?
+    `;
+    const data = [user_id];
+
+    connection.query(query, data, (err, results) => {
+        if (err) {
+            console.error("Error fetching permissions:", err);
+            return res.status(500).json({ message: "Failed to fetch permissions" });
+        }
+
+        if (results.length > 0) {
+            // يوجد لديه صلاحيات
+            res.status(200).json({ hasPermission: true, permissions: results });
+        } else {
+            // لا يوجد لديه أي صلاحيات
+            res.status(200).json({ hasPermission: false });
+        }
+    });
+};
 
   
   
 
 
-module.exports = addPermission
+module.exports = {addPermission,getPermissionByUserId}
 // 

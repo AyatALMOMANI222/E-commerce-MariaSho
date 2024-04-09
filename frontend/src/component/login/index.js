@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Input from "../Core Component/Input";
+import Buttons from "../Core Component/Buttons";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 
@@ -51,9 +52,9 @@ const Login = () => {
             label="Password"
           />
         </div>
-        <button className="login-btn" onClick={() => handleClick()}>
+        <Buttons className="login-btn" onClick={() => handleClick()}>
           Login
-        </button>
+        </Buttons>
         <div className="note-container">
           Don't have an account?
           <span className="register" onClick={() => handleRegClick()}>

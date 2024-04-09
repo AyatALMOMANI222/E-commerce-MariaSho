@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import SVG from "react-inlinesvg";
 import axios from "axios";
-import { linkIcon, deleteIcon } from "../../../icons";
+import deleteIcon  from "../../../icons/deleteIcon.svg";
 import "./style.scss";
 
 const ImageUploade = ({

@@ -46,7 +46,7 @@ const login = (req, res) => {
         };
 
         const userToken = jwt.sign(userPayload, process.env.SECRET);
-
+console.log(password);
         res.status(200).json({
           success: true,
           userToken,
@@ -55,6 +55,7 @@ const login = (req, res) => {
           profile_picture: user.profile_picture,
         });
       } else {
+        console.log(password);
         res.status(403).json({
           success: false,
           message: "The password you’ve entered is incorrect",
