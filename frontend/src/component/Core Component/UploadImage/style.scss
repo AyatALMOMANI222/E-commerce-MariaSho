@@ -1,0 +1,110 @@
+:root {
+    --primary-color: #3a6cd1;
+    --secondary-color: #ebecf2;
+    --tertiary-color: #9a9eb2;
+    --background-color: #f8f8fb;
+    --border-color: #d8dae5;
+    --text-color: #515360;
+    --hover-color: #f1f2f69f;
+    --shadow-color: rgba(0, 0, 0, 0.26);
+    --scrollbar-track-color: #f1f1f1;
+    --scrollbar-thumb-color: #888;
+    --scrollbar-thumb-hover-color: #555555ac;
+    --main-color: #fafafa;
+    --element-color: rgb(20, 36, 82);
+    --error-static: #da3f3f;
+    --error-hover: #e75d5d;
+    --error-active: #bb3232;
+  }
+.image-upload-container {
+
+  .upload-file {
+    display: none;
+  }
+
+  .label-container {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+    color: var(--element-color);
+    background-color: var(--background-color);
+
+    .star {
+      color: var(--error-static);
+    }
+  }
+  .img-upload-container {
+    .upload-img-container {
+      height: 38px;
+      width: calc(100% - 15px);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      outline: none;
+      padding-left: 15px;
+      background-color: var(--background-color);
+      transition: border 0.2s ease-out;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      &.error-msg {
+        border: 1px solid var(--error-static);
+      }
+
+      .placholder {
+        font-size: 14px;
+        color: #babdcc;
+        cursor: pointer;
+
+        .file-name {
+          color: rgba(18, 19, 26, 1);
+        }
+      }
+
+      svg {
+        padding-right: 15px;
+        path {
+          stroke: var(--element-color);
+        }
+      }
+    }
+
+    .img-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 5px;
+      .img {
+        width: 70px;
+        height: 50px;
+        padding: 5px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+      }
+      .actions-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+
+        svg {
+          cursor: pointer;
+        }
+        .view-icon {
+          fill: var(--element-color);
+        }
+      }
+    }
+    .error-msg-container {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 17px;
+      text-align: left;
+      color: var(--error-static);
+    }
+  }
+}

@@ -6,7 +6,8 @@ import { arrowUp } from "./icons";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Input from "./component/Core Component/Input";
-
+import EditProfile from "./component/EditProfile";
+import PermissionTable from "./component/PermissionTable";
 function App() {
   const [username, setUsername] = useState("");
   
@@ -16,6 +17,9 @@ function App() {
         <Route path="/" element={<Main />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/edit" element={<EditProfile />}></Route>
+        <Route path="/table" element={<PermissionTable />}></Route>
+
       </Routes>
     </div>
   );

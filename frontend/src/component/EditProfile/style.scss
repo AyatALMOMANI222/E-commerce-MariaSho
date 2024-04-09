@@ -1,0 +1,53 @@
+.edit-container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 60% 25%;
+    column-gap: 10%;
+    .left-dev{
+        margin-left: 15px;
+        .first-sentence{
+            margin: 30px;
+        }
+
+        .input-container{
+    
+            .section-one{
+          
+              display: grid;
+           
+            }
+            .second-section{
+                display: grid;
+                grid-template-columns: 50% 48%;
+                grid-row-gap: 20px;
+                grid-column-gap: 10px;
+            }
+            .third-section{
+                display: grid;
+                grid-template-columns: 50% 48%;
+                grid-row-gap: 20px;
+                grid-column-gap: 10px;
+            }
+            .edit-btn{
+                width: 30%;
+                margin: 20px;
+font-size: small;
+            }
+        }
+        
+        
+    }
+    .picture-container{
+        margin-top: 100px;
+        
+       .profile-dev{
+   .edit-picture{
+ 
+   }
+       }
+        
+    }
+
+
+}
