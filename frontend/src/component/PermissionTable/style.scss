@@ -1,19 +1,67 @@
 /* Table.css */
-.table-container {
-  margin-top: 20px;
+
+.add-permission-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // height: 200px;
+  .select-div {
+    margin: 20px;
+    
+  }
+  .permission-item {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #ebecf2;
+
+    border-radius: 50px;
+
+    width: max-content;
+
+    height: 24px;
+
+    overflow: hidden;
+
+    transition: all 0.4s ease-in-out;
+
+    padding-inline-end: 15px;
+
+    cursor: default;
+    padding: 0px 20px;
+  }
+  
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  padding: 20px;
+  button {
+    width: 170px;
+  }
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  
 }
 
-.table th, .table td {
+.table th,
+.table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+ 
 }
 
 .table th {
   background-color: #f2f2f2;
+  
 }

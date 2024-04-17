@@ -5,7 +5,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+  },externals: {
+    'child_process': 'require("child_process")',
+    'fs': 'require("fs")'
   },
+  
   module: {
     rules: [
       {

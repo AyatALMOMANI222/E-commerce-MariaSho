@@ -8,9 +8,13 @@ import "./App.css";
 import Input from "./component/Core Component/Input";
 import EditProfile from "./component/EditProfile";
 import PermissionTable from "./component/PermissionTable";
+import PopupExample from "./component/Core Component/Modal";
+import ProductAction from "./component/AddProduct";
+import Categorey from "./component/Categorey";
+import OneProduct from "./component/oneProduct";
 function App() {
   const [username, setUsername] = useState("");
-  
+
   return (
     <div className="App">
       <Routes>
@@ -19,8 +23,13 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/edit" element={<EditProfile />}></Route>
         <Route path="/table" element={<PermissionTable />}></Route>
+        <Route path="/popup" element={<PopupExample />}></Route>
+        <Route path="/product" element={<ProductAction />}></Route>
+        <Route path="/categorey/:type" element={<Categorey />}></Route>
+        <Route path="/categorey/:type/:id" element={<OneProduct />}></Route>
 
       </Routes>
+  
     </div>
   );
 }

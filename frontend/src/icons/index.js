@@ -19,6 +19,9 @@ export { default as sales } from './sales.svg'
 export { default as outerwear } from './outerwear.svg'
  export { default as sideIcon } from './side-menu-svgrepo-com.svg'
 
+ export { default as closeIcon } from './close.svg'
+ export { default as editIcon } from './editIcon.svg'
 
+ export { default as PointIcon } from './pointIcon.svg'
 
  

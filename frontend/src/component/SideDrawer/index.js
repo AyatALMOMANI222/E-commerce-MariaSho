@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SVG from "react-inlinesvg";
+import { useNavigate } from "react-router-dom";
 import { modules } from "../../constant/module";
 import {
   logo,
@@ -12,14 +13,14 @@ import "./style.scss";
 const SideDrawer = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isExpand, setIsExpand] = useState(false);
-
+  const [type, setType] = useState("");
+const navigate=useNavigate()
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setIsExpand(false);
       }
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
 
@@ -32,7 +33,11 @@ const SideDrawer = () => {
   const handleClick = () => {
     setIsExpand(!isExpand);
   };
-
+  const handleTypeClick=(typeName)=>{
+setType(typeName)
+navigate(`/categorey/${typeName}`)
+  }
+console.log(type);
   return (
    
       <div className={`side-drawer-container ${!isExpand ? "expand" : ""}`}>
@@ -70,7 +75,7 @@ const SideDrawer = () => {
                     {item.children.map((childItem, childIndex) => {
                       return (
                         <div key={childIndex} className="child">
-                          <div>{childItem.name}</div>
+                          <div onClick={()=>handleTypeClick(childItem.name)}>{childItem.name}</div>
                         </div>
                       );
                     })}

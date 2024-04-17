@@ -15,24 +15,22 @@ const login = (req, res) => {
   const data = [email];
   connection.query(query, data, async (err, result) => {
     if (err) {
-      res.status(500).json({
+      console.error("Error fetching user data:", err);
+      return res.status(500).json({
         success: false,
         message: "An error occurred while fetching user data.",
       });
-      return;
     }
 
     if (result.length === 0) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         message: "The email doesn't exist",
       });
-      return;
     }
 
     const user = result[0];
     const permission = result?.map((item) => item?.permission_name);
-    console.log(user);
 
     try {
       const passwordMatch = await bcrypt.compare(password, user.password);
@@ -41,28 +39,27 @@ const login = (req, res) => {
           user_id: user.id,
           username: user.username,
           email: user.email,
-          profile_picture: user.profile_picture,
           permission: permission,
         };
-
         const userToken = jwt.sign(userPayload, process.env.SECRET);
-console.log(password);
-        res.status(200).json({
+        return res.status(200).json({
           success: true,
           userToken,
           user_id: user.id,
           username: user.username,
-          profile_picture: user.profile_picture,
+          permission: user.permission_name,
+
         });
+        console.log(user_id);
       } else {
-        console.log(password);
-        res.status(403).json({
+        return res.status(403).json({
           success: false,
           message: "The password you’ve entered is incorrect",
         });
       }
     } catch (error) {
-      res.status(500).json({
+      console.error("Error comparing passwords:", error);
+      return res.status(500).json({
         success: false,
         message: "An error occurred while comparing passwords.",
       });

@@ -1,0 +1,37 @@
+.Product-container{
+    display: flex;
+    flex-direction: column;
+
+    .one-product-container{
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        flex-wrap: wrap;
+margin-bottom: 250px;
+        .product{
+            display: flex;
+            flex-direction: column;
+         margin: 50px;
+         .card-container{
+            margin-bottom: 100px;
+         }
+            .header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .iconn{
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+    .add-container{
+        margin-left: 20px;
+         width: 30%;
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      height: 800px;
+    }
+}

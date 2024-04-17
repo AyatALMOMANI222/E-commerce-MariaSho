@@ -1,5 +1,6 @@
 const connection = require("../models/db");
 const bcrypt = require("bcrypt");
+
 const createUser = (req, res) => {
   const {
     username,
@@ -23,7 +24,7 @@ const createUser = (req, res) => {
       [
         username,
         email,
-        hashedPassword, // استخدم كلمة المرور المشفرة بدلاً من النص العادي
+        hashedPassword,
         country,
         city,
         profile_picture,
@@ -34,15 +35,23 @@ const createUser = (req, res) => {
           console.error("Error creating user:", err);
           return res.status(500).json({ message: "Failed to create user" });
         }
-        console.log("User created successfully");
-        res.status(201).json({
-          message: "User created successfully",
-          userId: result.insertId,
-        });
+        
+        if (result.affectedRows > 0) {
+          console.log("User created successfully");
+          return res.status(201).json({
+            message: "User created successfully",
+            userId: result.insertId,
+          });
+        } else {
+          return res.status(500).json({ message: "Failed to create user" });
+        }
       }
     );
   });
 };
+
+module.exports = createUser;
+
 
 
 const updateUserField = (req, res) => {
@@ -108,6 +117,23 @@ const getAllUsers = (req, res) => {
       }
 
       res.status(200).json({ users });
+  });
+};
+const getAllUsersAndPermission = (req, res) => {
+  const sql = `
+  SELECT Users.id, Users.username, Users.email, Users.country, Users.city, Users.location, Permissions.name AS permission_name
+  FROM Users
+  LEFT JOIN UserPermissions ON Users.id = UserPermissions.user_id
+  LEFT JOIN Permissions ON UserPermissions.permission_id = Permissions.id
+  `;
+
+  connection.query(sql, (err, users) => {
+    if (err) {
+      console.error("Error fetching users:", err);
+      return res.status(500).json({ message: "Failed to fetch users" });
+    }
+
+    res.status(200).json({ users });
   });
 };
 
@@ -237,4 +263,4 @@ const updateProfilePicture = (req, res) => {
   });
 };
 
-module.exports = {getProfilePictureById,getUserById,createUser,updateUserField,getAllUsers,updateUserById,updateProfilePicture};
+module.exports = {getAllUsersAndPermission ,getProfilePictureById,getUserById,createUser,updateUserField,getAllUsers,updateUserById,updateProfilePicture};

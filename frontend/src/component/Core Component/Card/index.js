@@ -1,15 +1,20 @@
 import React from "react";
-import "./style.css";
-const Card = ({ title, text, image }) => {
+import "./style.scss";
+
+const ProductCard = ({ name, description, price, image,onClick ,buttonName}) => {
   return (
-    <div className="card">
-      <img className="card-image" src={image} alt="Card" />
-      <div className="card-content">
-        <h2 className="card-title">{title}</h2>
-        <p className="card-text">{text}</p>
+    <div className="product-card">
+      <div className="card">
+        <img className="img" src={image} />
+        <div className="card-content">
+          <h3 className="card-title">{name}</h3>
+          <h5 className="card-description">{description}</h5>
+          <p className="card-price">{price}$</p>
+          <button className="card-button" onClick={onClick}>{buttonName}</button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default ProductCard;

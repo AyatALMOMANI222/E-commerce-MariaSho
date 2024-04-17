@@ -1,0 +1,25 @@
+.Product-container{
+    display: flex;
+    flex-direction: column;
+    .one-product-container{
+        display: flex;
+        flex-direction: row;
+        // margin: 50px;
+        // flex-wrap: wrap;
+
+        .product{
+            display: flex;
+            flex-direction: column;
+         margin: 50px;
+         
+            .header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .iconn{
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+        }
+    }}

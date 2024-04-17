@@ -13,12 +13,15 @@
     .nav-name {
       position: relative; 
       .nav-element-name {
-        font-size: large;
+        font-size: medium;
         font-weight: bolder;
         color: rgb(126, 112, 112);
         padding-top: 3px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
       }
   
       .nav-child {

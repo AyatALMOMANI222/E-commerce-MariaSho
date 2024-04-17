@@ -1,59 +1,110 @@
-import React, { useState } from "react";
-import axios from "axios";
-import ImageUploade from "../Core Component/UploadImage";
+import React, { useState, useRef } from "react";
+import SVG from "react-inlinesvg";
+import  linkIcon from "../../icons/linkIcon.svg";
+import deleteIcon from "../../icons/deleteIcon.svg"
+import "./style.scss";
 
-function ImageUpload() {
-  const [image, setImage] = useState(null);
-  const token = localStorage.getItem("token");
+const ImageUpload = ({
+  errorMsg,
+  required = true,
+  label = "Upload File",
+  allowedExtensions,
+  inputValue,
+  setInputValue,
+}) => {
+  const fileInputRef = useRef(null);
+  const [fileName, setFileName] = useState("");
 
-  const handleImageChange = (e) => {
+  const handleDelete = () => {
+    setInputValue("");
+    setFileName("");
+  };
+
+  const handleChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(file);
-      console.log(file);
+      const fileExtension = file.name.split(".").pop().toLowerCase();
+      if (allowedExtensions.includes(fileExtension)) {
+        setFileName(file.name);
+        const reader = new FileReader();
+        reader.onload = () => {
+          setInputValue(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setInputValue("");
+        alert(
+          `Invalid file type. Allowed extensions are: ${allowedExtensions.join(
+            ", "
+          )}`
+        );
+      }
     }
   };
 
-  const uploadImage = () => {
-    if (!image) return;
-
-   
-    console.log(image);
-    axios
-      .put(
-        "http://localhost:5000/register/pro",
-        {  profile_picture :image },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        console.log("Image uploaded successfully:", response);
-        console.log(response, "ayat");
-      })
-      .catch((error) => {
-        console.error("Error uploading image:", error);
-      });
+  const handleClick = () => {
+    fileInputRef.current.click();
   };
 
   return (
-    <div>
-      <h2>Update Profile Picture</h2>
-      <ImageUploade
-            label="Upload Image"
-            allowedExtensions={["jpg", "jpeg", "png", "gif"]}
-            inputValue={image}
-            setInputValue={setImage}
-          />
-      {image && (
-        <div>
-         
-          <button onClick={uploadImage}>Upload Image</button>
+    <div className={`image-upload-container`}>
+      {label && (
+        <div className="label-container">
+          <span>{label}</span>
+          {required && <span className="star">*</span>}
         </div>
       )}
+      <div className="img-upload-container">
+        <input
+          ref={fileInputRef}
+          type="file"
+          className="upload-file"
+          accept={allowedExtensions?.map((ext) => `.${ext}`).join(",")}
+          onChange={handleChange}
+        />
+        <div
+          className={`upload-img-container ${errorMsg ? "error-msg" : ""}`}
+          onClick={handleClick}
+        >
+          <div className="placholder">
+            {fileName ? (
+              <span className="file-name">{fileName}</span>
+            ) : (
+              "Upload Img"
+            )}
+          </div>
+          <SVG
+            className="link-icon"
+            src={linkIcon}
+            data-id="LINK_ICON"
+            height={20}
+            width={20}
+          />
+        </div>
+        {errorMsg && <span className="error-msg-container">{errorMsg}</span>}
+        {!!fileName ? (
+          <div className="img-container">
+            <img className="img" src={inputValue} />
+            <div className="actions-container">
+              {/* <SVG
+                className="view-icon"
+                src={viewIcon}
+                height={20}
+                width={20}
+              /> */}
+              <SVG
+                className="delete-icon"
+                src={deleteIcon}
+                onClick={handleDelete}
+                height={20}
+                width={20}
+              />
+            </div>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
-}
+};
+
 export default ImageUpload;

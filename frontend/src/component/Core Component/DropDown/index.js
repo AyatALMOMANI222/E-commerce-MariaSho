@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import SVG from "react-inlinesvg";
-import  arrowUp  from "../../../icons/arrowUp.svg";
-import  arrowDown from "../../../icons/arrowBottom.svg"
+import arrowUp from "../../../icons/arrowUp.svg";
+import arrowDown from "../../../icons/arrowBottom.svg";
 import "./style.css";
 
 const Dropdown = () => {
@@ -9,7 +9,6 @@ const Dropdown = () => {
   const [selection, setSelection] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const options = [
-    
     {
       label: "English",
     },
@@ -41,26 +40,21 @@ const Dropdown = () => {
   return (
     <div className="dropdown-container">
       <div className="select" onClick={handleOpen}>
-        {selection || <span >English</span>}
+        {selection || <span>English</span>}
         <SVG src={isOpen ? arrowUp : arrowDown} width={24} height={24} />
       </div>
-     
+
       {isOpen && (
         <div className="options" id="options-container">
           {options?.map((e, i) => {
             return (
-           
-                
-              
               <div
                 ref={e.label == selection ? selectItemRef : null}
                 className={`opt ${e.label == selection ? "selected" : ""}`}
                 onClick={() => handleClick(e.label)}
               >
-               
                 {e.label}
               </div>
-           
             );
           })}
         </div>

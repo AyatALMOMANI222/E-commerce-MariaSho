@@ -24,17 +24,19 @@ CREATE TABLE Products (
     price INT,
     colors VARCHAR(500),
     sizes VARCHAR(500),
-    image1 VARCHAR(500),
-    image2 VARCHAR(500),
-    image3 VARCHAR(500),
-    image4 VARCHAR(255),
-    image5 VARCHAR(255),
     quantity INT DEFAULT 0,
     type VARCHAR(255),
     material VARCHAR(255),
     brand VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+CREATE TABLE ProductImages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    image_url VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
 );
 
 
