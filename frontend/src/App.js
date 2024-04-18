@@ -12,6 +12,7 @@ import PopupExample from "./component/Core Component/Modal";
 import ProductAction from "./component/AddProduct";
 import Categorey from "./component/Categorey";
 import OneProduct from "./component/oneProduct";
+import AllProduct from "./component/AllProduct";
 function App() {
   const [username, setUsername] = useState("");
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/product" element={<ProductAction />}></Route>
         <Route path="/categorey/:type" element={<Categorey />}></Route>
         <Route path="/categorey/:type/:id" element={<OneProduct />}></Route>
+        <Route path="/allproduct" element={<AllProduct />}></Route>
 
       </Routes>
   

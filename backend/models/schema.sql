@@ -34,7 +34,7 @@ CREATE TABLE Products (
 CREATE TABLE ProductImages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
-    image_url VARCHAR(500),
+    image_url TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
 );

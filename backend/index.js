@@ -14,11 +14,9 @@ app.get('/', (req, res) => {
 const bodyParser = require('body-parser');
 
 
-// تحديد حجم الحد الأقصى لحجم البيانات المسموح بها
 app.use(bodyParser.json({ limit: '10mb' })); // تحديد حجم الحد الأقصى للطلبات بصيغة JSON
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // تحديد حجم الحد الأقصى للطلبات بصيغة urlencoded
 
-// باقي التعليمات الخاصة بتشغيل الخادم
 
 
 
@@ -27,6 +25,8 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // تحديد
 const loginRouter=require("./routes/login")
 app.use("/login",loginRouter)
 
+const Router=require("./routes/minio")
+app.use("/minio", Router)
 const registerRouter=require("./routes/register")
 app.use("/register",registerRouter)
 

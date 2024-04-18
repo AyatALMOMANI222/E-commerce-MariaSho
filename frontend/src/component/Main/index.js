@@ -1,6 +1,7 @@
 import React from "react";
 import SideDrawer from "../SideDrawer";
 import Navbar from "../Navbar";
+import AllProduct from "../AllProduct";
 import Bar from "../FirstBar";
 import './style.css'
 import UserManagment from "../userManagement";
@@ -21,6 +22,7 @@ const Main = () => {
       <button onClick={()=>{
         navigate("/table")
       }}>Permission Table</button>
+      <div onClick={()=>navigate("/allproduct")}>AllProduct</div>
       <button onClick={()=> navigate("/product")}>add product</button>
     </div>
   );

@@ -6,26 +6,25 @@ import ColorsSection from "../ColorsSection";
 const OneProduct = () => {
   const [product, setProduct] = useState([]);
   const [selectedColor, setSelectedColor] = useState("");
-  const [availableColors, setAvailableColors] = useState(["white", "gray","yellow","lime-green","green","blue","red"]);
+  const [availableColors, setAvailableColors] = useState([]);
 
   const { id } = useParams();
 
-  const getProduct = () => {
-    console.log(id);
-    axios
-      .get(`http://localhost:5000/product/one/${id}`)
-      .then((response) => {
-        console.log(response?.data);
-        setProduct(response?.data.product);
-      })
-      .catch((error) => {
-        console.error("Error fetching Product", error);
-      });
-  };
+ useEffect(()=>{
+  axios
+  .get(`http://localhost:5000/product/one/${id}`)
+  .then((response) => {
+    console.log(response?.data);
+    setProduct(response?.data.product);
+    console.log(response.data.product.colors);
+     setAvailableColors(response.data.product.colors.split(","))
+     console.log(availableColors);
+  })
+  .catch((error) => {
+    console.error("Error fetching Product", error);
+  });
+ },[])
 
-  useEffect(() => {
-    getProduct();
-  }, []);
 
   return (
     <div className="one-product-container">
@@ -51,23 +50,15 @@ const OneProduct = () => {
             </div>
           )}
 
-          {product && product.colors && (
-            <div className="color-container">
-              {product.colors.split(",").map((color, index) => (
-                <div className="color" key={index}>
-                  {color}
-                </div>
-              ))}
-            </div>
-          )}
-          <button className="btn">Add to Product</button>
-        </div>
-      </div>
-      <ColorsSection
+<ColorsSection
         selectedColor={selectedColor}
         availableColors={availableColors}
         setSelectedColor={setSelectedColor}
       />
+          <button className="btn">Add to Product</button>
+        </div>
+      </div>
+    
     </div>
   );
 };

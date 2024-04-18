@@ -13,8 +13,11 @@ const addProduct = (req, res) => {
     brand,
   } = req.body;
 
+  const imageDataArray = req.body.images || []
+
   const sqlInsertProduct = `INSERT INTO Products (name,image, description, price, sizes,
     colors, quantity, type, material, brand) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)`;
+
   connection.query(
     sqlInsertProduct,
     [
@@ -25,23 +28,38 @@ const addProduct = (req, res) => {
       sizes,
       colors,
       quantity,
-    
       type,
       material,
       brand,
     ],
-    (err, result) => {
+    (err, productResult) => {
       if (err) {
-        console.log(err);
         console.error("Error adding product:", err);
         return res.status(500).json({ message: "Failed to add product" });
       }
+      
       console.log("Product added successfully");
-      const productId = result.insertId;
+      const productId = productResult.insertId;
 
-      res.status(201).json({
-        message: "Product added successfully",
-        productId: productId,
+      // Prepare values for image insertion
+      const values = imageDataArray.map((imageData) => [
+        imageData.image_url,
+        productId, // Use productId instead of imageData.product_id
+      ]);
+console.log(values);
+      // Then, insert the images associated with the product
+      const sqlInsertImage = `INSERT INTO ProductImages (image_url, product_id) VALUES ?`;
+      connection.query(sqlInsertImage, [values], (err, imageResult) => {
+        if (err) {
+          console.error("Failed to add images:", err);
+          return res.status(500).json({ message: "Failed to add images" });
+        }
+        
+        console.log("Images added successfully");
+        return res.status(201).json({
+          message: "Product and images added successfully",
+          productId: productId,
+        });
       });
     }
   );
@@ -143,9 +161,7 @@ const deleteProductById = (req, res) => {
   });
 };
 
-
 const getProductsByType = (req, res) => {
-
   const type = req.params.type;
   console.log(type);
   const sql = `SELECT * FROM Products WHERE type = ?`;
@@ -159,8 +175,6 @@ const getProductsByType = (req, res) => {
     }
   });
 };
-
-
 
 module.exports = {
   getProductsByType,
