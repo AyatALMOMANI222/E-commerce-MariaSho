@@ -1,3 +1,4 @@
+
 import {
   callIcon,
   productsIcon,
@@ -9,8 +10,12 @@ import {
   jewelry,
   shoes,
 } from "../icons";
-
 export const modules = [
+  {
+    name: "Admin Settings",
+    icon: topIcon,
+    children: [{ name: "All Product" , path:"/product"}, { name: "Add Product" }],
+  },
   {
     name: "Tops",
     icon: topIcon,

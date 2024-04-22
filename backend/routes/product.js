@@ -2,14 +2,19 @@ const express = require("express");
 const auth = require("../middlewear/authentication");
 const authorization = require("../middlewear/authorization");
 const {
+  getProductsByPageAndFilter,
   addProduct,
   getAllProducts,
   updateProductById,
   deleteProductById,
   getProductById,
   getProductsByType,
+  getPro
 } = require("../controller/product");
+// import {getPro} from "../controller/product"
 const productRouter = express.Router();
+
+productRouter.get("/page", getPro)
 
 // POST request to add a product
 productRouter.post(
@@ -18,6 +23,8 @@ productRouter.post(
   authorization(["addProduct", "admin"]),
   addProduct
 );
+
+// productRouter.get("/page/:page", getProductsByPage)
 
 // PUT request to update a product by ID
 productRouter.put(
@@ -42,6 +49,7 @@ productRouter.get("/:type", getProductsByType);
 
 // GET request to get all products
 productRouter.get("/", getAllProducts);
-productRouter.get("/one/:productId", getProductById);
 
+
+productRouter.get("/one/:productId", getProductById);
 module.exports = productRouter;

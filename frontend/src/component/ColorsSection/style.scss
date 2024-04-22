@@ -1,101 +1,102 @@
-.color-section-container{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-.chip {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  padding: 3px;
-  &.selected {
-    border: 2px solid black;
+.color-section-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  .chip {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #d3d1d1;
+    cursor: pointer;
+    &.selected {
+      border: 2px solid black;
+    }
+    &.black {
+      background-color: black;
+    }
+    &.white {
+      background-color: white;
+    }
+    &.gray {
+      background-color: gray;
+    }
+    &.blue {
+      background-color: blue;
+    }
+    &.sky-blue {
+      background-color: skyblue;
+    }
+    &.Turquoise {
+      background-color: Turquoise;
+    }
+    &.teal {
+      background-color: teal;
+    }
+    &.green {
+      background-color: green;
+    }
+    &.olive-green {
+      background-color: olive;
+    }
+    &.lime-green {
+      background-color: limegreen;
+    }
+    &.yellow {
+      background-color: yellow;
+    }
+    &.gold {
+      background-color: #ffd700;
+    }
+    &.orange {
+      background-color: #ffa500;
+    }
+    &.red {
+      background-color: #ff0000;
+    }
+    &.Burgundy {
+      background-color: #800020;
+    }
+    &.pink {
+      background-color: #ffc0cb;
+    }
+    &.magenta {
+      background-color: #ff00ff;
+    }
+    &.purple {
+      background-color: #800080;
+    }
+    &.lavender {
+      background-color: #e6e6fa;
+    }
+    &.brown {
+      background-color: #a52a2a;
+    }
+    &.beige {
+      background-color: #f5f5dc;
+    }
+    &.cream {
+      background-color: #fffdd0;
+    }
+    &.tan {
+      background-color: #d2b48c;
+    }
+    &.charcoal {
+      background-color: #36454f;
+    }
+    &.slate {
+      background-color: #708090;
+    }
+    &.steel-blue {
+      background-color: #4682b4;
+    }
+    &.indigo {
+      background-color: #4b0082;
+    }
+    &.cyan {
+      background-color: #00ffff;
+    }
+    &.mint-green {
+      background-color: #98ff98;
+    }
   }
-  &.black {
-    background-color: black;
-  }
-  &.white {
-    background-color: white;
-  }
-  &.gray {
-    background-color: gray;
-  }
-  &.blue {
-    background-color: blue;
-  }
-  &.sky-blue {
-    background-color: skyblue;
-  }
-  &.Turquoise {
-    background-color: Turquoise;
-  }
-  &.teal {
-    background-color: teal;
-  }
-  &.green {
-    background-color: green;
-  }
-  &.olive-green {
-    background-color: olive;
-  }
-  &.lime-green {
-    background-color: limegreen;
-  }
-  &.yellow {
-    background-color: yellow;
-  }
-  &.gold {
-    background-color: #ffd700;
-  }
-  &.orange {
-    background-color: #ffa500;
-  }
-  &.red {
-    background-color: #ff0000;
-  }
-  &.Burgundy {
-    background-color: #800020;
-  }
-  &.pink {
-    background-color: #ffc0cb;
-  }
-  &.magenta {
-    background-color: #ff00ff;
-  }
-  &.purple {
-    background-color: #800080;
-  }
-  &.lavender {
-    background-color: #e6e6fa;
-  }
-  &.brown {
-    background-color: #a52a2a;
-  }
-  &.beige {
-    background-color: #f5f5dc;
-  }
-  &.cream {
-    background-color: #fffdd0;
-  }
-  &.tan {
-    background-color: #d2b48c;
-  }
-  &.charcoal {
-    background-color: #36454f;
-  }
-  &.slate {
-    background-color: #708090;
-  }
-  &.steel-blue {
-    background-color: #4682b4;
-  }
-  &.indigo {
-    background-color: #4b0082;
-  }
-  &.cyan {
-    background-color: #00ffff;
-  }
-  &.mint-green {
-    background-color: #98ff98;
-  }
-}
 }

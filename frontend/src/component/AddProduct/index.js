@@ -6,7 +6,6 @@ import axios from "axios";
 import ImagesList from "../ImagesList";
 import "./style.scss";
 const ProductAction = () => {
- 
   function generateRandomId() {
     return Math.random().toString(36).substr(2, 9);
   }
@@ -25,7 +24,6 @@ const ProductAction = () => {
     type: "",
     material: "",
     brand: "",
-  
   });
   const token = localStorage.getItem("token");
 
@@ -41,7 +39,7 @@ const ProductAction = () => {
     axios
       .post(
         `http://localhost:5000/product`,
-        { ...productInfo, image: image , images:images },
+        { ...productInfo, image: image, images: images },
 
         {
           headers: {
@@ -57,68 +55,81 @@ const ProductAction = () => {
       });
   };
 
-
   return (
-    <div className="Product-container">
-     
-      <div className="add-container">
-        <Input
-          placeholder="name"
-          name="name"
-          onChange={handleChange}
-          value={productInfo.name}
-        />
-        <ImageUploade
+    <div className="insert-product-container">
+      <div className="add-title">Add Product</div>
+      <div className="add-product-container">
+        <div className="add-product">
+          <Input
+            label={"Name"}
+            placeholder="name"
+            name="name"
+            onChange={handleChange}
+            value={productInfo.name}
+          />
+      
+          <Input
+            label={"Description"}
+            placeholder="description"
+            name="description"
+            onChange={handleChange}
+            value={productInfo.description}
+          />
+          <Input
+            label={"Price"}
+            placeholder="price"
+            name="price"
+            onChange={handleChange}
+            value={productInfo.price}
+          />
+          <Input
+            label={"Sizes"}
+            placeholder="sizes"
+            name="sizes"
+            onChange={handleChange}
+            value={productInfo.sizes}
+          />
+          <Input
+            label={"Colors"}
+            placeholder="colors"
+            name="colors"
+            onChange={handleChange}
+            value={productInfo.colors}
+          />
+          <Input
+            label={"Type"}
+            placeholder="type"
+            name="type"
+            onChange={handleChange}
+            value={productInfo.type}
+          />
+          <Input
+            label={"Material"}
+            placeholder="material"
+            name="material"
+            onChange={handleChange}
+            value={productInfo.material}
+          />
+          <Input
+            label={"Brand"}
+            placeholder="brand"
+            name="brand"
+            onChange={handleChange}
+            value={productInfo.brand}
+          />
+    <ImageUploade
           inputValue={image}
           setInputValue={setImage}
           label="Select Picture"
           allowedExtensions={["jpg", "jpeg", "png", "gif"]}
         />
-        <Input
-          placeholder="description"
-          name="description"
-          onChange={handleChange}
-          value={productInfo.description}
-        />
-        <Input
-          placeholder="price"
-          name="price"
-          onChange={handleChange}
-          value={productInfo.price}
-        />
-        <Input
-          placeholder="sizes"
-          name="sizes"
-          onChange={handleChange}
-          value={productInfo.sizes}
-        />
-        <Input
-          placeholder="colors"
-          name="colors"
-          onChange={handleChange}
-          value={productInfo.colors}
-        />
-        <Input
-          placeholder="type"
-          name="type"
-          onChange={handleChange}
-          value={productInfo.type}
-        />
-        <Input
-          placeholder="material"
-          name="material"
-          onChange={handleChange}
-          value={productInfo.material}
-        />
-        <Input
-          placeholder="brand"
-          name="brand"
-          onChange={handleChange}
-          value={productInfo.brand}
-        />
-
-        <ImagesList images={images} setImages={setImages} />
-        <Buttons onClick={() => handleClick(productInfo)}>Add Product</Buttons>
+          <ImagesList images={images} setImages={setImages} />
+        </div>
+        <div className="add-product-btn">
+          <Buttons onClick={() => handleClick(productInfo)}>
+            Add Product
+          </Buttons>
+        </div>
       </div>
     </div>
   );

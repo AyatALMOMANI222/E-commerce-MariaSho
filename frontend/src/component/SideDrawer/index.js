@@ -12,9 +12,9 @@ import {
 import "./style.scss";
 const SideDrawer = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isExpand, setIsExpand] = useState(false);
+  const [isExpand, setIsExpand] = useState(true);
   const [type, setType] = useState("");
-const navigate=useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -33,73 +33,82 @@ const navigate=useNavigate()
   const handleClick = () => {
     setIsExpand(!isExpand);
   };
-  const handleTypeClick=(typeName)=>{
-setType(typeName)
-navigate(`/categorey/${typeName}`)
-  }
-console.log(type);
+  const handleTypeClick = (path) => {
+    navigate(path);
+  };
+  console.log(type);
   return (
-   
-      <div className={`side-drawer-container ${!isExpand ? "expand" : ""}`}>
-        <div className="logo-container">
-          <SVG className="logo-icon" onClick={() => handleClick()} src={logo} width={34} height={34}></SVG>
-          {isExpand && <span className="product">PRODUCTS</span>}
-        </div>
-        <div className="main-container">
-          {modules.map((item, index) => {
-            let isOpen = selectedItem === item;
-            return (
-              <div key={index} className={`section-container`}>
-                <div className={`section`}>
-                  <div
-                    className="icon-typee"
-                    onClick={() => handleItemClick(item)}
-                  >
-                    <SVG
-                      className="section-icon"
-                      src={item.icon}
-                      width={24}
-                      height={24}
-                    ></SVG>
-                    {isExpand && <span>{item.name}</span>}
-                  </div>
-                  {isExpand && (
-                    <SVG
-                      className="arrow-icon"
-                      src={isOpen ? arrowBottom : arrowUp}
-                    ></SVG>
-                  )}
+    <div className={`side-drawer-container ${!isExpand ? "expand" : ""}`}>
+      <div className="logo-container">
+        <SVG
+          className="logo-icon"
+          onClick={() => handleClick()}
+          src={logo}
+          width={34}
+          height={34}
+        ></SVG>
+        {isExpand && <span className="product">PRODUCTS</span>}
+      </div>
+      <div className="main-container">
+        {modules.map((item, index) => {
+          let isOpen = selectedItem === item;
+          return (
+            <div key={index} className={`section-container`}>
+              <div className={`section`}>
+                <div
+                  className="icon-typee"
+                  onClick={() => handleItemClick(item)}
+                >
+                  <SVG
+                    className="section-icon"
+                    src={item.icon}
+                    width={24}
+                    height={24}
+                  ></SVG>
+                  {isExpand && <span>{item.name}</span>}
                 </div>
-                {isOpen && (
-                  <div className={`children ${!isExpand ? "expand":""}`}>
-                    {item.children.map((childItem, childIndex) => {
-                      return (
-                        <div key={childIndex} className="child">
-                          <div onClick={()=>handleTypeClick(childItem.name)}>{childItem.name}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
+                {isExpand && (
+                  <SVG
+                    className="arrow-icon"
+                    src={isOpen ? arrowBottom : arrowUp}
+                  ></SVG>
                 )}
               </div>
-            );
-          })}
-        </div>
-
-        <div className="not-setting">
-          <div className="notification">
-            <SVG className="not-setting-icon" width={34} height={34} src={notification}></SVG>
-            {isExpand && <span>Notifications</span>}
-          </div>
-
-          <div className="settings">
-            <SVG className="not-setting-icon" src={settings}></SVG>
-            {isExpand && <span>Settings</span>}
-          </div>
-        </div>
+              {isOpen && (
+                <div className={`children ${!isExpand ? "expand" : ""}`}>
+                  {item.children.map((childItem, childIndex) => {
+                    return (
+                      <div key={childIndex} className="child">
+                        <div onClick={() => handleTypeClick(childItem.path)}>
+                          {childItem.name}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-   
+      <div className="not-setting">
+        <div className="notification">
+          <SVG
+            className="not-setting-icon"
+            width={34}
+            height={34}
+            src={notification}
+          ></SVG>
+          {isExpand && <span>Notifications</span>}
+        </div>
+
+        <div className="settings">
+          <SVG className="not-setting-icon" src={settings}></SVG>
+          {isExpand && <span>Settings</span>}
+        </div>
+      </div>
+    </div>
   );
 };
 

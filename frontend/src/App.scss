@@ -4,3 +4,13 @@ body{
     margin: 0px;
     padding: 0px;
 }
+.App{
+    display: flex;
+    flex-direction: row;
+    .main-container{
+        height: 100vh;
+        overflow-y: overlay;
+        overflow-x: hidden;
+        width:100%;
+    }
+}

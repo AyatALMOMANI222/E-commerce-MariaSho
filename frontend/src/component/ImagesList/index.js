@@ -29,19 +29,6 @@ const ImagesList = ({ productId, images, setImages }) => {
     );
   };
 
-  const handleUploadImage = (img) => {
-    setLoading(true);
-    axios
-      .post(`http://localhost:5000/image/${productId}`, { imageUrl: img })
-      .then((response) => {
-        setLoading(false);
-        console.log("Image added successfully:", response.data);
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error("Error adding image:", error);
-      });
-  };
   return (
     <div className="images-list-container">
       {images.map((image) => (
@@ -72,13 +59,6 @@ const ImagesList = ({ productId, images, setImages }) => {
               Delete
             </Buttons>
           )}
-          <Buttons
-            onClick={() => handleUploadImage(image.image_url)}
-            disabled={!image.image_url || loading}
-          >
-            Upload
-          </Buttons>
-          {console.log(image.image_url)}
         </div>
       ))}
       <Buttons onClick={handleAddImage}>Add Image</Buttons>

@@ -3,31 +3,34 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./style.scss";
 import ColorsSection from "../ColorsSection";
+import Size from "../SizeSection";
 const OneProduct = () => {
   const [product, setProduct] = useState([]);
   const [selectedColor, setSelectedColor] = useState("");
   const [availableColors, setAvailableColors] = useState([]);
-
+  const [availableSizes, setAvailableSizes] = useState([]);
+  const [selectedSize, setSelectedSize] = useState("");
   const { id } = useParams();
 
- useEffect(()=>{
-  axios
-  .get(`http://localhost:5000/product/one/${id}`)
-  .then((response) => {
-    console.log(response?.data);
-    setProduct(response?.data.product);
-    console.log(response.data.product.colors);
-     setAvailableColors(response.data.product.colors.split(","))
-     console.log(availableColors);
-  })
-  .catch((error) => {
-    console.error("Error fetching Product", error);
-  });
- },[])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/product/one/${id}`)
+      .then((response) => {
+        console.log(response?.data);
+        setProduct(response?.data.product);
+        console.log(response.data.product.colors);
 
+        setAvailableColors(response.data.product.colors.split(","));
+        setAvailableSizes(response.data.product.sizes.split(","));
+        console.log(availableColors);
+      })
+      .catch((error) => {
+        console.error("Error fetching Product", error);
+      });
+  }, []);
 
   return (
-    <div className="one-product-container">
+    <div className="one-product-section">
       <div className="one-product">
         <div>
           <img src={product.image} className="image" />
@@ -40,7 +43,7 @@ const OneProduct = () => {
           <div className="description">
             <div> {product.description}</div>
           </div>
-          {product && product.sizes && (
+          {/* {product && product.sizes && (
             <div className="size-container">
               {product.sizes.split(",").map((size, index) => (
                 <div className="size" key={index}>
@@ -48,17 +51,22 @@ const OneProduct = () => {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
 
-<ColorsSection
-        selectedColor={selectedColor}
-        availableColors={availableColors}
-        setSelectedColor={setSelectedColor}
-      />
-          <button className="btn">Add to Product</button>
+          <Size
+            selectedSize={selectedSize}
+            availablesize={availableSizes}
+            setSelectedSize={setSelectedSize}
+          />
+
+          <ColorsSection
+            selectedColor={selectedColor}
+            availableColors={availableColors}
+            setSelectedColor={setSelectedColor}
+          />
+          <button className="btn">Add to Cart</button>
         </div>
       </div>
-    
     </div>
   );
 };
