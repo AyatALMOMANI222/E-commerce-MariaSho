@@ -1,0 +1,213 @@
+.popup-container{
+    display: flex;
+    flex-direction: column;
+  .first-container{
+    display: flex;
+    flex-direction: row;
+// #checkboxContainer {
+//     display: inline-block;
+//     position: relative;
+  
+//     #myCheckbox {
+//         display: none; /* يخفي العلامة المربعة الافتراضية */
+//     }
+
+//     #myCheckbox + label {
+//         position: relative;
+//         padding-left: 30px; /* ضع هنا حجم العلامة المربعة */
+//         cursor: pointer;
+
+//         &:before {
+//             content: '';
+//             position: absolute;
+//             left: 0;
+//             top: 0;
+//             width: 20px; /* ضع هنا حجم العلامة المربعة */
+//             height: 20px; /* ضع هنا حجم العلامة المربعة */
+//             border: 1px solid #000; /* لون الحدود */
+//             background-color: #fff; /* لون الخلفية */
+//         }
+
+//         &:after {
+//             content: 'صح';
+//             position: absolute;
+//             top: 50%;
+//             left: 25px; /* تعديل هذا الرقم حسب حجم العلامة المربعة */
+//             transform: translateY(-50%);
+//         }
+//     }
+
+//     #myCheckbox:checked + label:before {
+//         background-color: rgb(7, 7, 8); /* لون الخلفية عندما يكون المربع محددًا */
+//     }
+// }
+
+.name-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+.name{
+    font-size: medium;
+    font-weight: 700;
+}
+}
+  }
+.product-picture{
+    display: grid;
+    grid-template-columns: 40% 50%;
+    padding: 10px;
+    align-items: center;
+    background-color: rgb(207, 225, 245);
+    margin-top: 3px;
+.desc-color{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .desc{
+font-size: small;
+font-weight: 600;    }
+    .color-qty{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .chip {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid #d3d1d1;
+            cursor: pointer;
+         
+            &.black {
+              background-color: black;
+            }
+            &.white {
+              background-color: white;
+            }
+            &.gray {
+              background-color: gray;
+            }
+            &.blue {
+              background-color: blue;
+            }
+            &.sky-blue {
+              background-color: skyblue;
+            }
+            &.Turquoise {
+              background-color: Turquoise;
+            }
+            &.teal {
+              background-color: teal;
+            }
+            &.green {
+              background-color: green;
+            }
+            &.olive-green {
+              background-color: olive;
+            }
+            &.lime-green {
+              background-color: limegreen;
+            }
+            &.yellow {
+              background-color: yellow;
+            }
+            &.gold {
+              background-color: #ffd700;
+            }
+            &.orange {
+              background-color: #ffa500;
+            }
+            &.red {
+              background-color: #ff0000;
+            }
+            &.Burgundy {
+              background-color: #800020;
+            }
+            &.pink {
+              background-color: #ffc0cb;
+            }
+            &.magenta {
+              background-color: #ff00ff;
+            }
+            &.purple {
+              background-color: #800080;
+            }
+            &.lavender {
+              background-color: #e6e6fa;
+            }
+            &.brown {
+              background-color: #a52a2a;
+            }
+            &.beige {
+              background-color: #f5f5dc;
+            }
+            &.cream {
+              background-color: #fffdd0;
+            }
+            &.tan {
+              background-color: #d2b48c;
+            }
+            &.charcoal {
+              background-color: #36454f;
+            }
+            &.slate {
+              background-color: #708090;
+            }
+            &.steel-blue {
+              background-color: #4682b4;
+            }
+            &.indigo {
+              background-color: #4b0082;
+            }
+            &.cyan {
+              background-color: #00ffff;
+            }
+            &.mint-green {
+              background-color: #98ff98;
+            }
+    }}
+    .icon-price-container{
+        margin-top: 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .price{
+            font-weight: 700;
+        }
+    }
+}
+
+
+    .image{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        .img{
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+.total{
+    font-size: medium;
+    font-weight: 700;
+    margin-top: 8px;
+    span{
+        font-weight: 800;
+    }
+}
+.btn{
+    padding: 14px;
+    background-color: rgb(7, 13, 7);
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+  
+}
+
+

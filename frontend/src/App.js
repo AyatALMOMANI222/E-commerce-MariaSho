@@ -14,40 +14,42 @@ import Categorey from "./component/Categorey";
 import OneProduct from "./component/oneProduct";
 import AllProduct from "./component/AllProduct";
 import ProductSection from "./component/ProductSection/ProductSection";
-import SingleProduct from "./component/OneProductComponent/index"
-import SelectSection from "./component/Filter"
-import Text from "./component/text";
+import SingleProduct from "./component/OneProductComponent/index";
+import SelectSection from "./component/Filter";
 import SideDrawer from "./component/SideDrawer";
 import ViewProducts from "./component/ViewProducts";
+import CartPopup from "./component/CartPopup";
+import ViewCart from "./component/ViewCart";
 function App() {
   const [username, setUsername] = useState("");
 
   return (
-    <div className="App">
+    <div className="app-container">
       <SideDrawer />
       <div id="main" className="main-container">
-      <Routes>
-        <Route path="/main" element={<Main />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/edit" element={<EditProfile />}></Route>
-        <Route path="/table" element={<PermissionTable />}></Route>
-        <Route path="/popup" element={<PopupExample />}></Route>
-        <Route path="/product" element={<ProductAction />}></Route>
-        <Route path="/categorey/:type" element={<Categorey />}></Route>
-        <Route path="/categorey/:type/:id" element={<OneProduct />}></Route>
-        <Route path="/allproduct" element={<AllProduct />}></Route>
-        <Route path="/static" element={<ProductSection />}></Route>
-        <Route path="/singleProduct/:itemID" element={<SingleProduct />}></Route>
-        <Route path="/SelectSection" element={<SelectSection />}></Route>
-        <Route path="/page" element={<ViewProducts />}></Route>
-
-
-       
-      </Routes>
-  
+        <Routes>
+          <Route path="/main" element={<Main />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/edit" element={<EditProfile />}></Route>
+          <Route path="/table" element={<PermissionTable />}></Route>
+          <Route path="/popup" element={<PopupExample />}></Route>
+          <Route path="/product" element={<ProductAction />}></Route>
+          <Route path="/categorey/:type" element={<Categorey />}></Route>
+          <Route path="/categorey/:type/:id" element={<OneProduct />}></Route>
+          <Route path="/allproduct" element={<AllProduct />}></Route>
+          <Route path="/static" element={<ProductSection />}></Route>
+          <Route
+            path="/singleProduct/:itemID"
+            element={<SingleProduct />}
+          ></Route>
+          <Route path="/SelectSection" element={<SelectSection />}></Route>
+          <Route path="/page" element={<ViewProducts />}></Route>
+          <Route path="/cart" element={<CartPopup />}></Route>
+          <Route path="/cart/viewcart" element={<ViewCart />}></Route>
+          ViewCart
+        </Routes>
       </div>
-      
     </div>
   );
 }

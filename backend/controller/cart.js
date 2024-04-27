@@ -132,6 +132,21 @@ const updateCartItemSize = (req, res) => {
 };
 
 
+const getCartProduct = (req, res) => {
+    const user_id = req.token.user_id;
+  const sql = "SELECT * FROM Products INNER JOIN Cart ON Products.id = Cart.product_id WHERE user_id = ?";
+  
+  connection.query(sql, [user_id], (err, result) => {
+    if (err) {
+      console.error("Error fetching cartproduct:", err);
+      return res.status(500).json({ message: "Failed to Fetching Product" });
+    }
+    
+    res.status(200).json({
+      message: "Product fetching successfully",
+      cart: result
+    });
+  });
+};
 
-
-module.exports = {addToCart,getCartByUserId,deleteCartByUserId ,deleteProductFromCart,updateCartItemQuantity,updateCartItemColor,updateCartItemSize};
+module.exports = {getCartProduct,addToCart,getCartByUserId,deleteCartByUserId ,deleteProductFromCart,updateCartItemQuantity,updateCartItemColor,updateCartItemSize};

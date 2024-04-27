@@ -1,17 +1,10 @@
-
-.main-con{
-// height: 100vh;
-// overflow: overlay;
-// width: 100%;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr ;
-grid-column-gap: 20px;
-    .product-con{
-        height: 200px;
-        width: 200px;
-    }  
-    
-    .view-products{
-
-    }
+.main-con {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  .product-con {
+    height: 200px;
+    width: 200px;
+  }
 }
