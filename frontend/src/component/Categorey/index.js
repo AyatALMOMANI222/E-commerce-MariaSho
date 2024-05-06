@@ -8,8 +8,10 @@ import EditProduct from "../EditProduct";
 
 import './style.scss'
 import OneProduct from '../oneProduct';
+import ProductSection from '../ProductSection/ProductSection';
 
 const Categorey = () => {
+
 const[product,setProduct]=useState([])
 const [isOpen, setIsOpen] = useState(false);
 const [editProductId, setEditProductId] = useState(null); // تحديد معرف المنتج المحدد للتحرير
@@ -51,48 +53,12 @@ const handleButtonClick=(type,id)=>{
 }
 
   return (
-    <div className='Product-container'>
-        <div className='one-product-container'>
+    <div>
+        <div className='all-product'>
   {product?.map((item) => {
           return (
-            <div key={item.id} className="product">
-              <div className="header">
-                {/* <div> {item.name}</div> */}
-                <div className="iconn">
-                 
-                  <SVG
-                    src={editIcon}
-                    width={24}
-                    height={24}
-                    onClick={() => handleEditClick(item.id)}
-                  ></SVG>
-                  <SVG
-                    src={closeIcon}
-                    onClick={() => deleteProduct(item.id)}
-                  ></SVG>
-                </div>
-              </div>
-              <ProductCard
-  name={item.name}
-  description={item.description}
-  price={item.price}
-  image={item.image}
-  type={item.type}
-  onClick={() => handleButtonClick(item.type, item.id)} // تعديل هنا
-
-  buttonName="Add to Cart"
-/>
-
-             
-              {editProductId === item.id && isOpen && (
-                <EditProduct
-                  editProductId={editProductId}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                />
-              )}{" "}
-                    
-
+            <div onClick={()=>handleButtonClick(item.type,item.id)} key={item.id} className='product' >
+              <ProductSection details={item} />
             </div>
           );
         })}

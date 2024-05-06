@@ -1,0 +1,18 @@
+.nav-page-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid rgb(233, 223, 223);
+    .input{
+    
+            width: 250px;
+            .inp::placeholder{
+             
+                font-weight: 600;
+               }
+               
+            }
+    
+    }

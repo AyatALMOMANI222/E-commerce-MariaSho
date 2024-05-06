@@ -50,43 +50,52 @@ const SideDrawer = () => {
         {isExpand && <span className="product">PRODUCTS</span>}
       </div>
       <div className="main-container">
-        {modules.map((item, index) => {
-          let isOpen = selectedItem === item;
+        {modules.map((item1, index) => {
           return (
-            <div key={index} className={`section-container`}>
-              <div className={`section`}>
-                <div
-                  className="icon-typee"
-                  onClick={() => handleItemClick(item)}
-                >
-                  <SVG
-                    className="section-icon"
-                    src={item.icon}
-                    width={24}
-                    height={24}
-                  ></SVG>
-                  {isExpand && <span>{item.name}</span>}
-                </div>
-                {isExpand && (
-                  <SVG
-                    className="arrow-icon"
-                    src={isOpen ? arrowBottom : arrowUp}
-                  ></SVG>
-                )}
-              </div>
-              {isOpen && (
-                <div className={`children ${!isExpand ? "expand" : ""}`}>
-                  {item.children.map((childItem, childIndex) => {
-                    return (
-                      <div key={childIndex} className="child">
-                        <div onClick={() => handleTypeClick(childItem.path)}>
-                          {childItem.name}
-                        </div>
+            <div className="modules-section">
+              <span className="title">{item1.title}</span>
+              {item1.children.map((item) => {
+                let isOpen = selectedItem === item;
+                return (
+                  <div key={index} className={`section-container`}>
+                    <div
+                      className={`section`}
+                      onClick={() => handleItemClick(item)}
+                    >
+                      <div className="icon-typee">
+                        <SVG
+                          className="section-icon"
+                          src={item.icon}
+                          width={24}
+                          height={24}
+                        ></SVG>
+                        {isExpand && <span>{item.name}</span>}
                       </div>
-                    );
-                  })}
-                </div>
-              )}
+                      {isExpand && (
+                        <SVG
+                          className="arrow-icon"
+                          src={isOpen ? arrowBottom : arrowUp}
+                        ></SVG>
+                      )}
+                    </div>
+                    {isOpen && (
+                      <div className={`children ${!isExpand ? "expand" : ""}`}>
+                        {item.children.map((childItem, childIndex) => {
+                          return (
+                            <div key={childIndex} className="child">
+                              <div
+                                onClick={() => handleTypeClick(childItem.path)}
+                              >
+                                {childItem.name}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           );
         })}

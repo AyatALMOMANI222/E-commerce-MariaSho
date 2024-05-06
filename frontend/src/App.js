@@ -10,7 +10,7 @@ import EditProfile from "./component/EditProfile";
 import PermissionTable from "./component/PermissionTable";
 import PopupExample from "./component/Core Component/Modal";
 import ProductAction from "./component/AddProduct";
-import Categorey from "./component/Categorey";
+import Categorey from "./component/Categorey"
 import OneProduct from "./component/oneProduct";
 import AllProduct from "./component/AllProduct";
 import ProductSection from "./component/ProductSection/ProductSection";
@@ -20,14 +20,23 @@ import SideDrawer from "./component/SideDrawer";
 import ViewProducts from "./component/ViewProducts";
 import CartPopup from "./component/CartPopup";
 import ViewCart from "./component/ViewCart";
+import MainComponent from "./component/mainComponent";
+import Slider from "./component/SimpleSlider";
+// import Navbar from "./component/Navbar";
+
+// import ImageUploader from "./component/imagedatabase";
+
 function App() {
   const [username, setUsername] = useState("");
 
   return (
     <div className="app-container">
-      <SideDrawer />
+
       <div id="main" className="main-container">
         <Routes>
+        <Route path="/" element={<MainComponent />}></Route>
+        {/* <Route path="/" element={<Slider />}></Route> */}
+
           <Route path="/main" element={<Main />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -35,8 +44,8 @@ function App() {
           <Route path="/table" element={<PermissionTable />}></Route>
           <Route path="/popup" element={<PopupExample />}></Route>
           <Route path="/product" element={<ProductAction />}></Route>
-          <Route path="/categorey/:type" element={<Categorey />}></Route>
-          <Route path="/categorey/:type/:id" element={<OneProduct />}></Route>
+          <Route path="/categorey/:type" element={<Categorey/>}></Route>
+          <Route path="/categorey/:type/:id" element={<SingleProduct />}></Route>
           <Route path="/allproduct" element={<AllProduct />}></Route>
           <Route path="/static" element={<ProductSection />}></Route>
           <Route
@@ -49,6 +58,7 @@ function App() {
           <Route path="/cart/viewcart" element={<ViewCart />}></Route>
           ViewCart
         </Routes>
+     
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { heartIcon, starIcon, heart } from "../../icons";
+import { heartIcon, starIcon, heart , cartIcon} from "../../icons";
 import SVG from "react-inlinesvg";
 import "./style.scss";
 const ProductSection = ({details}) => {
@@ -28,21 +28,63 @@ const ProductSection = ({details}) => {
           ></SVG>
         </div>
       </div>
+
+
+
       <div className="second-section">
         <div className="title">{details.title}</div>
         <div>{details.desc}</div>
         <div>{details.type}</div>
+
+
+        
         <div className="prod-content">
-          <div className="right-side">
-            <SVG
-              src={starIcon}
-              className="star-icon"
+        
+          <div className="last">
+          <div className="price"><del>{details.price}$</del> {details.price -( 0.2*(details.price))}</div>
+          <SVG
+              src={cartIcon}
               width={18}
               height={18}
             ></SVG>
-            <div>{details.rate}</div>
+            </div>
+            <div className="right-side">
+            <SVG
+              src={starIcon}
+              className="star-icon"
+              width={13}
+              height={13}
+            ></SVG>
+            
+            <SVG
+              src={starIcon}
+              className="star-icon"
+              width={13}
+              height={13}
+            ></SVG>
+            <SVG
+              src={starIcon}
+              className="star-icon"
+              width={13}
+              height={13}
+            ></SVG>
+           <SVG
+              src={starIcon}
+              className="star-icon"
+              width={13}
+              height={13}
+            ></SVG>
+            <SVG
+              src={starIcon}
+              className="star-icon"
+              width={13}
+              height={13}
+            ></SVG>
+            <div>{5}</div>
           </div>
-          <div className="price">{details.price}$</div>
+
+
+
         </div>
       </div>
     </div>

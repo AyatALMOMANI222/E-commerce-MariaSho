@@ -1,0 +1,39 @@
+.slider-container {
+    width: 100%;
+    // overflow: hidden;
+    position: relative;
+    height: 280px;
+   display: flex;
+   align-items: center;
+   
+    
+  .slides-container {
+    display: flex;
+    .slides {
+        display: flex;
+        flex-direction: row;
+        gap: 100px;
+        .slide{
+            display: flex;
+            flex-direction: column;
+           align-items: center;
+           .title{
+            font-size: 18px;
+            font-weight: 500;
+           }
+            img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+              }
+        }
+      }
+  }
+  }
+
+
+
+
+
+
+

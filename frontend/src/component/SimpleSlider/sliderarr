@@ -1,0 +1,35 @@
+const slider = [
+  {
+    img: "../img/boots.jpg",
+    title: "boots",
+  },
+  {
+    img: "../img/heals.jpg",
+    title: "heals",
+  },
+  {
+    img: "../img/home.jpg",
+    title: "home",
+  },
+  {
+    img: "../img/kids.jpg",
+    title: "kids",
+  },
+  {
+    img: "../img/kitchen.jpg",
+    title: "kitchen",
+  },
+  {
+    img: "../img/men.jpg",
+    title: "men",
+  },
+  {
+    img: "../img/sports.jpg",
+    title: "sports",
+  },
+  {
+    img: "../img/women.jpg",
+    title: "women",
+  },
+];
+export default slider;

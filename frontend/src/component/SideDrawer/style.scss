@@ -1,9 +1,20 @@
 .side-drawer-container {
-width: 230px;
-transition: width 0.3sease;
-&.expand{
-  width: 60px;
-}
+  width: 230px;
+  transition: width 0.3s ease;
+
+  .modules-section {
+    margin-bottom: 40px;
+
+    .title {
+      padding-left: 40px;
+      font-size: 16px;
+      font-weight: 400;
+      color: gray;
+    }
+  }
+  &.expand {
+    width: 60px;
+  }
   .logo-container {
     display: flex;
     flex-direction: row;
@@ -15,7 +26,6 @@ transition: width 0.3sease;
     .product {
       font-weight: bolder;
       margin-top: 9px;
-      
     }
   }
   .main-container {
@@ -41,83 +51,29 @@ transition: width 0.3sease;
     &::-webkit-scrollbar-track {
       background: #ebecf2;
     }
-    .section-container{
-           display: flex;
+    .section-container {
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 15px;
-      .section{
+      padding: 10px 15px;
+      .section {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center; 
-        .section-icon{
+        align-items: center;
+
+        .icon-typee{
+        }
+        .section-icon {
           margin-right: 20px;
         }
       }
+
+      .children {
+        padding-left: 10px 50px;
+        padding: 8px 45px;
+      }
     }
-
-    // .icon-type {
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: space-between;
-    //   padding: 15px;
-    //   .icon-typee {
-    //     display: flex;
-    //     flex-direction: row;
-    //     align-items: center;
-
-    //     .icon2 {
-    //       margin-right: 10px;
-    //     }
-    //   }
-    //   .icon-name-arrowicon {
-    //     display: flex;
-    //     flex-direction: row;
-    //     justify-content: space-between;
-    //     .arrow-icon {
-    //       align-items: center;
-    //     }
-    //   }
-    // }
-    // & .box {
-    //   // padding: 15px 20PX;
-    //   .openArrow {
-    //     display: flex;
-    //     flex-direction: row;
-    //     justify-content: space-between;
-    //     background-color: #f1f2f69f;
-    //     border-radius: 5;
-    //     .arrow-icon {
-    //       align-items: center;
-    //     }
-    //     .icon-typee {
-    //       display: flex;
-    //       flex-direction: row;
-    //       align-items: center;
-  
-    //       .icon2 {
-    //         margin-right: 10px;
-    //       }
-    //     }
-    //   }
-    //   .children {
-    //     background-color: #f1f2f69f;
-    //     display: block;
-    //     font-size: medium;
-    //     padding: 6px;
-    //     color: rgb(126, 112, 112);
-    //     padding-left: 33px;
-    //     &.expand{
-    //       position: absolute;
-    //       left: 60px;
-    //       margin-top: -32px;
-    //     }
-    //     .child {
-    //       padding: 3px;
-    //     }
-    //   }
-    // }
   }
   .not-setting {
     display: flex;
@@ -131,7 +87,7 @@ transition: width 0.3sease;
       display: flex;
       flex-direction: row;
       padding: 26px;
-      padding: 15px 20PX;
+      padding: 15px 20px;
 
       .not-setting-icon {
         margin-right: 10px;
@@ -152,17 +108,10 @@ transition: width 0.3sease;
   }
 }
 @media screen and (max-width: 768px) {
-  .side  {
-    display:none;
+  .side {
+    display: none;
   }
-  .side-drawer-container{
-    width:fit-content;
+  .side-drawer-container {
+    width: fit-content;
   }
-
-
 }
-
-
-
-
-

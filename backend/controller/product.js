@@ -212,6 +212,9 @@ const getProductsByType = (req, res) => {
 //     res.status(200).json({ products: results });
 //   });
 // };
+
+
+
 const getPro = (req, res) => {
   // Pagination parameters
   const page = parseInt(req.query.page) || 1;
@@ -230,7 +233,6 @@ const getPro = (req, res) => {
     filters.push("type = ?");
     params.push(req.query.type);
   }
-  // Add more filters for other columns if needed
 
   let query = "SELECT * FROM Products";
 

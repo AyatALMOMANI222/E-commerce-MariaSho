@@ -5,11 +5,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-  },externals: {
-    'child_process': 'require("child_process")',
-    'fs': 'require("fs")'
   },
-  
+  externals: {
+    'child_process': 'require("child_process")',
+    'fs': 'require("fs")',
+    'minio': 'require("minio")' // تضمين مكتبة Minio كخيار خارجي
+  },
   module: {
     rules: [
       {
@@ -22,6 +23,7 @@ module.exports = {
           },
         },
       },
+      
       {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],

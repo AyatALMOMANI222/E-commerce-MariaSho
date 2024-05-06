@@ -24,14 +24,6 @@ const ViewCart = () => {
       });
   }, []);
 
-  //   const calculateTotalPrice = (price ,quantity) => {
-  //     let totalPrice = 0;
-  //     cartPro.forEach(product => {
-  //         totalPrice += (price * quantity);
-  //     });
-  //     return totalPrice;
-  // };
-
   const totalCartPrice = cartPro.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);

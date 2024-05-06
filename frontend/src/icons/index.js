@@ -27,3 +27,6 @@ export { default as heart } from "./heart.svg";
 export { default as cartIcon } from "./cartIcon.svg";
 export { default as deleteIcon } from "./deleteIcon.svg";
 export { default as searchIcon } from "./searchIcon.svg";
+export { default as handIcon } from "./handIcon.svg.svg";
+
+// handIcon.svg

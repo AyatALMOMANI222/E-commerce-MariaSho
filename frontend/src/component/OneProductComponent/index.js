@@ -119,6 +119,7 @@ const SingleProduct = () => {
 
   return (
     <div className="single-product-container">
+      
       <div className="first-section">
         <div className="small-img">
           <img src={img2} className="img" />
@@ -126,13 +127,13 @@ const SingleProduct = () => {
           <img src={img4} className="img" />
         </div>
         <div className="large-img">
-          <Slider imageUrls={imageUrls} />
+        <Slider imageUrls={imageUrls} />
         </div>
       </div>
 
       <div className="second-section">
         <div className="title">{product.name}</div>
-        <div className="price">{product.price}$ USD</div>
+        <div className="price"><del>{product.price}$</del> {product.price -( 0.2*(product.price))} USD</div>
         <div className="colors-chips-container">
           <ColorsSection
             availableColors={availableColors}

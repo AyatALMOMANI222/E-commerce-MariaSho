@@ -38,7 +38,7 @@ const OneProduct = () => {
         <div className="product-content">
           <div className="first-section">
             <div className="product-name"> {product.name}</div>
-            <div className="price"> {product.price}$</div>
+            <div className="price"><del>{product.price}$</del> {product.price -( 0.2*(product.price))} USD</div>
           </div>
           <div className="description">
             <div> {product.description}</div>
