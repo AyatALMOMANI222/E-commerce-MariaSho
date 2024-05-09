@@ -7,7 +7,7 @@ const Categorey2 = ({ categorey, setCategorey }) => {
     { label: "men", value: "men" },
     { label: "women", value: "women" },
     { label: "kids", value: "kids" },
-    { label: "sport", value: "sport" },
+    { label: "T-shirts", value: "T-shirts" },
   ];
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import SVG from "react-inlinesvg";
 import "./style.scss";
-import InlineSVG from "react-inlinesvg";
+
 const Input = ({
   classname,
   type,
@@ -22,6 +22,8 @@ const Input = ({
           {required && <span className="star">*</span>}
         </div>
       )}
+
+
       <div className="text-field-container">
         <input
           className={`text-field ${classname} ${errorMsg ? "error-msg" : " "} `}
@@ -42,3 +44,5 @@ const Input = ({
 };
 
 export default Input;
+
+

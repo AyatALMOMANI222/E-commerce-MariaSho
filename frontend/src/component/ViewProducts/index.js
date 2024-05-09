@@ -7,6 +7,7 @@ import Categorey2 from "../Category2";
 import Price from "../Price";
 import Colors2 from "../color2";
 import Size from "../SizeSection";
+import { useParams } from "react-router-dom";
 import "./style.scss";
 
 const ViewProducts = () => {
@@ -15,26 +16,31 @@ const ViewProducts = () => {
   const [price, setPrice] = useState({ min: 0, max: 50 });
   const [color, setColor] = useState("");
   const [product, setProduct] = useState([]);
-  const [categorey, setCategorey] = useState("");
   const [size, setSize] = useState("");
   const navigate = useNavigate();
+  const {type} = useParams()
+  const [categorey, setCategorey] = useState(type);
+
+  const parameter = {
+    page: pageNum,
+    limit: 10,
+    //   name: "yourNameValue",
+    type: categorey,
+    size: size,
+    color: color,
+    minPrice: price.min,
+    maxPrice: price.max,
+  };
   const getProduct = () => {
     axios
       .get("http://localhost:5000/filter", {
-        params: {
-          page: pageNum, // Example: you can replace with actual values
-          limit: 10, // Example: you can replace with actual values
-          //   name: "yourNameValue", // Example: you can replace with actual values
-          type: categorey, // Example: you can replace with actual values
-          size: size, // Example: you can replace with actual values
-          color: color, // Example: you can replace with actual values
-          minPrice: price.min, // Example: you can replace with actual values
-          maxPrice: price.max, // Example: you can replace with actual values
-        },
+        params: parameter,
       })
       .then((response) => {
         console.log(response?.data);
-        setProduct(response?.data);
+        setProduct((prev) => {
+          return [...prev, ...response?.data];
+        });
       })
       .catch((error) => {
         console.error("Error fetching Product", error);
@@ -43,10 +49,16 @@ const ViewProducts = () => {
 
   useEffect(() => {
     getProduct();
-  }, [pageNum, size, color, categorey, price]);
+  }, [pageNum]);
   const handleClick = (itemID) => {
     navigate(`/singleProduct/${itemID}`);
   };
+
+  useEffect(() => {
+    setProduct([]);
+    setPageNum(1);
+    getProduct();
+  }, [color, size, categorey, price]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +71,7 @@ const ViewProducts = () => {
       }
     };
     const container = document.getElementById("main");
+    console.log(container);
     container.addEventListener("scroll", handleScroll);
     return () => {
       container.removeEventListener("scroll", handleScroll);
@@ -68,23 +81,21 @@ const ViewProducts = () => {
     <div className="all-page">
       <div>
         <div className="sidebar-container">
-          <button onClick={() => getProduct()}>save</button>
-          <div className="container">
+          <div className="filter-radio-container">
             <div className="name"> MARIASHOP</div>
           </div>
-          <div className="filter-container">
-            <div className="filter">
-              <Categorey2 categorey={categorey} setCategorey={setCategorey} />
-            </div>
-            <div className="filter">
-              <Price price={price} setPrice={setPrice} />
-            </div>
-            <div className="filter">
-              <Colors2 color={color} setColor={setColor} />
-            </div>
-            <div className="filter">
-              {/* <Size size={size} setSize={setSize} /> */}
-            </div>
+          <hr className="horizental-line"/>
+          <div className="filter">
+            <Categorey2 categorey={categorey} setCategorey={setCategorey} />
+          </div>
+          <div className="filter">
+            <Price price={price} setPrice={setPrice} />
+          </div>
+          <div className="filter">
+            <Colors2 color={color} setColor={setColor} />
+          </div>
+          <div className="filter">
+            {/* <Size size={size} setSize={setSize} /> */}
           </div>
         </div>
       </div>

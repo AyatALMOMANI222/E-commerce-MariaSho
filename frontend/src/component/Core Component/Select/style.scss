@@ -17,6 +17,7 @@
     --error-active: #bb3232;
   }
 .dropdown-container {
+  height: 10px;
   width: 100%;
   position: relative;
 display: flex;
@@ -50,9 +51,14 @@ flex-direction: column;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-
+    position: relative;
+    right: -22px;
     &.error-msg {
       border: 1px solid var(--error-static);
+    }
+    .option-value{
+      position: relative;
+    right: 29px;
     }
 
     .placeholder {
@@ -62,6 +68,9 @@ flex-direction: column;
       line-height: 20px;
       text-align: left;
       color: #9a9eb2;
+      position: relative;
+    right: 28px;
+    top: 10px;
     }
 
     .arrow-icon {
@@ -75,9 +84,10 @@ flex-direction: column;
     border: 1px solid var(--border-color);
     background-color: var(--background-color);
     position: absolute;
-    top: 68px;
-    right: 0;
-    left: 0;
+    top: 25px;
+    // right: 0 px;
+    left:22px;
+z-index: 3px;
     .dropdown-option {
       padding: 10px 15px;
       border-bottom: 1px solid var(--border-color);

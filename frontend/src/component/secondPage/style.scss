@@ -1,0 +1,45 @@
+.page-container{
+  display: grid;
+grid-template-columns: 50% 50%;
+ gap: 60px;
+  width: 550px;
+  justify-content: center;
+ margin: auto;
+    .img-container{
+        .img{
+            width: 335px;
+            height: 400px;
+        }
+    }
+
+.square-container{
+    display: flex;
+    flex-direction: column;
+    width: 300;
+    height: 260;
+    background-color: rgb(218, 188, 188);
+    padding: 70px 20px;
+    justify-content: space-between;
+    .text{
+        font-family: cursive;
+        font-size: large;
+        line-height: 30px;
+    }
+    .btn{
+        border: none;
+        padding: 10px 30px ;
+        cursor: pointer;
+        font-weight: 600;
+        font-family: cursive;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+ 
+}
+
+
+
+
+}

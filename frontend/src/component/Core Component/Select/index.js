@@ -7,7 +7,7 @@ const Select = ({
   value,
   setValue,
   errorMsg,
-  required = true,
+  required,
   label,
   placeholder = "Select",
 }) => {
@@ -30,10 +30,12 @@ const Select = ({
           {required && <span className="star">*</span>}
         </div>
       )}
+
       <div
         className={`dropdown-header ${errorMsg ? "error-msg" : ""}`}
         onClick={toggleDropdown}
       >
+
         {value ? (
           <span className="option-value">
             {
@@ -45,7 +47,10 @@ const Select = ({
         ) : (
           <span className="placeholder">{placeholder}</span>
         )}
+
+
         <SVG className="arrow-icon" src={!isOpen ? arrowUp : arrowBottom}></SVG>
+
       </div>
 
       {isOpen && (
@@ -61,9 +66,11 @@ const Select = ({
           ))}
         </div>
       )}
+
       {errorMsg && <span className="error-msg-container">{errorMsg}</span>}
     </div>
   );
 };
 
 export default Select;
+

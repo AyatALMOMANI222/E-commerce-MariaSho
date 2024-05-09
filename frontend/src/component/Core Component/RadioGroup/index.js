@@ -8,7 +8,7 @@ const RadioGroup = ({ options, value, setValue, checked }) => {
           <input
             type="radio"
             value={option.value}
-            checked={checked(option.value) || value === option.value}
+            checked={checked && checked(option.value) || value === option.value}
             onChange={() => setValue(option.value)}
           />
           {option.label}

@@ -28,5 +28,7 @@ export { default as cartIcon } from "./cartIcon.svg";
 export { default as deleteIcon } from "./deleteIcon.svg";
 export { default as searchIcon } from "./searchIcon.svg";
 export { default as handIcon } from "./handIcon.svg.svg";
+export { default as facebookIcon } from "./facebookIcon.svg.svg";
+export { default as twitterIcon} from "./twitterIcon.svg.svg";
 
 // handIcon.svg

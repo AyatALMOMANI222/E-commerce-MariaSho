@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
-import Dropdown from "../Core Component/DropDown";
+import Select from "../Core Component/Select";
 import SVG from "react-inlinesvg";
 import login from "../../icons/login.svg";
 import Buttons from "../Core Component/Buttons";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "./style.scss";
-
 
 const Bar = () => {
   const [open, setOpen] = useState(false);
-const navigate =useNavigate()
+  const [value, setValue] = useState("");
+  const navigate = useNavigate();
+  const options = [
+    { label: "Arabic", value: "arabic" },
+    { label: "English", value: "english" },
+  ];
+
   const handleClick = () => {
     setOpen(!open);
   };
   const handleLoginClick = () => {
-    navigate("/login")
+    navigate("/login");
+  };
+  const handleChange = (option) => {
+    setValue(option);
   };
   useEffect(() => {
-  
     const handleOutsideClick = (event) => {
       const bar = document.querySelector(".bar");
       if (!bar.contains(event.target)) {
@@ -30,14 +37,19 @@ const navigate =useNavigate()
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
-
   return (
     <div className="bar">
       <span>MariaShop</span>
 
       <div className="login-language">
         <div>
-          <Dropdown />
+          <Select
+         
+            options={options}
+            placeholder={"select ..."}
+            value={value}
+            setValue={handleChange}
+          />
         </div>
 
         <div className="signup">
@@ -62,9 +74,14 @@ const navigate =useNavigate()
               </Buttons>
 
               <div>new to MariaShop?</div>
-              <div onClick={()=>{
-                navigate("/register")
-              }} className="sign">sign up</div>
+              <div
+                onClick={() => {
+                  navigate("/register");
+                }}
+                className="sign"
+              >
+                sign up
+              </div>
             </div>
           )}
         </div>
