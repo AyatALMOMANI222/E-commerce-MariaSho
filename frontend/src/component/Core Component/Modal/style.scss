@@ -32,6 +32,16 @@
         font-weight: 600;
       }
     }
+
+    .popup-content{
+      height: 450px;
+      overflow-y: overlay;
+      overflow-x: hidden;
+      background-color: #fff;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      
+    }
   }
 
   .popup h2 {

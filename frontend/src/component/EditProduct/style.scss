@@ -1,19 +1,37 @@
+.EditProduct-container {
+  position: relative;
+  z-index: 300;
+  height: 350px;
+  overflow: overlay;
+  overflow-x: hidden;
+  padding: 20px;
+  Input {
+    margin: 8px;
+  }
+}
 
-   .EditProduct-container{
-    
-position:relative;
-z-index: 300;
-    height: 350px;
-    overflow: overlay;
-    overflow-x: hidden;
-    padding: 20px;
-    Input{
-      margin: 8px;
+.edit-product-container {
+  padding: 20px;
+}
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgb(220 220 220 / 29%);
+  height: 60px;
+
+  button{
+    background-color: #7f5539;
+    color: #fff;
+    height: 35px;
+    border: none;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #7e5c45;
     }
- .actions-container{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-around;
- 
- }
-   }
+    &:active {
+      background-color: #311f13;
+    } 
+  }
+}

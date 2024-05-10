@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SVG from "react-inlinesvg";
-import "./style.scss";
 import { closeIcon } from "../../../icons";
+import "./style.scss";
 
 const Popup = ({ popupContent, header, open, setOpen }) => {
   return (
@@ -13,7 +13,7 @@ const Popup = ({ popupContent, header, open, setOpen }) => {
               <span className="title">{header}</span>
               <SVG src={closeIcon} onClick={() => setOpen(false)}></SVG>
             </div>
-            <div>{popupContent}</div>
+            <div className="popup-content">{popupContent}</div>
           </div>
         </div>
       )}

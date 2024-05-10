@@ -64,7 +64,7 @@ const ProductSection = ({
       </div>
       <div className="image-container">
         <img src={details.image} className="image" />
-        <div
+        {/* <div
           className="img-icon"
           onClick={() =>
             setFillIcon((prev) => {
@@ -79,7 +79,7 @@ const ProductSection = ({
             fill={fillIcon}
             className="heart-icon"
           ></SVG>
-        </div>
+        </div> */}
       </div>
 
       <div className="second-section">

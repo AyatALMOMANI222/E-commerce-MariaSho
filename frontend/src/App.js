@@ -25,7 +25,6 @@ import "./App.scss";
 
 function App() {
   const [username, setUsername] = useState("");
-
   return (
     <div id="main" className="main-container">
 {/* <ProductAction/> */}
