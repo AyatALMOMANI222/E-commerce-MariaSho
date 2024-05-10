@@ -10,11 +10,12 @@
   padding: 20px 25px;
   border-radius: 5px;
   margin: 9px;
+
+  z-index: 10;
   .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 
     .image {
       width: 200px;
@@ -29,12 +30,11 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      position: absolute;
-      bottom: 150px;
-      right: 15px;
+      position: relative;
+      top: -114px;
       border: 1px solid rgb(224, 224, 224);
       cursor: pointer;
-
+      z-index: 3;
       .heart-icon {
       }
     }

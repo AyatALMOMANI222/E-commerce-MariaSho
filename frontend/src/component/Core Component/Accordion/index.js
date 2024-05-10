@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
  import "./style.scss";
- 
  const Accordion = ({ title, children }) => {
    const [open, setOpen] = useState(false);
  

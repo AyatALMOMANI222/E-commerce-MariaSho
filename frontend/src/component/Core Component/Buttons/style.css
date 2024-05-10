@@ -1,14 +1,18 @@
 .button {
-  background-color: #007bff;
-  color: #fff;
+  /* background-color: #007bff; */
+  color: #000000;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  width: 170px;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: rgb(208, 240, 251);
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #508bca;
 }
 
 .button.primary {

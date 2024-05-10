@@ -1,10 +1,10 @@
 import React from 'react'
 import "./style.scss"
-const Size = ({availablesize , selectedSize , setSelectedSize}) => {
+const SizeSection = ({availableSize , selectedSize , setSelectedSize}) => {
 
   return (
     <div className='size-container'>
-     {availablesize.map((item)=>{
+     {availableSize?.map((item)=>{
         return(
             <div >
             <div className={`size ${selectedSize == item? "selected" : ""} `} onClick={()=>{
@@ -17,4 +17,4 @@ const Size = ({availablesize , selectedSize , setSelectedSize}) => {
   )
 }
 
-export default Size
+export default SizeSection

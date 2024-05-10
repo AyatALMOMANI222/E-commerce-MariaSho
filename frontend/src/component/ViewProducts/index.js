@@ -6,7 +6,7 @@ import PageNav from "../pageNav";
 import Categorey2 from "../Category2";
 import Price from "../Price";
 import Colors2 from "../color2";
-import Size from "../SizeSection";
+// import Size from "../SizeSection";
 import { useParams } from "react-router-dom";
 import "./style.scss";
 
@@ -18,8 +18,10 @@ const ViewProducts = () => {
   const [product, setProduct] = useState([]);
   const [size, setSize] = useState("");
   const navigate = useNavigate();
-  const {type} = useParams()
+  const { type } = useParams();
   const [categorey, setCategorey] = useState(type);
+  const [isPermission, setIsPermission] = useState(false);
+  const [perArr, setPerArr] = useState([]);
 
   const parameter = {
     page: pageNum,
@@ -34,7 +36,14 @@ const ViewProducts = () => {
   const getProduct = () => {
     axios
       .get("http://localhost:5000/filter", {
-        params: parameter,
+        page: pageNum,
+        limit: 10,
+        //   name: "yourNameValue",
+        type: categorey,
+        size: size,
+        color: color,
+        minPrice: price.min,
+        maxPrice: price.max,
       })
       .then((response) => {
         console.log(response?.data);
@@ -47,16 +56,46 @@ const ViewProducts = () => {
       });
   };
 
-  useEffect(() => {
-    getProduct();
-  }, [pageNum]);
-  const handleClick = (itemID) => {
-    navigate(`/singleProduct/${itemID}`);
+  const getPermission = () => {
+    const user_id = localStorage.getItem("user_id");
+    console.log(user_id);
+    axios
+      .get(`http://localhost:5000/per/${user_id}`)
+      .then((response) => {
+        console.log(response?.data);
+        const per = response?.data.hasPermission;
+        const perArr = response?.data.permissions;
+        setPerArr(perArr);
+        setIsPermission(per);
+        console.log(isPermission);
+      })
+      .catch((error) => {
+        console.error("Error fetching Permission", error);
+      });
+  };
+
+  const checkPermission = (perArr, permission) => {
+    const hasPermission = perArr?.some((per) => {
+      return per.name === permission;
+    });
+    return hasPermission;
   };
 
   useEffect(() => {
-    setProduct([]);
-    setPageNum(1);
+    getPermission();
+    getProduct();
+  }, [pageNum]);
+
+  const hasAddProduct = checkPermission(perArr, "addProduct");
+  const hasDeleteProduct = checkPermission(perArr, "deleteProduct");
+  const hasEditProduct = checkPermission(perArr, "updateProduct");
+  console.log(hasAddProduct, hasDeleteProduct, hasEditProduct);
+
+  // const handleClick = (itemID) => {
+  //   navigate(`/singleProduct/${itemID}`);
+  // };
+
+  useEffect(() => {
     getProduct();
   }, [color, size, categorey, price]);
 
@@ -79,12 +118,12 @@ const ViewProducts = () => {
   }, []);
   return (
     <div className="all-page">
-      <div>
+      {/* <div>
         <div className="sidebar-container">
           <div className="filter-radio-container">
             <div className="name"> MARIASHOP</div>
           </div>
-          <hr className="horizental-line"/>
+          <hr className="horizental-line" />
           <div className="filter">
             <Categorey2 categorey={categorey} setCategorey={setCategorey} />
           </div>
@@ -94,21 +133,23 @@ const ViewProducts = () => {
           <div className="filter">
             <Colors2 color={color} setColor={setColor} />
           </div>
-          <div className="filter">
-            {/* <Size size={size} setSize={setSize} /> */}
-          </div>
         </div>
-      </div>
+      </div> */}
       <div className="pro">
-        <PageNav />
+        <PageNav hasAddProduct={hasAddProduct} />
         <div className="main-con">
           {product.map((item) => {
             return (
               <div
                 className="view-products"
-                onClick={() => handleClick(item.id)}
+                // onClick={() => handleClick(item.id)}
               >
-                <ProductSection details={item} />
+                <ProductSection
+                  getProduct={getProduct}
+                  details={item}
+                  hasDeleteProduct={hasDeleteProduct}
+                  hasEditProduct={hasEditProduct}
+                />
               </div>
             );
           })}

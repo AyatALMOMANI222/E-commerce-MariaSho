@@ -123,7 +123,7 @@ const ProductAction = () => {
           label="Select Picture"
           allowedExtensions={["jpg", "jpeg", "png", "gif"]}
         />
-          <ImagesList images={images} setImages={setImages} />
+          {/* <ImagesList images={images} setImages={setImages} /> */}
         </div>
         <div className="add-product-btn">
           <Buttons onClick={() => handleClick(productInfo)}>

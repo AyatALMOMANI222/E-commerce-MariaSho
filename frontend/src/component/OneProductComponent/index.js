@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import img2 from "../listimage/t2.jpg";
-import img3 from "../listimage/t3.jpg";
-import img4 from "../listimage/t4 (2).jpg";
 import ColorsSection from "../ColorsSection";
 import Size from "../SizeSection";
 import Slider from "../Core Component/slider";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./style.scss";
 import CartContent from "../SideDrawer2";
 import SideDrawer from "../CartPopup";
+import "./style.scss";
 const SingleProduct = () => {
   const navigate = useNavigate();
   const { itemID } = useParams();
@@ -22,12 +19,13 @@ const SingleProduct = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [availableSizes, setAvailableSizes] = useState([]);
   const [availableColors, setAvailableColors] = useState([]);
-
   const [selectedSize, setSelectedSize] = useState("");
   const [product, setProduct] = useState("");
   const [images, setImages] = useState([]);
   // const [imageArr,setImageArr]=useState([])
   const [imageUrls, setImageUrls] = useState([]);
+
+
   const token = localStorage.getItem("token");
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
@@ -41,9 +39,12 @@ const SingleProduct = () => {
       .then((response) => {
         console.log(response?.data);
         const product = response?.data.product;
-
+       
         setProduct(response?.data.product);
         console.log(product);
+        setImages(product.image)
+        console.log(images);
+
         const availablesize = product.sizes.split(",");
         console.log(availablesize);
         setAvailableSizes(availablesize);
@@ -55,23 +56,6 @@ const SingleProduct = () => {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/image/${itemID}`)
-      .then((response) => {
-        console.log(response?.data.images);
-        setImages(response?.data.images);
-        console.log(images);
-        const imagesData = response?.data.images;
-        const imageUrls = imagesData.map((image) => image.image_url); // استخراج عناوين URL للصورة فقط
-        console.log(imageUrls);
-        setImageUrls(imageUrls);
-        console.log(imageUrls);
-      })
-      .catch((error) => {
-        console.error("Error fetching Product", error);
-      });
-  }, []);
   console.log(token);
   const handleCartClick = (productId) => {
     axios
@@ -121,13 +105,13 @@ const SingleProduct = () => {
     <div className="single-product-container">
       
       <div className="first-section">
-        <div className="small-img">
+        {/* <div className="small-img">
           <img src={img2} className="img" />
           <img src={img3} className="img" />
           <img src={img4} className="img" />
-        </div>
+        </div> */}
         <div className="large-img">
-        <Slider imageUrls={imageUrls} />
+       <img className="img" src={images}/>
         </div>
       </div>
 

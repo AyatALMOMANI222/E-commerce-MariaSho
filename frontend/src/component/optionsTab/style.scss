@@ -21,10 +21,11 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 10000;
 
     .label {
       width: 100px;
-      background-color: black;
+      background-color: #7f5539;
       color: #fff;
       font-size: 18px;
       font-weight: 400;
@@ -36,7 +37,7 @@
       cursor: pointer;
 
       &:hover{
-        background-color: rgb(39, 39, 39);
+        background-color: #a8724d;
       }
 
       &:active{

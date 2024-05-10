@@ -14,7 +14,13 @@ const Login = () => {
       .then((response) => {
         console.log(response?.data);
         const token = response?.data.userToken;
+        const user_id = response?.data.user_id;
+        const permission =response?.data.permission
+
         localStorage.setItem("token", token);
+        localStorage.setItem("permission", permission);
+        localStorage.setItem("user_id", user_id);
+        console.log(user_id);
         navigate("/");
       })
       .catch((error) => {

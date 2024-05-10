@@ -1,9 +1,19 @@
 
    .EditProduct-container{
-     
-    height: 500px;
+    
+position:relative;
+z-index: 300;
+    height: 350px;
     overflow: overlay;
     overflow-x: hidden;
     padding: 20px;
+    Input{
+      margin: 8px;
+    }
+ .actions-container{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+ 
+ }
    }
-   

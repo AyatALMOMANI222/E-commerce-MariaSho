@@ -9,12 +9,12 @@ const {
   deleteProductById,
   getProductById,
   getProductsByType,
-  getPro
+  getPro,
 } = require("../controller/product");
-// import {getPro} from "../controller/product"
+
 const productRouter = express.Router();
 
-productRouter.get("/page", getPro)
+productRouter.get("/page", getPro);
 
 // POST request to add a product
 productRouter.post(
@@ -23,8 +23,6 @@ productRouter.post(
   authorization(["addProduct", "admin"]),
   addProduct
 );
-
-// productRouter.get("/page/:page", getProductsByPage)
 
 // PUT request to update a product by ID
 productRouter.put(
@@ -36,13 +34,13 @@ productRouter.put(
 
 // DELETE request to delete a product by ID
 productRouter.delete(
-  "/:productId",
+  "/:id",
   auth,
-  authorization(["deleteProduct", "admin"]),
   deleteProductById
 );
 
 // GET request to get details of a specific product by ID
+productRouter.get("/one/:productId", getProductById);
 
 // GET request to get products by type
 productRouter.get("/:type", getProductsByType);
@@ -50,6 +48,4 @@ productRouter.get("/:type", getProductsByType);
 // GET request to get all products
 productRouter.get("/", getAllProducts);
 
-
-productRouter.get("/one/:productId", getProductById);
 module.exports = productRouter;

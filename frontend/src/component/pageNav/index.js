@@ -3,9 +3,10 @@ import "./style.scss"
 import Input from '../Core Component/Input'
 import SVG from "react-inlinesvg"
 import { heartIcon,cartIcon } from '../../icons'
-const PageNav = () => {
+import { useNavigate } from 'react-router-dom'
+const PageNav = ({hasAddProduct}) => {
     const [search ,setSearch]=useState("")
-
+const navigate = useNavigate()
   return (
     <div className='nav-page-container'>
       <div className='input'>
@@ -13,9 +14,14 @@ const PageNav = () => {
        setSearch(e.target.value)     
         }} placeholder={"Enter Your Search Item"}/>
       </div>
-      <div>
-<SVG src={heartIcon} width={20} height={24}></SVG>
-<SVG src={cartIcon} width={20} height={24}></SVG>
+  
+      <div className='add-product-icon'>
+      <div className='btn' >  {hasAddProduct &&  <button className='button' onClick={()=>{
+          navigate("/product")
+        }}>Add Product</button>}</div>
+<SVG className='icon' src={heartIcon} width={20} height={24}></SVG>
+<SVG className='icon' src={cartIcon} width={20} height={24}></SVG>
+      
       </div>
     </div>
   )

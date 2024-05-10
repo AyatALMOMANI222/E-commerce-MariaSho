@@ -1,0 +1,32 @@
+.pagination {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  li {
+    display: inline-block;
+    margin: 0 5px;
+
+    button {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #333;
+      padding: 5px 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+
+    &.active {
+      button {
+        background-color: #7f5539;
+        color: #fff;
+        border-color: #7f5539;
+      }
+    }
+  }
+}

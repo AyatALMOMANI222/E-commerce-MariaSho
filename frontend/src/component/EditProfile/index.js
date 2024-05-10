@@ -145,7 +145,7 @@ const EditProfile = () => {
         <div className="profile-dev"></div>
         <img
           className="img"
-          src={image}
+          src={image || "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg"}
           width={200}
           height={200}
           style={{ borderRadius: "50%" }}

@@ -2,7 +2,6 @@ const connection = require("../models/db");
 const addProduct = (req, res) => {
   const {
     name,
-    image,
     description,
     price,
     sizes,
@@ -13,16 +12,13 @@ const addProduct = (req, res) => {
     brand,
   } = req.body;
 
-  const imageDataArray = req.body.images || [];
-
-  const sqlInsertProduct = `INSERT INTO Products (name,image, description, price, sizes,
-    colors, quantity, type, material, brand) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)`;
+  const sqlInsertProduct = `INSERT INTO Products (name, description, price, sizes,
+    colors, quantity, type, material, brand) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   connection.query(
     sqlInsertProduct,
     [
       name,
-      image,
       description,
       price,
       sizes,
@@ -41,25 +37,9 @@ const addProduct = (req, res) => {
       console.log("Product added successfully");
       const productId = productResult.insertId;
 
-      // Prepare values for image insertion
-      const values = imageDataArray.map((imageData) => [
-        imageData.image_url,
-        productId, // Use productId instead of imageData.product_id
-      ]);
-      console.log(values);
-      // Then, insert the images associated with the product
-      const sqlInsertImage = `INSERT INTO ProductImages (image_url, product_id) VALUES ?`;
-      connection.query(sqlInsertImage, [values], (err, imageResult) => {
-        if (err) {
-          console.error("Failed to add images:", err);
-          return res.status(500).json({ message: "Failed to add images" });
-        }
-
-        console.log("Images added successfully");
-        return res.status(201).json({
-          message: "Product and images added successfully",
-          productId: productId,
-        });
+      return res.status(201).json({
+        message: "Product added successfully",
+        productId: productId,
       });
     }
   );
@@ -145,16 +125,16 @@ const updateProductById = (req, res) => {
   );
 };
 const deleteProductById = (req, res) => {
-  const productId = req.params.id;
-  const sql = `DELETE FROM Products WHERE id=?`;
-  connection.query(sql, [productId], (err, result) => {
+  const id = req.params.id;
+  const sql = `DELETE FROM Products WHERE id = ?`;
+  connection.query(sql, [id], (err, result) => {
     if (err) {
       console.error("Error deleting product:", err);
-      return res.status(500).json({ message: "Failed to delete product" });
+      return res.status(500).json({ message: "Failed to delete product" , err });
     }
     if (result.affectedRows > 0) {
       console.log("Product deleted successfully");
-      res.status(200).json({ message: "Product deleted successfully" });
+      res.status(200).json({ message: "Product deleted successfully" , result });
     } else {
       res.status(404).json({ message: "Product not found" });
     }

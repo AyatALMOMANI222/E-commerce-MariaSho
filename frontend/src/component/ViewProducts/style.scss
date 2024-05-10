@@ -12,6 +12,9 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-row-gap: 5px;
       width: fit-content;
+      position: relative;
+      z-index: 1;
+
       .product-con {
         height: 200px;
         width: 200px;
@@ -46,7 +49,6 @@
     }
     .filter-container {
       border-top: 2px solid lightgray;
-
       display: flex;
       flex-direction: column;
       border-top: 2px solid lightgray;

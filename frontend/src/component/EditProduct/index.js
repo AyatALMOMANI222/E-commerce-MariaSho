@@ -42,6 +42,7 @@ const EditProduct = ({ isOpen, setIsOpen ,editProductId }) => {
       })
       .then((response) => {
         console.log("Product updated successfully:", response.data);
+        console.log(editProductId);
       })
       .catch((error) => {
         console.error("Failed to update product:", error);
@@ -109,7 +110,7 @@ const EditProduct = ({ isOpen, setIsOpen ,editProductId }) => {
               onChange={handleChange}
               value={productInfo.brand}
             />
-            <ImagesList images={images} setImages={setImages} />
+            {/* <ImagesList images={images} setImages={setImages} /> */}
             <div className="actions-container">
               <Buttons onClick={() => setIsOpen(false)}>Cancel</Buttons>
               <Buttons

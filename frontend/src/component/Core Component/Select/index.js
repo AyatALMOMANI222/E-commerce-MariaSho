@@ -39,9 +39,9 @@ const Select = ({
         {value ? (
           <span className="option-value">
             {
-              options.find((item) => {
+              options?.find((item) => {
                 return item.value === value;
-              }).label
+              })?.label
             }
           </span>
         ) : (

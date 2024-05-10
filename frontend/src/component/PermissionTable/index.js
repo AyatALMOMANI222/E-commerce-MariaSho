@@ -6,11 +6,13 @@ import Popup from "../Core Component/Modal";
 import Select from "../Core Component/Select";
 import axios from "axios";
 import "./style.scss";
+import Input from "../Core Component/Input";
 const PermissionTable = () => {
   const [data, setData] = useState([]);
   const [permissions, setPermissions] = useState([]);
   const [open, setOpen] = useState(false);
   const [userID, setUserID] = useState(-1);
+  const [userName, setUserName] = useState("");
 
   const [selectedOption, setSelectedOption] = useState("");
   const token = localStorage.getItem("token");
@@ -52,12 +54,11 @@ const PermissionTable = () => {
       try {
         const response = await axios.get("http://localhost:5000/register/per");
         setData(() => {
-
           return processData(response?.data.users)?.map((item) => {
             return {
               ...item,
-              permission_list:item.permission_list.map((item,index)=>{
-                return <span className="permission-item">{item}</span>
+              permission_list: item.permission_list.map((item, index) => {
+                return <span className="permission-item">{item}</span>;
               }),
               actions: (
                 <div>
@@ -130,7 +131,17 @@ const PermissionTable = () => {
 
   return (
     <div className="add-permission-container">
-      <Table headers={headers} data={data} />
+      <div className="filter-users-container">
+        <Input
+          userName={userName}
+          setUserName={setUserName}
+          placeholder={"Search on User"}
+        />
+      </div>
+      <div className="permission-table-container">
+        <Table headers={headers} data={data} />
+      </div>
+
       <Popup
         header={"Add Permission"}
         popupContent={

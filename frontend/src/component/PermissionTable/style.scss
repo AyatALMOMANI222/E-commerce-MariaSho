@@ -1,67 +1,83 @@
-/* Table.css */
+// /* Table.css */
 
-.add-permission-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // height: 200px;
-  .select-div {
-    margin: 20px;
-    
-  }
-  .permission-item {
-    display: flex;
+// .add-permission-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
 
-    justify-content: center;
+//   .permission-item {
+//     display: flex;
 
-    align-items: center;
+//     justify-content: center;
 
-    background: #ebecf2;
+//     align-items: center;
 
-    border-radius: 50px;
+//     background: #ebecf2;
 
-    width: max-content;
+//     border-radius: 50px;
 
-    height: 24px;
+//     width: max-content;
 
-    overflow: hidden;
+//     height: 24px;
 
-    transition: all 0.4s ease-in-out;
+//     overflow: hidden;
 
-    padding-inline-end: 15px;
+//     transition: all 0.4s ease-in-out;
 
-    cursor: default;
-    padding: 0px 20px;
-  }
+//     padding-inline-end: 15px;
+
+//     cursor: default;
+//     padding: 0px 20px;
+//   }
+//   .permission-table-container{
+//     // width: 90%;
+//     // margin-top: 20px;
+//     padding: 20px;
+//   }
+//   .filter-users-container{
+//     margin: 20px;
+//     height: 40px;
+//     border-radius: 5px;
+//     border:  1px solid rgb(201, 201, 201);
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+//     padding: 20px;
+
+//     .text-field{
+//       width: 400px;
+//     }
+//   }
   
-}
+// }
 
-.actions-container {
-  display: flex;
-  flex-direction: row;
+// .actions-container {
+//   display: flex;
+//   flex-direction: row;
 
-  justify-content: space-between;
-  padding: 20px;
-  button {
-    width: 170px;
-  }
-}
+//   justify-content: space-between;
+//   padding: 20px;
+//   button {
+//     width: 170px;
+//   }
+// }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
+// .table {
+//   width: 100%;
+//   border-collapse: collapse;
   
-}
+// }
 
-.table th,
-.table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+// .table th,
+// .table td {
+//   border: 1px solid #ddd;
+//   padding: 8px;
+//   text-align: left;
  
-}
+// }
 
-.table th {
-  background-color: #f2f2f2;
+// .table th {
+//   background-color: #f2f2f2;
   
-}
+// }

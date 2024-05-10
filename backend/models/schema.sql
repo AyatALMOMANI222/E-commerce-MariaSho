@@ -4,7 +4,6 @@ CREATE DATABASE MariaShop;
 
 USE MariaShop;
 
-
 CREATE TABLE Users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -16,11 +15,11 @@ CREATE TABLE Users (
     location TEXT
 );
 
-
 CREATE TABLE Products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     description TEXT,
+    image TEXT,
     price INT,
     colors VARCHAR(500),
     sizes VARCHAR(500),
@@ -31,6 +30,7 @@ CREATE TABLE Products (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 CREATE TABLE ProductImages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -38,7 +38,6 @@ CREATE TABLE ProductImages (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE Orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,8 +58,8 @@ CREATE TABLE Cart (
     color VARCHAR(255),
     size VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (product_id) REFERENCES Products(id)
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
 );
 
 CREATE TABLE OrderDetails (

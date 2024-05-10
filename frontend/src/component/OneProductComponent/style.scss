@@ -1,9 +1,10 @@
 .single-product-container {
   display: flex;
   grid-template-columns: repeat(2, 40%);
-  justify-content: space-between;
+  gap: 35px;
+  justify-content:center;
   margin-top: 100px;
-
+height: calc( 100vh - 150px);
   .first-section {
     display: flex;
     flex-direction: row;
@@ -20,8 +21,8 @@
     }
     .large-img {
       .img {
-        width: 1000px;
-        height: 1000px;
+        width: 500px;
+        height: 400px;
       }
     }
   }
