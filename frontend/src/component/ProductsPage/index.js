@@ -142,6 +142,8 @@ const ProductsPage = () => {
                   getProduct={getProducts}
                   details={item}
                   hasDeleteProduct={true}
+                  products ={products}
+                   setProducts ={setProducts}
                   hasEditProduct={true}
                 />
               </div>

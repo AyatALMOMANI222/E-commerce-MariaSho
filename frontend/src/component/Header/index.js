@@ -14,7 +14,11 @@ const Header = () => {
   const handleClick = (type) => {
     navigate(`/products/${type}`);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    navigate("/login");
+  };
   return (
     <div className="outer-container">
       <div className="header-container">
@@ -52,10 +56,13 @@ const Header = () => {
          }}>
          <OptionsTabs title="Profile" />
          </div>
+         
         <div onClick={handleLoginClick} >         
           <OptionsTabs title="Login" />
         </div>
-      
+        <div onClick={ handleLogout }>
+          <OptionsTabs title="Logout" />
+        </div>
       </div>
     </div>
   );

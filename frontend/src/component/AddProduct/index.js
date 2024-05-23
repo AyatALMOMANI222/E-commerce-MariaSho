@@ -10,9 +10,9 @@ const ProductAction = () => {
     return Math.random().toString(36).substr(2, 9);
   }
   const [image, setImage] = useState("");
-  const [images, setImages] = useState([
-    { id: generateRandomId(), image_url: "" },
-  ]);
+  // const [images, setImages] = useState([
+  //   { id: generateRandomId(), image_url: "" },
+  // ]);
 
   const [productInfo, setProductInfo] = useState({
     name: "",
@@ -39,7 +39,7 @@ const ProductAction = () => {
     axios
       .post(
         `http://localhost:5000/product`,
-        { ...productInfo, image: image, images: images },
+        { ...productInfo, image: image},
 
         {
           headers: {

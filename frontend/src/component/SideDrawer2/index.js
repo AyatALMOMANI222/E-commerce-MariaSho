@@ -6,58 +6,71 @@ import "./style.scss";
 import ColorsSection from "../ColorsSection";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const CartContent = () => {
-  const [cartPro, setCartPro] = useState([]);
+const CartContent = ({cart,setCart}) => {
+  // const [cartPro, setCartPro] = useState([]);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const detail = [
-    {
-      type: "kids",
-      color: "red",
-      desc: "بلوزة لون احمر",
-      price: 22,
-      qty: 1,
-      img: "https://th.bing.com/th/id/R.0d4f8f03cb8176fe467ead11da66fff8?rik=ZhOZqZUg6w%2fJdg&pid=ImgRaw&r=0",
-    },
-  ];
+ 
   const calculateTotalPrice = (price, quantity) => {
     let totalPrice = 0;
-    cartPro.forEach((product) => {
+    cart?.forEach((product) => {
       totalPrice += price * quantity;
     });
     return totalPrice;
   };
 
-  const totalCartPrice = cartPro.reduce((total, item) => {
+  const totalCartPrice = cart?.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
-  useEffect(() => {
+  const getPro = () => {
+    const token = localStorage.getItem('token'); // تأكد من استخدام الاسم الصحيح للمفتاح 'token'
     axios
-      .get(`http://localhost:5000/cart/cartproduct`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    .get(`http://localhost:5000/cart/cartproduct`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response.data.cart);
+setCart(response.data.cart)
+    })
+    .catch((error) => {
+      console.error("Error fetching Product", error);
+    });
+  };
+  const handleDelete = (productId) => {
+    const token = localStorage.getItem('token'); // تأكد من استخدام الاسم الصحيح للمفتاح 'token'
+  
+    axios
+      .delete(
+        `http://localhost:5000/cart/del/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      )
       .then((response) => {
         console.log(response?.data);
-        const cartPro = response?.data.cart;
-        setCartPro(cartPro);
+        getPro()
       })
       .catch((error) => {
-        console.error("Error fetching Product", error);
+        console.error("Error deleting product:", error);
       });
-  }, []);
+  };
+  
+
   return (
     <div className="popup-container">
       <div className="first-container">
         <div className="name-icon">
-          <div className="name">MariaShop {detail[0].type}</div>
+          {/* <div className="name">MariaShop {detail[0].type}</div> */}
           <SVG src={cartIcon} width={24} height={24}></SVG>
         </div>
       </div>
 
       <div>
-        {cartPro.map((item) => (
+        {cart?.map((item) => (
           <div className="product-picture">
             <div className="desc-color">
               <div className="desc">MariaShop {item.description}</div>
@@ -65,10 +78,13 @@ const CartContent = () => {
                 <div className={`chip ${item.color}`}></div>
                 <div>{item.quantity}</div>
               </div>
+
               <div className="icon-price-container">
-                <SVG src={deleteIcon}></SVG>
+                <SVG onClick={()=>handleDelete(item.product_id)} src={deleteIcon}></SVG>
                 <div className="price">{item.price}$</div>
               </div>
+
+
               <div className="total">
                 Total:<span>{item.price * item.quantity}$</span>
               </div>
@@ -82,6 +98,9 @@ const CartContent = () => {
           Total Cart Price:<span>{totalCartPrice}$</span>
         </div>
       </div>
+
+
+
       <button
         className="btn"
         onClick={() => {

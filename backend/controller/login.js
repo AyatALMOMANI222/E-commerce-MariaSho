@@ -6,10 +6,11 @@ const login = (req, res) => {
   const { email, password } = req.body;
   const query = `
     SELECT Users.id AS id, Users.username, Users.password 
-    , Permissions.name AS permission_name
+    , Permissions.name AS permission_name , Cart.id AS cartId
     FROM Users 
     LEFT JOIN UserPermissions ON Users.id = UserPermissions.user_id
     LEFT JOIN Permissions ON UserPermissions.permission_id = Permissions.id
+    LEFT JOIN Cart ON Users.id = Cart.user_id
     WHERE Users.email = ?`;
 
   const data = [email];
@@ -40,17 +41,19 @@ const login = (req, res) => {
           username: user.username,
           email: user.email,
           permission: permission,
+          cartId: user.cartId,
         };
+        console.log(userPayload);
         const userToken = jwt.sign(userPayload, process.env.SECRET);
+
         return res.status(200).json({
           success: true,
           userToken,
           user_id: user.id,
           username: user.username,
           permission: user.permission_name,
-
+          cartId: userPayload.cartId, // استخدام cartId المحدث هنا
         });
-        console.log(user_id);
       } else {
         return res.status(403).json({
           success: false,

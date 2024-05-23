@@ -1,53 +1,71 @@
 import React, { useState, useEffect } from "react";
 import ColorsSection from "../ColorsSection";
-import Size from "../SizeSection";
+import SizeSection from "../SizeSection";
 import Slider from "../Core Component/slider";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CartContent from "../SideDrawer2";
 import SideDrawer from "../CartPopup";
+import Comment from "../Comment"
+import Input from "../Core Component/Input"
+import {closeIcon} from "../../icons";
 import "./style.scss";
 const SingleProduct = () => {
   const navigate = useNavigate();
-  const { itemID } = useParams();
-  const details = [
-    `Model is 5'9", Waist 26" Chest 32", wearing size S`,
-    `Model is 5'9", Waist 26" Chest 32", wearing size S`,
-    `Model is 5'9", Waist 26" Chest 32", wearing size S`,
-  ];
+  const { id } = useParams();
 
   const [selectedColor, setSelectedColor] = useState("");
   const [availableSizes, setAvailableSizes] = useState([]);
   const [availableColors, setAvailableColors] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [product, setProduct] = useState("");
+  const [isContain ,setIsContain] = useState(false)
+  const [qty, setQty] = useState(1);
+  const [newCart, setNewCart] = useState([]);
+  const [comment, setComment] = useState([]);
+  const [commentText, setCommentText] = useState([]);
   const [images, setImages] = useState([]);
   // const [imageArr,setImageArr]=useState([])
   const [imageUrls, setImageUrls] = useState([]);
 
-
   const token = localStorage.getItem("token");
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
+  const [price, setPrice] = useState(0);
   const togglePopup = () => {
     setIsOpen(!isOpen);
+    axios
+    .get(`http://localhost:5000/cart/cartproduct`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response.data.cart);
+      const cart = response.data.cart;
+      setCart(cart);
+    })
+    .catch((error) => {
+      console.error("Error fetching Product", error);
+    });
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token")
+console.log(token);
     axios
-      .get(`http://localhost:5000/product/one/${itemID}`)
+      .get(`http://localhost:5000/product/one/${id}`)
       .then((response) => {
         console.log(response?.data);
         const product = response?.data.product;
-       
+
         setProduct(response?.data.product);
         console.log(product);
-        setImages(product.image)
-        console.log(images);
-
+        setImages(product.image);
+setPrice(product.price)
         const availablesize = product.sizes.split(",");
-        console.log(availablesize);
         setAvailableSizes(availablesize);
+
         const availablecolor = product.colors.split(",");
         setAvailableColors(availablecolor);
       })
@@ -55,17 +73,35 @@ const SingleProduct = () => {
         console.error("Error fetching Product", error);
       });
   }, []);
+const getCommentByProductId =(id)=>{
 
-  console.log(token);
+  axios.get(`http://localhost:5000/comment/${id}`)
+  .then((response) => {
+    console.log(response?.data.results);
+    const comment = response?.data.results
+    setComment(comment)
+    console.log(comment);
+  })
+  .catch((error) => {
+    console.error("Error fetching Comment", error);
+  });
+}
+  useEffect(()=>{
+    getCommentByProductId(id)
+  },[])
+  
   const handleCartClick = (productId) => {
+
+    
     axios
       .post(
         "http://localhost:5000/cart",
         {
           product_id: productId,
-          quantity: 1,
-          size: selectedSize,
           color: selectedColor,
+          size: selectedSize,
+          quantity: qty
+        
         },
         {
           headers: {
@@ -74,36 +110,68 @@ const SingleProduct = () => {
         }
       )
       .then((response) => {
+        console.log("hedaya");
         console.log(response?.data);
-        // navigate("/cart")
+    
+          axios
+            .get(`http://localhost:5000/cart/cartproduct`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            .then((response) => {
+              console.log(response.data.cart);
+              const cart = response.data.cart;
+              setCart(cart);
+            })
+            .catch((error) => {
+              console.error("Error fetching Product", error);
+            });
+          
         setIsOpen(!isOpen);
       })
       .catch((error) => {
         console.error("Error adding to the cart:", error);
       });
   };
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/cart`, {
-        headers: {
+console.log(commentText);
+const handleCommentClick =(id , commentText)=>{
+  axios.post("http://localhost:5000/comment", { product_id : id ,comment : commentText},    {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((response) => {
+    console.log(response?.data);
+    getCommentByProductId(id)
+  
+  })
+  .catch((error) => {
+    console.error("Error adding to the comment:", error);
+  });
+};
+const handleDelete = (commentId) => {
+  axios.delete("http://localhost:5000/comment", {
+      params: {
+          id: commentId
+      },
+      headers: {
           Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data.cart);
-        const cart = response.data.cart;
-        setCart(cart);
-        console.log(cart);
-      })
-      .catch((error) => {
-        console.error("Error fetching Product", error);
-      });
-  }, []);
-  console.log(cart);
+      },
+  })
+  .then((response) => {
+      console.log(response?.data);
+      const updatedComments = comment.filter(item => item.id !== commentId);
+      setComment(updatedComments)
+      getCommentByProductId(id);
+  })
+  .catch((error) => {
+      console.error("Error deleting the comment:", error);
+  });
+};
 
   return (
     <div className="single-product-container">
-      
       <div className="first-section">
         {/* <div className="small-img">
           <img src={img2} className="img" />
@@ -111,13 +179,15 @@ const SingleProduct = () => {
           <img src={img4} className="img" />
         </div> */}
         <div className="large-img">
-       <img className="img" src={images}/>
+          <img className="img" src={images} />
         </div>
       </div>
 
       <div className="second-section">
         <div className="title">{product.name}</div>
-        <div className="price"><del>{product.price}$</del> {product.price -( 0.2*(product.price))} USD</div>
+        <div className="price">
+          <del>{product.price}$</del> {product.price - 0.2 * product.price} USD
+        </div>
         <div className="colors-chips-container">
           <ColorsSection
             availableColors={availableColors}
@@ -126,9 +196,9 @@ const SingleProduct = () => {
           />
         </div>
         <div className="sizes-chips-containetr">
-          <Size
+          <SizeSection
+            availableSize={availableSizes}
             selectedSize={selectedSize}
-            availablesize={availableSizes}
             setSelectedSize={setSelectedSize}
           />
         </div>
@@ -145,21 +215,40 @@ const SingleProduct = () => {
         </button>
 
         <hr />
-        {details.map((item) => {
-          return (
-            <div className="section-one">
-              <span className="dot"></span>
-              <div>{item} </div>
-            </div>
-          );
-        })}
+
+        <div className="reviews">Reviews({comment.length})</div>
+        <form  onSubmit={(e)=>{
+  e.preventDefault();
+  handleCommentClick(id,commentText)}}> 
+<Input classname="inp" placeholder={"write your opinion"} onChange={(e)=>{
+setCommentText(e.target.value)
+
+}}
+/>
+</form>
+{
+  comment?.map((item)=>{
+    return(
+      <div>
+                <Comment item={item} comment={comment} icon={closeIcon} handleDelete={()=>handleDelete(item?.id)}/>
+                {/* <button onClick={()=>handleDelete(item?.id)}>delete</button> */}
+      </div>
+    )
+  })
+}
+
+
+
       </div>
       <SideDrawer
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        content={<CartContent />}
-        title={"My Cark"}
+        content={<CartContent cart={cart} setCart={setCart}/>}
+        title={"My Cart"}
+        setPrice={setPrice}
+    
       />
+   
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Login from "./component/login";
 import Register from "./component/register";
 import { Route, Routes } from "react-router-dom";
@@ -20,11 +20,11 @@ import About from "./component/About";
 import { Button } from "@material-ui/core";
 import Header from "./component/Header"
 import ProductsPage from "./component/ProductsPage";
-// import  Slider  from "./component/inputSlider";
 import "./App.scss";
 
 function App() {
   const [username, setUsername] = useState("");
+
   return (
     <div id="main" className="main-container">
 {/* <ProductAction/> */}
@@ -37,7 +37,7 @@ function App() {
         <Route path="/table" element={<PermissionTable />}></Route>
         <Route path="/popup" element={<PopupExample />}></Route>
         <Route path="/product" element={<ProductAction />}></Route>
-        <Route path="/categorey/:type/:id" element={<SingleProduct />}></Route>
+        <Route path="/categorey/:id" element={<SingleProduct />}></Route>
         <Route path="/allproduct" element={<AllProduct />}></Route>
         <Route path="/static" element={<ProductSection />}></Route>
         <Route

@@ -16,10 +16,12 @@ const Login = () => {
         const token = response?.data.userToken;
         const user_id = response?.data.user_id;
         const permission =response?.data.permission
-
+        const cartId =response?.data.cartId
         localStorage.setItem("token", token);
         localStorage.setItem("permission", permission);
-        localStorage.setItem("user_id", user_id);
+        localStorage.setItem("cartId", cartId);
+        // localStorage.setItem("", user_id);
+
         console.log(user_id);
         navigate("/");
       })

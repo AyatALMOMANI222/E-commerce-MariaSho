@@ -7,27 +7,52 @@ const ViewCart = () => {
   const [cartPro, setCartPro] = useState([]);
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/cart/cartproduct`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response?.data);
-        const cartPro = response?.data.cart;
-        setCartPro(cartPro);
-      })
-      .catch((error) => {
-        console.error("Error fetching Product", error);
-      });
-  }, []);
 
-  const totalCartPrice = cartPro.reduce((total, item) => {
+  const totalCartPrice = cartPro?.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
+  const getProduct =()=>{
+    axios
+    .get(`http://localhost:5000/cart/cartproduct`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response?.data);
+      const cartPro = response?.data.cart;
+      setCartPro(cartPro);
+      console.log(cartPro);
+    })
+    .catch((error) => {
+      console.error("Error fetching Product", error);
+    });
+  }
+useEffect(()=>{
+  getProduct()
+},[])
+  const handleDelete = (productId) => {
+    const token = localStorage.getItem('token'); // تأكد من استخدام الاسم الصحيح للمفتاح 'token'
 
+    axios
+      .delete(
+        `http://localhost:5000/cart/del/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      )
+      .then((response) => {
+        console.log(cartPro);
+        setCartPro(prevCartPro => prevCartPro.filter(product => product.id !== productId));
+        getProduct()
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+      });
+  };
+  
   return (
     <div className="view-cart-container">
       <div className="title">
@@ -82,14 +107,14 @@ const ViewCart = () => {
                 <div className="one-product">
                   <div className="text-side">
                     <div className="text">{item.description}</div>
-                    {/* <div className={`chip ${item.color}`}>red</div> */}
+                    <div className={`chip ${item.color}`}></div>
                     <div className="price-icon">
                       <div className="icon">
                         <SVG src={heartIcon} width={20} height={20}></SVG>
-                        <SVG src={deleteIcon} width={20} height={20}></SVG>
+                        <SVG onClick={()=>handleDelete(item.product_id)} src={deleteIcon} width={20} height={20}></SVG>
                         <SVG src={searchIcon} width={20} height={20}></SVG>
                       </div>
-                      <div className="price">{item.price}$</div>
+                      <div className="price">{item.price * item.quantity}$</div>
                     </div>
                   </div>
                   <div className="image">

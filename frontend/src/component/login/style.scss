@@ -16,9 +16,8 @@
     box-shadow: 5px 5px 10px rgb(227 92 180);
 
     .login-title {
-     
       color: var(--element-color);
-      
+
       margin-bottom: 20px;
       font-weight: bold;
       font-size: large;
@@ -32,9 +31,9 @@
     .login-btn {
       width: 130px;
       margin-top: 30px;
- 
       border: none;
       color: white;
+      background-color: #7f5539;
       height: 35px;
       font-size: 15px;
       font-weight: 600;
@@ -48,7 +47,7 @@
       cursor: pointer;
       margin-top: 60px;
 
-      .register{
+      .register {
         margin-left: 5px;
       }
     }

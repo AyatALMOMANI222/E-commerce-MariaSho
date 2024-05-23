@@ -11,27 +11,19 @@ const Register = () => {
     username: "username",
     email: "email",
     password: "password",
- 
   });
-  const [confirmPass, setConfirmPass] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "confirmPass") {
-      setConfirmPass(value); // تحديث حالة confirmPass فقط عندما يتم تغيير حقل تأكيد كلمة المرور
-    } else {
+
       setRegData((prevState) => ({
         ...prevState,
         [name]: value,
       }));
-    }
+    
   };
 
   const handleClick = () => {
-    if (regData.password !== confirmPass) {
-      console.error("Password and Confirm Password do not match");
-      return;
-    }
     axios
       .post(`http://localhost:5000/register`, regData)
       .then((response) => {
@@ -67,19 +59,16 @@ const Register = () => {
             name="password"
             value={regData.password}
           />
-          <Input
-            placeholder="Confirm Password"
-            onChange={handleChange}
-            name="confirmPass"
-            value={confirmPass} // استخدام قيمة confirmPass لحقل تأكيد كلمة المرور
-          />
+   
         </div>
         <Buttons className="register-btn" onClick={() => handleClick()}>
           Register
         </Buttons>
         <div className="forget-password">
           <div className="forget">Forget-Password? </div>
-          <div className="lo" onClick={() => handleClick()}>
+          <div className="lo" onClick={() =>{
+            Navigate("/login")
+          } }>
             {" "}
             ..Login
           </div>

@@ -2,6 +2,7 @@ const connection = require("../models/db");
 const addProduct = (req, res) => {
   const {
     name,
+    image,
     description,
     price,
     sizes,
@@ -12,13 +13,14 @@ const addProduct = (req, res) => {
     brand,
   } = req.body;
 
-  const sqlInsertProduct = `INSERT INTO Products (name, description, price, sizes,
-    colors, quantity, type, material, brand) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  const sqlInsertProduct = `INSERT INTO Products (name,image, description, price, sizes,
+    colors, quantity, type, material, brand) VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?)`;
 
   connection.query(
     sqlInsertProduct,
     [
       name,
+      image,
       description,
       price,
       sizes,

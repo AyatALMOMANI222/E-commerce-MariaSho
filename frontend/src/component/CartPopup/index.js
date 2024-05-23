@@ -5,15 +5,15 @@ import { closeIcon } from "../../icons";
 import CartContent from "../SideDrawer2";
 import "./style.scss";
 
-const SideDrawer = ({ isOpen, setIsOpen, content, title }) => {
-  const token = localStorage.getItem("token");
+const SideDrawer = ({setPrice ,isOpen, setIsOpen, content, title }) => {
 
   const closePopup = () => {
-    setIsOpen(false);
+    setIsOpen(!isOpen);
   };
+
   return (
-    <div className={` ${isOpen ? "popup-containerr" : ""}`}>
-      <div className={`popup ${isOpen ? "open" : "close"}`}>
+    <div className={`popup-containerrr ${!isOpen ? "container-close" : ""}`}>
+      <div className={`popup2 ${isOpen ? "open" : "close"}`}>
         <div className="popup-content">
           <div className="header-section">
             <span className="title">{title}</span>
