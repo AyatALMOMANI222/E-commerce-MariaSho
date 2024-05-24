@@ -13,6 +13,7 @@ const Header = () => {
   };
   const handleClick = (type) => {
     navigate(`/products/${type}`);
+    window.location.reload();
   };
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -25,10 +26,12 @@ const Header = () => {
         <div className="name">
           <OptionsTabs title="MARIASHOP" />
         </div>
-        <div onClick={()=>{
-          navigate("/")
-        }}>
-        <OptionsTabs title="Home" />
+        <div
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <OptionsTabs title="Home" />
         </div>
         <OptionsTabs
           title="Collection"
@@ -51,16 +54,18 @@ const Header = () => {
         <div onClick={handleAboutClick}>
           <OptionsTabs title="About Us" />
         </div>
-        <div onClick={()=>{
-          navigate("/edit")
-         }}>
-         <OptionsTabs title="Profile" />
-         </div>
-         
-        <div onClick={handleLoginClick} >         
+        <div
+          onClick={() => {
+            navigate("/edit");
+          }}
+        >
+          <OptionsTabs title="Profile" />
+        </div>
+
+        <div onClick={handleLoginClick}>
           <OptionsTabs title="Login" />
         </div>
-        <div onClick={ handleLogout }>
+        <div onClick={handleLogout}>
           <OptionsTabs title="Logout" />
         </div>
       </div>

@@ -5,7 +5,7 @@ const RatingStars = ({rating, setRating}) => {
   };
 
   return (
-    <div>
+    <div className="rating-stars">
       {[...Array(5)].map((_, index) => {
         const starValue = index + 1;
         return (

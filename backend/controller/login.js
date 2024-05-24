@@ -5,13 +5,13 @@ const connection = require("../models/db");
 const login = (req, res) => {
   const { email, password } = req.body;
   const query = `
-    SELECT Users.id AS id, Users.username, Users.password 
-    , Permissions.name AS permission_name , Cart.id AS cartId
+    SELECT Users.id AS id, Users.username, Users.password,
+    Permissions.name AS permission_name, Cart.id AS cartId
     FROM Users 
     LEFT JOIN UserPermissions ON Users.id = UserPermissions.user_id
     LEFT JOIN Permissions ON UserPermissions.permission_id = Permissions.id
     LEFT JOIN Cart ON Users.id = Cart.user_id
-    WHERE Users.email = ?`;
+    WHERE Users.email = ? AND (Cart.isDeleted IS NULL OR Cart.isDeleted != 1)`;
 
   const data = [email];
   connection.query(query, data, async (err, result) => {

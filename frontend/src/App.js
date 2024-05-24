@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./component/login";
 import Register from "./component/register";
 import { Route, Routes } from "react-router-dom";
@@ -10,25 +10,20 @@ import AllProduct from "./component/AllProduct";
 import ProductSection from "./component/ProductSection/ProductSection";
 import SingleProduct from "./component/OneProductComponent/index";
 import SelectSection from "./component/Filter";
-import SideDrawer from "./component/SideDrawer";
 import ViewProducts from "./component/ViewProducts";
 import CartPopup from "./component/CartPopup";
 import ViewCart from "./component/ViewCart";
-import OptionsTabs from "./component/optionsTab";
 import Home from "./component/home";
 import About from "./component/About";
-import { Button } from "@material-ui/core";
-import Header from "./component/Header"
+import Header from "./component/Header";
 import ProductsPage from "./component/ProductsPage";
 import "./App.scss";
+import OrdersList from "./component/OrdersList";
 
 function App() {
-  const [username, setUsername] = useState("");
-
   return (
     <div id="main" className="main-container">
-{/* <ProductAction/> */}
-<Header/>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/register" element={<Register />}></Route>
@@ -50,7 +45,7 @@ function App() {
         <Route path="/cart/viewcart" element={<ViewCart />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/products/:currentType" element={<ProductsPage />}></Route>
-
+        <Route path="/orders" element={<OrdersList />}></Route>
       </Routes>
     </div>
   );

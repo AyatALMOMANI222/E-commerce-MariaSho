@@ -13,7 +13,6 @@ CREATE TABLE Users (
     city VARCHAR(255),
     profile_picture TEXT,
     location TEXT,
-   
 );
 
 CREATE TABLE Products (
@@ -47,7 +46,7 @@ CREATE TABLE Orders (
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'shipped', 'delivered', 'canceled') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(id) ,
+    FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (cart_id) REFERENCES Cart(id)
 );
 
@@ -82,11 +81,13 @@ CREATE TABLE OrderProduct (
     product_id INT,
     total_amount DECIMAL(10, 2) NOT NULL,
     price DECIMAL(10, 2),
+    color VARCHAR(255),
+    size VARCHAR(50),
+    quantity INT,
     FOREIGN KEY (order_id) REFERENCES Orders(id),
     FOREIGN KEY (product_id) REFERENCES Products(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE PaymentMethods (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -99,6 +100,7 @@ CREATE TABLE PaymentMethods (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
+
 CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
@@ -110,11 +112,15 @@ CREATE TABLE comments (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (parent_id) REFERENCES comments(id) ON DELETE CASCADE
 );
+
 CREATE TABLE ratings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
     user_id INT NOT NULL,
-    rating TINYINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    rating TINYINT NOT NULL CHECK (
+        rating BETWEEN 1
+        AND 5
+    ),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

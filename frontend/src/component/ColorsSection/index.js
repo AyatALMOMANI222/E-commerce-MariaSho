@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./style.scss"
+import React, { useEffect, useState } from "react";
+import "./style.scss";
 const ColorsSection = ({
   availableColors,
   selectedColor,

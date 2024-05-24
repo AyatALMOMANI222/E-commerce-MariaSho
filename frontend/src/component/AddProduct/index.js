@@ -39,7 +39,7 @@ const ProductAction = () => {
     axios
       .post(
         `http://localhost:5000/product`,
-        { ...productInfo, image: image},
+        { ...productInfo, image: image },
 
         {
           headers: {
@@ -67,7 +67,7 @@ const ProductAction = () => {
             onChange={handleChange}
             value={productInfo.name}
           />
-      
+
           <Input
             label={"Description"}
             placeholder="description"
@@ -117,12 +117,12 @@ const ProductAction = () => {
             onChange={handleChange}
             value={productInfo.brand}
           />
-    <ImageUploade
-          inputValue={image}
-          setInputValue={setImage}
-          label="Select Picture"
-          allowedExtensions={["jpg", "jpeg", "png", "gif"]}
-        />
+          <ImageUploade
+            inputValue={image}
+            setInputValue={setImage}
+            label="Select Picture"
+            allowedExtensions={["jpg", "jpeg", "png", "gif"]}
+          />
           {/* <ImagesList images={images} setImages={setImages} /> */}
         </div>
         <div className="add-product-btn">

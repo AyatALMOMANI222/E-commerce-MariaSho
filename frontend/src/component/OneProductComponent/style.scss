@@ -3,7 +3,8 @@
   grid-template-columns: repeat(2, 40%);
   gap: 35px;
   justify-content: center;
-  height: calc(100vh - 150px);
+  padding-top: 50px;
+  padding-bottom: 30px;
   .first-section {
     display: flex;
     flex-direction: row;
@@ -30,14 +31,30 @@
     flex-direction: column;
     gap: 13px;
     width: 340px;
-    .title {
-      color: black;
-      font-weight: bolder;
+
+    .rating-stars{
       font-size: 30px;
     }
+
+    .description {
+      font-size: 14px;
+      font-weight: 400;
+      color: gray;
+    }
+    .title {
+      color: black;
+      font-weight: 600;
+      font-size: 25px;
+    }
     .price {
-      color: rgb(137, 120, 120);
+      color: #000;
       font-weight: 700;
+      margin-top: 20px;
+
+      .first-price {
+        color: #d00000;
+        font-weight: 400;
+      }
     }
     .section-one {
       display: flex;
@@ -62,14 +79,43 @@
       font-weight: 550;
       border-radius: 5px;
     }
-    .reviews{
+    .reviews {
       font-size: medium;
       font-weight: 700;
       margin: 15px 0px;
-  }
+    }
   }
 
   .colors-chips-container {
     margin: 10px 0px;
+ 
+  }
+  .view-shopping-cart {
+    background-color: #fff;
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid black;
+    margin: 0px 20px;
+    width: 90%;
+    height: 40px;
+
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+.reviews-container {
+  padding: 0px 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .add-review-container {
+    width: 500px;
   }
 }

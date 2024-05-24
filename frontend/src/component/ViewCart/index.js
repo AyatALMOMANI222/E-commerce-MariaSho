@@ -1,69 +1,75 @@
 import React, { useState, useEffect } from "react";
+import CartContent from "../SideDrawer2";
+import PaymentButtn from "../PaymentButton";
 import axios from "axios";
-import SVG from "react-inlinesvg";
-import { deleteIcon, heartIcon, searchIcon } from "../../icons";
 import "./style.scss";
+
 const ViewCart = () => {
   const [cartPro, setCartPro] = useState([]);
   const token = localStorage.getItem("token");
 
-
   const totalCartPrice = cartPro?.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
-  const getProduct =()=>{
-    axios
-    .get(`http://localhost:5000/cart/cartproduct`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      console.log(response?.data);
-      const cartPro = response?.data.cart;
-      setCartPro(cartPro);
-      console.log(cartPro);
-    })
-    .catch((error) => {
-      console.error("Error fetching Product", error);
-    });
-  }
-useEffect(()=>{
-  getProduct()
-},[])
-  const handleDelete = (productId) => {
-    const token = localStorage.getItem('token'); // تأكد من استخدام الاسم الصحيح للمفتاح 'token'
 
+  const getProduct = () => {
     axios
-      .delete(
-        `http://localhost:5000/cart/del/${productId}`,
+      .get(`http://localhost:5000/cart/cartproduct`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response?.data);
+        const cartPro = response?.data.cart;
+        setCartPro(cartPro);
+        console.log(cartPro);
+      })
+      .catch((error) => {
+        console.error("Error fetching Product", error);
+      });
+  };
+
+  const handleOrder = () => {
+    axios
+      .post(
+        `http://localhost:5000/order`,
+        {
+          user_id: "1",
+          cart_id: "1",
+          total_amount: 20,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
-          }
+          },
         }
       )
       .then((response) => {
-        console.log(cartPro);
-        setCartPro(prevCartPro => prevCartPro.filter(product => product.id !== productId));
-        getProduct()
+        console.log(response?.data);
       })
       .catch((error) => {
-        console.error("Error deleting product:", error);
+        console.error("Error Adding Product", error);
       });
   };
-  
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
   return (
     <div className="view-cart-container">
-      <div className="title">
-        {"Shopping bag > order confirmation > payment > ordered"}
-      </div>
       <div className="view-cart-body">
         <div className="left-side">
           <div className="top-left-side">
             <div className="title">موجز الطلب</div>
             <div className="price">{totalCartPrice}$</div>
-            <button className="btn">BUY NOW</button>
+
+            <PaymentButtn
+              handleOrder={handleOrder}
+              component={<button className="buy-now-button">BUY NOW</button>}
+              amount={totalCartPrice}
+            />
           </div>
           <div className="img-container">
             <img
@@ -94,36 +100,10 @@ useEffect(()=>{
               className="img"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFeneFaG8NqUG0iNLpvBzZccjHB41TBeErzs89ouGl7Q&s"
             />
-            {/* <img className='img' src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/2560px-Old_Visa_Logo.svg.png'/> */}
           </div>
         </div>
-
-        <div className="right-side">
-          <div className="all-product">All Product</div>
-          <div className="right-side-body">
-            <div className="type">MariaShop</div>
-            {cartPro.map((item) => {
-              return (
-                <div className="one-product">
-                  <div className="text-side">
-                    <div className="text">{item.description}</div>
-                    <div className={`chip ${item.color}`}></div>
-                    <div className="price-icon">
-                      <div className="icon">
-                        <SVG src={heartIcon} width={20} height={20}></SVG>
-                        <SVG onClick={()=>handleDelete(item.product_id)} src={deleteIcon} width={20} height={20}></SVG>
-                        <SVG src={searchIcon} width={20} height={20}></SVG>
-                      </div>
-                      <div className="price">{item.price * item.quantity}$</div>
-                    </div>
-                  </div>
-                  <div className="image">
-                    <img className="img" src={item.image} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        <div className="cart-details-container">
+          <CartContent cart={cartPro} setCart={setCartPro} />
         </div>
       </div>
     </div>
