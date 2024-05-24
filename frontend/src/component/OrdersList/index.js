@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./style.scss";
 import Pagination from "../Pagination";
+import "./style.scss";
 
 const OrderItem = ({ item }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="order-item-container">
       <div className="information">{item.id}</div>
       <div className="information">{item.order_date.split("T")[0]}</div>
       <div className="information">{item.status}</div>
       <div className="information">{item.total_amount}</div>
-      <div className="information">view</div>
+      <button
+        className="information"
+        onClick={() => {
+          navigate(`/orders/${item.id}`);
+        }}
+      >
+        View
+      </button>
     </div>
   );
 };

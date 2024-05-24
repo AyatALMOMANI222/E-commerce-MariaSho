@@ -19,6 +19,7 @@ import Header from "./component/Header";
 import ProductsPage from "./component/ProductsPage";
 import "./App.scss";
 import OrdersList from "./component/OrdersList";
+import OrderDetails from "./component/OrderDetails";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/products/:currentType" element={<ProductsPage />}></Route>
         <Route path="/orders" element={<OrdersList />}></Route>
+        <Route path="/orders/:order_id" element={<OrderDetails />}></Route>
+
       </Routes>
     </div>
   );
