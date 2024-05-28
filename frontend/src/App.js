@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Login from "./component/login";
 import Register from "./component/register";
 import { Route, Routes } from "react-router-dom";
@@ -48,7 +48,7 @@ function App() {
         <Route path="/products/:currentType" element={<ProductsPage />}></Route>
         <Route path="/orders" element={<OrdersList />}></Route>
         <Route path="/orders/:order_id" element={<OrderDetails />}></Route>
-
+        <Route path="/permission" element={<PermissionTable />}></Route>
       </Routes>
     </div>
   );

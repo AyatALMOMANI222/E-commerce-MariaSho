@@ -5,6 +5,9 @@ import "./style.scss";
 
 const Header = () => {
   const navigate = useNavigate();
+  const permissions = localStorage.getItem("permission").split(",");
+  console.log({ permissions });
+
   const handleLoginClick = () => {
     navigate("/login");
   };
@@ -51,15 +54,44 @@ const Header = () => {
           ]}
         />
 
-        <div onClick={handleAboutClick}>
-          <OptionsTabs title="About Us" />
-        </div>
         <div
           onClick={() => {
             navigate("/edit");
           }}
         >
           <OptionsTabs title="Profile" />
+        </div>
+        <div
+          onClick={() => {
+            navigate("/orders");
+          }}
+        >
+          <OptionsTabs title="Orders" />
+        </div>
+        <div
+          onClick={() => {
+            navigate("/cart/viewcart");
+          }}
+        >
+          <OptionsTabs title="Cart" />
+        </div>
+        {permissions.includes("admin") && (
+          <OptionsTabs
+            title="Admin"
+            children={[
+              {
+                label: "Add Product",
+                onClick: () => navigate(`/product`),
+              },
+              {
+                label: "Add Permission",
+                onClick: () => navigate(`/permission`),
+              },
+            ]}
+          />
+        )}
+        <div onClick={handleAboutClick}>
+          <OptionsTabs title="About Us" />
         </div>
 
         <div onClick={handleLoginClick}>

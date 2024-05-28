@@ -11,6 +11,17 @@
       flex-direction: row;
       justify-content: center;
     }
+    .information-btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      border: none;
+      background-color: #6c757d00;
+      font-size: 15px;
+      font-weight: 600;
+      color: #7f5539;
+      cursor: pointer;
+    }
 
     .order-item-container {
       display: grid;

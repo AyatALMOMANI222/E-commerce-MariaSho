@@ -30,8 +30,8 @@ const ProductsPage = () => {
           type: type,
           size: size,
           color: color,
-          minPrice: price.min,
-          maxPrice: price.max,
+          minPrice: 0,
+          maxPrice: price,
         },
       })
       .then((response) => {
@@ -120,7 +120,7 @@ const ProductsPage = () => {
           </div>
 
           <button
-          className="reset-button"
+            className="reset-button"
             onClick={() => {
               setPageNum(1);
               setPrice("");
@@ -142,8 +142,8 @@ const ProductsPage = () => {
                   getProduct={getProducts}
                   details={item}
                   hasDeleteProduct={true}
-                  products ={products}
-                   setProducts ={setProducts}
+                  products={products}
+                  setProducts={setProducts}
                   hasEditProduct={true}
                 />
               </div>

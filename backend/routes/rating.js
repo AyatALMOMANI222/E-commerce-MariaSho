@@ -1,9 +1,13 @@
-const express =require("express")
-const  {getAvgRating,addOrUpdateRating}=require("../controller/rating")
-const auth =require("../middlewear/authentication")
-const rateRouter =express.Router()
-rateRouter.post("/",auth,addOrUpdateRating)
-rateRouter.get("/",getAvgRating)
+const express = require("express");
+const {
+  getUserRating,
+  getAvgRating,
+  addOrUpdateRating,
+} = require("../controller/rating");
+const auth = require("../middlewear/authentication");
+const rateRouter = express.Router();
+rateRouter.post("/", auth, addOrUpdateRating);
+rateRouter.get("/user/:product_id", auth, getUserRating);
+rateRouter.get("/:product_id", getAvgRating);
 
-
-module.exports=rateRouter
+module.exports = rateRouter;

@@ -7,6 +7,10 @@ import "./style.scss";
 const ViewCart = () => {
   const [cartPro, setCartPro] = useState([]);
   const token = localStorage.getItem("token");
+  const user_id = localStorage.getItem("user_id");
+  const cartId = localStorage.getItem("cartId");
+
+
 
   const totalCartPrice = cartPro?.reduce((total, item) => {
     return total + item.price * item.quantity;
@@ -35,9 +39,9 @@ const ViewCart = () => {
       .post(
         `http://localhost:5000/order`,
         {
-          user_id: "1",
-          cart_id: "1",
-          total_amount: 20,
+          user_id: user_id,
+          cart_id: cartId,
+          total_amount: totalCartPrice,
         },
         {
           headers: {
@@ -47,6 +51,8 @@ const ViewCart = () => {
       )
       .then((response) => {
         console.log(response?.data);
+        window.location.reload();
+
       })
       .catch((error) => {
         console.error("Error Adding Product", error);

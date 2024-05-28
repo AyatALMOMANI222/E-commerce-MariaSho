@@ -152,9 +152,11 @@ const getOrdersByUserId = async (req, res) => {
   const sql = `
       SELECT Orders.id AS order_id, Orders.total_amount AS order_total_amount, Orders.order_date, Orders.status,
              OrderProduct.id AS order_product_id, OrderProduct.product_id, OrderProduct.total_amount AS product_total_amount,
-             OrderProduct.price, OrderProduct.color, OrderProduct.size, OrderProduct.quantity
+             OrderProduct.price, OrderProduct.color, OrderProduct.size, OrderProduct.quantity,
+             Products.name, Products.description, Products.image
       FROM Orders
       JOIN OrderProduct ON Orders.id = OrderProduct.order_id
+      JOIN Products ON OrderProduct.product_id = Products.id
       WHERE Orders.user_id = ? AND Orders.id = ?
   `;
 
@@ -170,6 +172,7 @@ const getOrdersByUserId = async (req, res) => {
     res.status(200).json({ results });
   });
 };
+
 
 const getAllOrders = async (req, res) => {
   const user_id = req.token.user_id;

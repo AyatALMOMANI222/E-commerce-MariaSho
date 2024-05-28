@@ -1,7 +1,8 @@
-const RatingStars = ({rating, setRating}) => {
-
+const RatingStars = ({ disabled, rating, setRating }) => {
   const handleStarClick = (starValue) => {
-    setRating(starValue);
+    if (!disabled) {
+      setRating(starValue);
+    }
   };
 
   return (
@@ -11,7 +12,10 @@ const RatingStars = ({rating, setRating}) => {
         return (
           <span
             key={starValue}
-            style={{ cursor: 'pointer', color: rating >= starValue ? '#FFE234' : 'gray' }}
+            style={{
+              cursor: "pointer",
+              color: rating >= starValue ? "#FFE234" : "gray",
+            }}
             onClick={() => handleStarClick(starValue)}
           >
             ★
@@ -21,4 +25,4 @@ const RatingStars = ({rating, setRating}) => {
     </div>
   );
 };
-export default RatingStars
+export default RatingStars;

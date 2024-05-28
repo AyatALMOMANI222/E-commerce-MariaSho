@@ -31,8 +31,8 @@ const login = (req, res) => {
     }
 
     const user = result[0];
-    const permission = result?.map((item) => item?.permission_name);
-
+    const permissions = result?.map((item) => item?.permission_name);
+console.log({permissions});
     try {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {
@@ -40,10 +40,9 @@ const login = (req, res) => {
           user_id: user.id,
           username: user.username,
           email: user.email,
-          permission: permission,
+          permission: permissions,
           cartId: user.cartId,
         };
-        console.log(userPayload);
         const userToken = jwt.sign(userPayload, process.env.SECRET);
 
         return res.status(200).json({
@@ -51,7 +50,7 @@ const login = (req, res) => {
           userToken,
           user_id: user.id,
           username: user.username,
-          permission: user.permission_name,
+          permission: permissions,
           cartId: userPayload.cartId, // استخدام cartId المحدث هنا
         });
       } else {

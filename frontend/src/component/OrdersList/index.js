@@ -14,7 +14,7 @@ const OrderItem = ({ item }) => {
       <div className="information">{item.status}</div>
       <div className="information">{item.total_amount}</div>
       <button
-        className="information"
+        className="information-btn"
         onClick={() => {
           navigate(`/orders/${item.id}`);
         }}

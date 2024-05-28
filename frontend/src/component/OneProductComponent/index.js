@@ -14,7 +14,6 @@ import RatingStars from "../Star";
 const SingleProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
   const [selectedColor, setSelectedColor] = useState("black");
   const [availableSizes, setAvailableSizes] = useState([]);
   const [availableColors, setAvailableColors] = useState([]);
@@ -26,13 +25,35 @@ const SingleProduct = () => {
   const [comment, setComment] = useState([]);
   const [commentText, setCommentText] = useState([]);
   const [images, setImages] = useState([]);
-  const [rating, setRating] = useState(0);
+  const [ratingAvg, setRatingAvg] = useState(0);
+  const [rate, setRate] = useState(1);
   const [imageUrls, setImageUrls] = useState([]);
 
   const token = localStorage.getItem("token");
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [price, setPrice] = useState(0);
+
+  const addRate = () => {
+    axios
+      .post(
+        `http://localhost:5000/rate`,
+        { productId: id, rate: rate },
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("sssssssssssssssssssssssssssssssss");
+        console.log(response?.data);
+      })
+      .catch((error) => {
+        console.error("Error Adding Product", error);
+      });
+  };
   const togglePopup = () => {
     setIsOpen(!isOpen);
     axios
@@ -50,10 +71,18 @@ const SingleProduct = () => {
         console.error("Error fetching Product", error);
       });
   };
-
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/rate/${id}`, {})
+      .then((response) => {
+        setRatingAvg(Math.ceil(response.data.rate[0]["avg(rating)"]));
+      })
+      .catch((error) => {
+        console.error("Error fetching Product", error);
+      });
+  }, [id]);
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
     axios
       .get(`http://localhost:5000/product/one/${id}`)
       .then((response) => {
@@ -74,6 +103,8 @@ const SingleProduct = () => {
         console.error("Error fetching Product", error);
       });
   }, []);
+
+  useEffect(addRate, [rate]);
   const getCommentByProductId = (id) => {
     axios
       .get(`http://localhost:5000/comment/${id}`)
@@ -132,7 +163,6 @@ const SingleProduct = () => {
       });
   };
 
-  console.log(commentText);
   const handleCommentClick = (id, commentText) => {
     axios
       .post(
@@ -172,7 +202,26 @@ const SingleProduct = () => {
         console.error("Error deleting the comment:", error);
       });
   };
-
+  const getRateByUserId = () => {
+    const token =localStorage.getItem("token")
+    axios
+      .get(
+        `http://localhost:5000/rate/user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response?.data.userRating);
+setRate(response?.data.userRating)
+      })
+      .catch((error) => {
+        console.error("Error Rating", error);
+      });
+  };
+  useEffect(getRateByUserId , [])
   return (
     <div>
       <div className="single-product-container">
@@ -188,7 +237,11 @@ const SingleProduct = () => {
         </div>
 
         <div className="second-section">
-          <RatingStars rating={rating} setRating={setRating} />
+          <RatingStars
+            disabled={true}
+            rating={ratingAvg}
+            setRating={setRatingAvg}
+          />
           <div className="title">{product.name}</div>
           <div className="description">{product.description}</div>
 
@@ -250,6 +303,8 @@ const SingleProduct = () => {
           }}
           className="add-review-container"
         >
+          <RatingStars disabled={false} rating={rate} setRating={setRate} />
+
           <Input
             classname="inp"
             placeholder={"write your opinion"}
