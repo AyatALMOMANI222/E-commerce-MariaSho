@@ -30,5 +30,5 @@ export { default as searchIcon } from "./searchIcon.svg";
 export { default as handIcon } from "./handIcon.svg.svg";
 export { default as facebookIcon } from "./facebookIcon.svg.svg";
 export { default as twitterIcon} from "./twitterIcon.svg.svg";
+export { default as mainIcon} from "./main.svg";
 
-// handIcon.svg

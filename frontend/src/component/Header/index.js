@@ -1,9 +1,12 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import OptionsTabs from "../optionsTab";
 import { useNavigate } from "react-router-dom";
+import mainIcon from "../../icons/main.svg";
 import "./style.scss";
+import SVG from "react-inlinesvg";
 
 const Header = () => {
+  const [showHeader, setShowHeader] = useState(false);
   const navigate = useNavigate();
   const permissions = localStorage.getItem("permission").split(",");
   console.log({ permissions });
@@ -25,7 +28,20 @@ const Header = () => {
   };
   return (
     <div className="outer-container">
-      <div className="header-container">
+      {window.innerWidth <= 767 && (
+        <Fragment>
+                <SVG
+          className="main-icon"
+          src={mainIcon}
+          width={24}
+          height={24}
+          onClick={() => setShowHeader(!showHeader)}
+        ></SVG>
+        <div className="app-name">Marisshop</div>
+        </Fragment>
+  
+      )}
+      <div className={`header-container ${!showHeader && "hide"}`}>
         <div className="name">
           <OptionsTabs title="MARIASHOP" />
         </div>

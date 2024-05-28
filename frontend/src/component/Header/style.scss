@@ -1,46 +1,101 @@
-.outer-container{
-    .header-container{
-        width: 100%;
-        display: grid;
-        padding: 0px 80px;
-        grid-template-columns:  4fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-        height: 50px;
-        background-color: #7f5539;
-        font-family: cursive;
-        font-weight: 600;
-        align-items: center;
-        font-size: 39;
-    
-        .name{
-            display: flex;
-            flex-direction: row;
-        
+.outer-container {
+
+
+  .header-container {
+    width: 100%;
+    display: grid;
+    padding: 0px 80px;
+    grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 50px;
+    background-color: #7f5539;
+    font-family: cursive;
+    font-weight: 600;
+    align-items: center;
+    font-size: 39;
+
+    .name {
+      display: flex;
+      flex-direction: row;
+    }
+    .login {
+      color: white;
+      font-size: larger;
+    }
+  }
+  .login {
+    font-size: larger;
+    cursor: pointer;
+  }
+  .img-title-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .img {
+      width: 114px;
+      height: 94px;
+    }
+    .title {
+      font-size: 33px;
+      font-weight: 700;
+      font-family: cursive;
+    }
+  }
+  .slider-container {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .outer-container {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #7f5539;
+
+    .main-icon{
+        padding-left: 20px;
+    }
+    .app-name{
+        color: #fff;
+        font-size: 16px;
+        font-size: 500;
+        margin-left: 30px;
+    }
+    .header-container {
+      display: flex;
+      flex-direction: column !important;
+      position: absolute;
+      z-index: 100;
+      width: 10;
+      left: 0;
+      top: 40px;
+      align-items: start;
+      background-color: unset;
+      padding: 0;
+      transition: left 0.7s ease; 
+      &.hide{
+        left: -141px;
+      }
+    }
+    .options-tabs-container {
+      width: 141px;
+    }
+
+    .options-tabs-container .title {
+      color: #ffdec8;
+      background-color: #7f5539;
+      height: 35px;
+        font-size: 12px;
+    }
+    .options-tabs-container .children{
+        top: 35px;
+
+        .label{
+            font-size: 12px;
+            height: 35px;
+            background-color:#8d643a;
         }
-        .login{
-            color: white;
-            font-size: larger;
-        }
-     
     }
-    .login{
-        font-size: larger;
-        cursor: pointer;
-    }
-    .img-title-div{
-        display: flex;
-        flex-direction: column;
-       align-items: center;
-        .img{
-            width: 114px;
-            height: 94px;
-        }
-        .title{
-            font-size: 33px;
-            font-weight: 700;
-            font-family: cursive;
-        }
-    }
-    .slider-container{
-        margin-bottom: 30px;
-    }
-    }
+  }
+}
