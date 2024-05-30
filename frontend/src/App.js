@@ -24,6 +24,7 @@ import OrderDetails from "./component/OrderDetails";
 function App() {
   return (
     <div id="main" className="main-container">
+      
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>

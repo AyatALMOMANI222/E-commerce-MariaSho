@@ -25,7 +25,7 @@
 
     .label {
       width: 120px;
-      background-color: #7f5539;
+      background-color: #231942;
       color: #fff;
       font-size: 16px;
       font-weight: 400;
@@ -37,7 +37,7 @@
       cursor: pointer;
 
       &:hover{
-        background-color: #a8724d;
+        background-color: #9f86c0;
       }
 
       &:active{
@@ -67,4 +67,10 @@
   
 }
 
-  
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .options-tabs-container {
+    display: flex;
+width: 100%;
+
+  }
+}

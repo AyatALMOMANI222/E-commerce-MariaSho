@@ -203,34 +203,26 @@ const SingleProduct = () => {
       });
   };
   const getRateByUserId = () => {
-    const token =localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     axios
-      .get(
-        `http://localhost:5000/rate/user/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .get(`http://localhost:5000/rate/user/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response?.data.userRating);
-setRate(response?.data.userRating)
+        setRate(response?.data.userRating);
       })
       .catch((error) => {
         console.error("Error Rating", error);
       });
   };
-  useEffect(getRateByUserId , [])
+  useEffect(getRateByUserId, []);
   return (
     <div>
       <div className="single-product-container">
         <div className="first-section">
-          {/* <div className="small-img">
-          <img src={img2} className="img" />
-          <img src={img3} className="img" />
-          <img src={img4} className="img" />
-        </div> */}
           <div className="large-img">
             <img className="img" src={images} />
           </div>

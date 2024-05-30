@@ -40,6 +40,8 @@ const OrdersList = () => {
       })
       .then((response) => {
         setOrders(response.data.results);
+
+        
         setTotalElement(response.data.totalElements);
       })
       .catch((error) => {
@@ -50,25 +52,27 @@ const OrdersList = () => {
   useEffect(getAllOrders, [pageNum]);
   return (
     <div className="orders-container">
+            {(orders.length == 0) ? <div className="no-order">No orders yet</div> :
+              <div className="orders-list-container">
+              <div className="header-list">
+                <div className="information">Order ID</div>
+                <div className="information">Order Date</div>
+                <div className="information">Status</div>
+                <div className="information">Price</div>
+                <div className="information">Actions</div>
+              </div>
+      
+              {orders.map((item) => {
+                return <OrderItem item={item} />;
+              })}
+            </div>}
       <Pagination
         totalElements={totalElement}
         currentPage={pageNum}
         setCurrentPage={setPageNum}
       />
 
-      <div className="orders-list-container">
-        <div className="header-list">
-          <div className="information">Order ID</div>
-          <div className="information">Order Date</div>
-          <div className="information">Status</div>
-          <div className="information">Price</div>
-          <div className="information">Actions</div>
-        </div>
-
-        {orders.map((item) => {
-          return <OrderItem item={item} />;
-        })}
-      </div>
+    
     </div>
   );
 };

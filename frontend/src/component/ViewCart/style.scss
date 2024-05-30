@@ -48,7 +48,7 @@
           border: 2px solid #000;
           width: 180px;
           font-size: 15px;
-          font-weight:  500;
+          font-weight: 500;
           border-radius: 5px;
           cursor: pointer;
           &:hover {
@@ -120,5 +120,25 @@
   .cart-details-container {
     background-color: #fff;
     border-radius: 10px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .view-cart-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .view-cart-body {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-left: 4px;
+      margin-top: 15px;
+      .left-side {
+        margin-bottom: 7px;
+
+        .top-left-side {
+          margin-top: 15px;
+        }
+      }
+    }
   }
 }

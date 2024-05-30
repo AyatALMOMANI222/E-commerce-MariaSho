@@ -12,6 +12,7 @@
     left: 300vh;
     width: 220vh;
   }
+
 }
 
 .popup2 {
@@ -23,12 +24,14 @@
   position: absolute;
   &.open {
     right: 0px;
+    z-index: 5000000;
   }
   &.close {
     right: -500px;
   }
   .popup-content {
     height: 100vh;
+
     .header-section {
       height: 45px;
       background-color: rgb(247 247 247);

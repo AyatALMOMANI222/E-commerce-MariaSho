@@ -117,13 +117,22 @@ const ProductAction = () => {
             onChange={handleChange}
             value={productInfo.brand}
           />
-          <ImageUploade
+          {/* <ImageUploade
             inputValue={image}
             setInputValue={setImage}
             label="Select Picture"
             allowedExtensions={["jpg", "jpeg", "png", "gif"]}
-          />
+          /> */}
           {/* <ImagesList images={images} setImages={setImages} /> */}
+          <Input
+            label={"Image URL"}
+            placeholder="image"
+            name="image"
+            onChange={(e) => setImage(e.target.value)}
+            value={image}
+          />
+        
+        
         </div>
         <div className="add-product-btn">
           <Buttons onClick={() => handleClick(productInfo)}>

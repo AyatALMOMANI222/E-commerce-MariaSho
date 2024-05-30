@@ -49,7 +49,7 @@ const Login = () => {
         <div className="fields-container">
           <Input
             name="email"
-            placeholder="Username"
+            placeholder="email"
             onChange={handleChange}
             value={LoginData.email}
             label="Email Address"

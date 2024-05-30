@@ -1,4 +1,10 @@
 .orders-container {
+  .no-order{
+  margin-left: 43%;
+  margin-top: 10%;
+  color: #231942;
+  font-weight: 600;
+   }
   .orders-list-container {
     display: flex;
     flex-direction: column;
@@ -19,7 +25,7 @@
       background-color: #6c757d00;
       font-size: 15px;
       font-weight: 600;
-      color: #7f5539;
+      color: #231942;
       cursor: pointer;
     }
 

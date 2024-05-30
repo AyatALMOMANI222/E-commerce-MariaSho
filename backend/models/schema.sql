@@ -12,7 +12,7 @@ CREATE TABLE Users (
     country VARCHAR(255),
     city VARCHAR(255),
     profile_picture TEXT,
-    location TEXT,
+    location TEXT
 );
 
 CREATE TABLE Products (
@@ -124,4 +124,4 @@ CREATE TABLE ratings (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
+)

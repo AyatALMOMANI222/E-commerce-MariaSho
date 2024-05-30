@@ -16,16 +16,19 @@ const Home = () => {
 
   return (
     <div className="outer-container">
-      <div className="img-title-div">
-        <img
-          className="img"
-          src="https://png.pngtree.com/png-vector/20190221/ourmid/pngtree-shopping-bag-graphic-design-template-png-image_690677.jpg"
-        />
+      {window.innerWidth >= 767 && (    
+  <div className={`img-title-div`}>
+  <img
+    className="img"
+    src="https://png.pngtree.com/png-vector/20190221/ourmid/pngtree-shopping-bag-graphic-design-template-png-image_690677.jpg"
+  />
 
-        <div className="title">MARIASHOP</div>
-      </div>
+  <div className="title">MARIASHOP</div>
+</div>
+      )}
+    
 
-      <span>
+      <span className="home">
         <div className="slider-container">
           <MainSlider images={images} interval={3000} />
         </div>
