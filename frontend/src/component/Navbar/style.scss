@@ -1,78 +1,74 @@
 .nav-container {
-
-    .navbar {
-      position: relative; 
+  .navbar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+  .nav-name {
+    position: relative;
+    .nav-element-name {
+      font-size: medium;
+      font-weight: bolder;
+      color: rgb(126, 112, 112);
+      padding-top: 3px;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-left: 0px;
-      margin-top: 30px;
-      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
     }
-  
-    .nav-name {
-      position: relative; 
-      .nav-element-name {
-        font-size: medium;
-        font-weight: bolder;
+    .nav-child {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 999;
+      margin-top: 20px;
+      background-color: white;
+      border-radius: 3px;
+      padding: 13px 8px;
+      box-shadow: 1px 1px 1px 1px rgb(166, 145, 145);
+      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      width: 405px;
+      align-items: start;
+      height: auto;
+
+      .child-link {
         color: rgb(126, 112, 112);
-        padding-top: 3px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 20px;
+        margin: 3px;
+        display: block;
+        text-decoration: none;
       }
-  
-      .nav-child {
-        position: absolute; 
-        top: 100%; 
-        left: 0;
-        z-index: 999; 
-        margin-top: 20px;
-        background-color: white;
-        border-radius: 3px;
-        padding: 13px 8px;
-        box-shadow: 1px 1px 1px 1px rgb(166, 145, 145);
-        align-items: center;
-        display: grid;
-        grid-template-columns: repeat(4, auto);
-        width: 405px;
-        align-items: start;
-        height: auto;
-  
-        .child-link {
-          color: rgb(126, 112, 112);
-          margin: 3px;
-          display: block;
-          text-decoration: none;
+
+      .group {
+        display: block;
+
+        .inner-name-title {
+          color: black;
+          font-size: smaller;
+          font-weight: 1000;
         }
-  
-        .group {
-          display: block;
-  
-          .inner-name-title {
-            color: black;
-            font-size: smaller;
-            font-weight: 1000;
-          }
-  
-          .inner-name {
-            font-size: small;
-          }
+
+        .inner-name {
+          font-size: small;
         }
-      }
-    }
-  
-    @media screen and (max-width: 768px) {
-      .navbar {
-        display: flex;
-        flex-direction: column;
-      }
-  
-      .nav-name {
-        margin-bottom: 20px;
       }
     }
   }
-  
+
+  @media screen and (max-width: 768px) {
+    .navbar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-name {
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -3,9 +3,8 @@ import Input from "../Core Component/Input";
 import Buttons from "../Core Component/Buttons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./style.scss";
 import ImageUploade from "../Core Component/UploadImage";
-
+import "./style.scss";
 const EditProfile = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
@@ -37,7 +36,7 @@ const EditProfile = () => {
         console.log(result.data.users[0]);
         const data = result.data.users[0];
         console.log(data.profile_picture);
-        setImage(data.profile_picture)
+        setImage(data.profile_picture);
         setUserInfo((prev) => {
           return {
             ...prev,
@@ -50,7 +49,7 @@ const EditProfile = () => {
         });
       });
   };
- 
+
   useEffect(() => {
     getUserData();
   }, []);
@@ -90,7 +89,7 @@ const EditProfile = () => {
               onChange={handleChange}
             />
           </div>
-    
+
           <div className="second-section">
             <Input
               classname="info-input"
@@ -109,7 +108,7 @@ const EditProfile = () => {
               onChange={handleChange}
             />
           </div>
-          
+
           <div className="third-section">
             <Input
               classname="info-input"
@@ -145,7 +144,10 @@ const EditProfile = () => {
         <div className="profile-dev"></div>
         <img
           className="img"
-          src={image || "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg"}
+          src={
+            image ||
+            "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+          }
           width={200}
           height={200}
           style={{ borderRadius: "50%" }}

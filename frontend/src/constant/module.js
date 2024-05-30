@@ -49,35 +49,6 @@ export const modules = [
           { name: "Maxi Dresses" },
         ],
       },
-      // {
-      //   name: "Outerwear",
-      //   icon: outerwear,
-      //   children: [{ name: "Jackets" }, { name: "Coats" }, { name: "Blazers" }],
-      // },
-
-      // {
-      //   name: "Accessories",
-      //   icon: jewelry,
-      //   children: [{ name: "Scarves" }, { name: "Hats" }, { name: "Belts" }],
-      // },
-      // {
-      //   name: "Shoes",
-      //   icon: shoes,
-      //   children: [
-      //     { name: "Sneakers" },
-      //     { name: "Boots" },
-      //     { name: "Sandals" },
-      //   ],
-      // },
-      // {
-      //   name: "Sales & Promotions",
-      //   icon: sales,
-      //   children: [
-      //     { name: "Seasonal Sales" },
-      //     { name: "Holiday Sales" },
-      //     { name: "Flash Sales" },
-      //   ],
-      // },
     ],
   },
 ];

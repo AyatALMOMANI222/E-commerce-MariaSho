@@ -50,7 +50,6 @@
 
     flex-direction: row;
     align-items: center;
-    // background-color: #231942;
 
     .main-icon {
       padding-left: 20px;
@@ -112,17 +111,14 @@
     flex-direction: column;
     align-items: center;
 
-    //   background-color:#231942 ;
-    //   height: auto;
-
-    .fra {
+    .icon-name {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid gray;
-        height: 40px;
+      height: 40px;
       .app-name {
         margin-right: 30px;
       }
@@ -130,11 +126,8 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .header-container{
-  display: flex;
-  flex-direction: row;
-
-
-  } 
+  .header-container {
+    display: flex;
+    flex-direction: row;
+  }
 }
-  

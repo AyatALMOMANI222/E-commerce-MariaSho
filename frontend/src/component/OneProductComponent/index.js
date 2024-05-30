@@ -9,8 +9,8 @@ import SideDrawer from "../CartPopup";
 import Comment from "../Comment";
 import Input from "../Core Component/Input";
 import { closeIcon } from "../../icons";
-import "./style.scss";
 import RatingStars from "../Star";
+import "./style.scss";
 const SingleProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();

@@ -1,26 +1,26 @@
 :root {
-    --primary-color: #3a6cd1;
-    --secondary-color: #ebecf2;
-    --tertiary-color: #9a9eb2;
-    --background-color: #f8f8fb;
-    --border-color: #d8dae5;
-    --text-color: #515360;
-    --hover-color: #f1f2f69f;
-    --shadow-color: rgba(0, 0, 0, 0.26);
-    --scrollbar-track-color: #f1f1f1;
-    --scrollbar-thumb-color: #888;
-    --scrollbar-thumb-hover-color: #555555ac;
-    --main-color: #fafafa;
-    --element-color: rgb(20, 36, 82);
-    --error-static: #da3f3f;
-    --error-hover: #e75d5d;
-    --error-active: #bb3232;
-  }
-  .image-upload-container {
+  --primary-color: #3a6cd1;
+  --secondary-color: #ebecf2;
+  --tertiary-color: #9a9eb2;
+  --background-color: #f8f8fb;
+  --border-color: #d8dae5;
+  --text-color: #515360;
+  --hover-color: #f1f2f69f;
+  --shadow-color: rgba(0, 0, 0, 0.26);
+  --scrollbar-track-color: #f1f1f1;
+  --scrollbar-thumb-color: #888;
+  --scrollbar-thumb-hover-color: #555555ac;
+  --main-color: #fafafa;
+  --element-color: rgb(20, 36, 82);
+  --error-static: #da3f3f;
+  --error-hover: #e75d5d;
+  --error-active: #bb3232;
+}
+.image-upload-container {
   .upload-file {
     display: none;
   }
-  
+
   .label-container {
     font-size: 13px;
     font-weight: 500;
@@ -28,7 +28,7 @@
     text-align: left;
     color: var(--element-color);
     background-color: var(--background-color);
-  
+
     .star {
       color: var(--error-static);
     }
@@ -48,21 +48,21 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-  
+
       &.error-msg {
         border: 1px solid var(--error-static);
       }
-  
+
       .placholder {
         font-size: 14px;
         color: #babdcc;
         cursor: pointer;
-  
+
         .file-name {
           color: rgba(18, 19, 26, 1);
         }
       }
-  
+
       svg {
         padding-right: 15px;
         path {
@@ -70,7 +70,7 @@
         }
       }
     }
-  
+
     .img-container {
       display: flex;
       flex-direction: row;
@@ -89,7 +89,7 @@
         flex-direction: row;
         align-items: center;
         gap: 10px;
-  
+
         svg {
           cursor: pointer;
         }
@@ -106,4 +106,4 @@
       color: var(--error-static);
     }
   }
-  }
+}

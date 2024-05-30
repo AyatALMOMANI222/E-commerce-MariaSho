@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./style.scss";
 
-const OptionsTabs = ({title ,children}) => {
+const OptionsTabs = ({ title, children }) => {
   const [open, setOpen] = useState(false);
   const optionsRef = useRef(null);
 

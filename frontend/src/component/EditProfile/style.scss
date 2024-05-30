@@ -29,12 +29,11 @@
         grid-column-gap: 10px;
       }
       .edit-btn {
-  
         width: 160px;
-    margin: 20px 0;
-    font-size: small;
-    background-color: #231942;
-    color: #fff;
+        margin: 20px 0;
+        font-size: small;
+        background-color: #231942;
+        color: #fff;
       }
     }
   }
@@ -53,19 +52,20 @@
     flex-direction: column;
     gap: 0px;
   }
-  .edit-container .left-dev .input-container .third-section{
+  .edit-container .left-dev .input-container .third-section {
     display: flex;
     flex-direction: column;
     gap: 0px;
   }
-  .edit-container{
+  .edit-container {
     display: flex;
     flex-direction: column;
-    .profile-dev{
-display: none;
+    .profile-dev {
+      display: none;
     }
-    .text-field-container , .img-upload-container {
-        width: 300px;
+    .text-field-container,
+    .img-upload-container {
+      width: 300px;
     }
   }
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./style.scss";
 import Pagination from "../Pagination";
 import ProductSection from "../ProductSection/ProductSection";
 import InputRange from "../inputSlider";
@@ -9,7 +8,7 @@ import Select from "../Core Component/Select";
 import ColorsSection from "../ColorsSection";
 import SizeSection from "../SizeSection";
 import { useParams } from "react-router-dom";
-
+import "./style.scss";
 const ProductsPage = () => {
   const { currentType } = useParams();
   const [products, setProducts] = useState([]);

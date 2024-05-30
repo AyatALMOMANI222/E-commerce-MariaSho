@@ -1,21 +1,21 @@
 @media only screen and (max-width: 767px) {
-    .outer-container{
-        .hide{
-            display: none;
-        }
-        display: flex;
-
-        flex-direction: column;
-    
-        .img-title-div{
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            top: 40px;
-        }
-        .home{
-            display: flex;
-            flex-direction: column;
-        }
+  .outer-container {
+    .hide {
+      display: none;
     }
+    display: flex;
+
+    flex-direction: column;
+
+    .img-title-div {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      top: 40px;
+    }
+    .home {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

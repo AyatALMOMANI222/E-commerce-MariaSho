@@ -35,13 +35,18 @@ const OrderDetails = () => {
           <div key={order.order_product_id} className="order-item">
             <div className="order-details">
               <p>Order ID: {order.order_id}</p>
-              <p>Total Amount: ${parseFloat(order.order_total_amount).toFixed(2)}</p>
+              <p>
+                Total Amount: ${parseFloat(order.order_total_amount).toFixed(2)}
+              </p>
               <p>Date: {new Date(order.order_date).toLocaleString()}</p>
               <p>Status: {order.status}</p>
             </div>
             <div className="product-details">
               <p>Product ID: {order.product_id}</p>
-              <p>Total Amount: ${parseFloat(order.product_total_amount).toFixed(2)}</p>
+              <p>
+                Total Amount: $
+                {parseFloat(order.product_total_amount).toFixed(2)}
+              </p>
               <p>Price: ${order.price}</p>
               <p>Color: {order.color}</p>
               <p>Size: {order.size}</p>

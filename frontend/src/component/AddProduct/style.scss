@@ -46,14 +46,9 @@
       grid-template-columns: 1fr 1fr;
       grid-column-gap: 20px;
       &::-webkit-scrollbar {
-        width: 12px; /* adjust as needed */
-        height: 12px; /* adjust as needed */
+        width: 12px;
+        height: 12px;
       }
-
-      // /* Track */
-      // &::-webkit-scrollbar-track {
-      //   background: black; /* or any color you prefer */
-      // }
     }
     .add-product-btn {
       background-color: rgb(245 245 245);

@@ -1,48 +1,44 @@
 .third-page {
-    
   .img-page-container {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
-position: relative;
-margin-top: 60px;
+    position: relative;
+    margin-top: 60px;
     .img {
       width: 610px;
       height: 500px;
     }
-     .btn{
-position: absolute;
-top: 260px;
-left: 436px;
-padding: 10px 30px;
-border: none;
-background-color: transparent;
-font-size: larger;
-font-weight: 600;
-background-color: white;
+    .btn {
+      position: absolute;
+      top: 260px;
+      left: 436px;
+      padding: 10px 30px;
+      border: none;
+      background-color: transparent;
+      font-size: larger;
+      font-weight: 600;
+      background-color: white;
 
-cursor: pointer;
-&:hover{
-   
-    color: black;
-}
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
     }
   }
 }
 @media only screen and (max-width: 767px) {
-  .third-page{
+  .third-page {
     position: relative;
     top: -40px;
-    .img-page-container{
-     .img{
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-     }
-    
+    .img-page-container {
+      .img {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
     }
-
   }
 }

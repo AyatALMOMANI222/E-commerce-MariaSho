@@ -32,7 +32,7 @@ const login = (req, res) => {
 
     const user = result[0];
     const permissions = result?.map((item) => item?.permission_name);
-console.log({permissions});
+    console.log({ permissions });
     try {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {

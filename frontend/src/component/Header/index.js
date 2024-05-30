@@ -2,9 +2,8 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 import OptionsTabs from "../optionsTab";
 import { useNavigate } from "react-router-dom";
 import mainIcon from "../../icons/main.svg";
-import "./style.scss";
 import SVG from "react-inlinesvg";
-
+import "./style.scss";
 const Header = () => {
   const [showHeader, setShowHeader] = useState(false);
   const navigate = useNavigate();
@@ -49,7 +48,7 @@ const Header = () => {
   return (
     <div className="outer-container">
       {window.innerWidth <= 767 && (
-        <div className="fra">
+        <div className="icon-name">
           <SVG
             className="main-icon"
             src={mainIcon}
@@ -62,7 +61,10 @@ const Header = () => {
           </div>
         </div>
       )}
-      <div ref={headerRef} className={`header-container ${!showHeader && "hide"}`}>
+      <div
+        ref={headerRef}
+        className={`header-container ${!showHeader && "hide"}`}
+      >
         <div className="name">
           <OptionsTabs title="MARIASHOP" />
         </div>
@@ -91,7 +93,10 @@ const Header = () => {
             title="Admin"
             children={[
               { label: "Add Product", onClick: () => navigate(`/product`) },
-              { label: "Add Permission", onClick: () => navigate(`/permission`) },
+              {
+                label: "Add Permission",
+                onClick: () => navigate(`/permission`),
+              },
             ]}
           />
         )}

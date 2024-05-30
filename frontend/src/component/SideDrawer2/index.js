@@ -114,8 +114,6 @@ const CartContent = ({ cart, setCart }) => {
           Total Cart Price:<span>{totalCartPrice}$</span>
         </div>
       </div>
-
-  
     </div>
   );
 };

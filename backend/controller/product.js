@@ -132,11 +132,11 @@ const deleteProductById = (req, res) => {
   connection.query(sql, [id], (err, result) => {
     if (err) {
       console.error("Error deleting product:", err);
-      return res.status(500).json({ message: "Failed to delete product" , err });
+      return res.status(500).json({ message: "Failed to delete product", err });
     }
     if (result.affectedRows > 0) {
       console.log("Product deleted successfully");
-      res.status(200).json({ message: "Product deleted successfully" , result });
+      res.status(200).json({ message: "Product deleted successfully", result });
     } else {
       res.status(404).json({ message: "Product not found" });
     }
@@ -157,45 +157,6 @@ const getProductsByType = (req, res) => {
     }
   });
 };
-// const getProductByFilter = (req, res) => {
-//   const filteredProduct = req.params.filteredProduct;
-
-//   const sql = `
-//       SELECT *
-//       FROM Products
-//       WHERE name LIKE '%${filteredProduct}%'
-//       OR description LIKE '%${filteredProduct}%'
-//       OR sizes LIKE '%${filteredProduct}%'
-//       OR colors LIKE '%${filteredProduct}%'
-//       OR type LIKE '%${filteredProduct}%'
-//       OR material LIKE '%${filteredProduct}%'
-//       OR brand LIKE '%${filteredProduct}%'
-//   `;
-
-//   connection.query(sql, (err, results) => {
-//       if (err) {
-//           console.error("Error retrieving products:", err);
-//           return res.status(500).json({ message: "Failed to retrieve products" });
-//       }
-//       res.status(200).json({ products: results });
-//   });
-// }
-// const getProductsByPage = (req, res) => {
-// const page = req.params.page
-// const limit = 10
-
-//   const offset = (page - 1) * limit;
-//   const sql = `SELECT * FROM Products LIMIT ?, ?`;
-//   connection.query(sql, [offset, limit], (err, results) => {
-//     if (err) {
-//       console.error("Error retrieving products:", err);
-//       return res.status(500).json({ message: "Failed to retrieve products" });
-//     }
-//     res.status(200).json({ products: results });
-//   });
-// };
-
-
 
 const getPro = (req, res) => {
   // Pagination parameters

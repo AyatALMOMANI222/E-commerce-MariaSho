@@ -10,8 +10,6 @@ const ViewCart = () => {
   const user_id = localStorage.getItem("user_id");
   const cartId = localStorage.getItem("cartId");
 
-
-
   const totalCartPrice = cartPro?.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
@@ -52,7 +50,6 @@ const ViewCart = () => {
       .then((response) => {
         console.log(response?.data);
         window.location.reload();
-
       })
       .catch((error) => {
         console.error("Error Adding Product", error);

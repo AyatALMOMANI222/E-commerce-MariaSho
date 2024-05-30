@@ -32,7 +32,7 @@
     gap: 13px;
     width: 340px;
 
-    .rating-stars{
+    .rating-stars {
       font-size: 30px;
     }
 
@@ -66,9 +66,8 @@
         height: 8px;
         width: 8px;
         background-color: rgb(137, 120, 120);
-        border-radius: 50%; /* تحويل النقطة إلى دائرة */
-        // display: inline-block;
-        margin-right: 10px; /* تحديد المسافة بين النقاط */
+        border-radius: 50%;
+        margin-right: 10px;
       }
     }
     .btn {
@@ -88,7 +87,6 @@
 
   .colors-chips-container {
     margin: 10px 0px;
- 
   }
   .view-shopping-cart {
     background-color: #fff;
@@ -121,20 +119,18 @@
 }
 @media only screen and (max-width: 767px) {
   .single-product-container {
-   
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .reviews-container{
+  .reviews-container {
     display: flex;
     justify-content: center;
-    .add-review-container{
-      .inp{
+    .add-review-container {
+      .inp {
         width: 310px;
       }
     }
-   
   }
 }

@@ -9,7 +9,7 @@ const addImageArrayByProductId = (req, res) => {
   }
 
   const sql = `INSERT INTO ProductImages (product_id, image_url) VALUES ?`;
-  const values = imageUrls.map(imageUrl => [productId, imageUrl]);
+  const values = imageUrls.map((imageUrl) => [productId, imageUrl]);
 
   connection.query(sql, [values], (err, result) => {
     if (err) {
@@ -20,7 +20,6 @@ const addImageArrayByProductId = (req, res) => {
     res.status(201).json({ message: "Images added successfully" });
   });
 };
-
 
 const updateImageByProductId = (req, res) => {
   const productId = req.params.productId;
@@ -70,4 +69,9 @@ const getImageByProductId = (req, res) => {
   });
 };
 
-module.exports ={addImageArrayByProductId,updateImageByProductId,deleteImageByProductId,getImageByProductId};
+module.exports = {
+  addImageArrayByProductId,
+  updateImageByProductId,
+  deleteImageByProductId,
+  getImageByProductId,
+};

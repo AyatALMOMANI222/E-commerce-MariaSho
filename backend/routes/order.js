@@ -4,7 +4,7 @@ const {
   getOrdersByUserId,
   createOrder,
   updateOrderStatus,
-  getAllOrders
+  getAllOrders,
 } = require("../controller/order");
 const orderRouter = express.Router();
 orderRouter.post("/", auth, createOrder);

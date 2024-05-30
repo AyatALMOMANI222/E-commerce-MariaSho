@@ -15,7 +15,6 @@
       right: 0px;
       width: 100px;
       border-radius: 3px;
-      //   background-color: rgb(233, 233, 233);
       border: 1px solid #ebecf2;
       &::before {
         content: "";
@@ -26,8 +25,8 @@
         height: 0;
         border-top: 6px solid transparent;
         border-bottom: 6px solid transparent;
-        border-right: 8px solid #ebecf2; /* تم تغيير الاتجاه هنا */
-        transform: translateY(-50%) rotate(90deg); /* قلب السهم بزاوية 180 درجة */
+        border-right: 8px solid #ebecf2;
+        transform: translateY(-50%) rotate(90deg);
       }
 
       .single-section {

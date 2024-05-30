@@ -1,6 +1,6 @@
 import React from "react";
-import "./style.scss";
 import RadioGroup from "../Core Component/RadioGroup";
+import "./style.scss";
 const Colors2 = ({ color, setColor }) => {
   const colorOptions = [
     { label: "red", value: "red" },

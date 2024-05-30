@@ -1,12 +1,12 @@
 const authorization = (arr) => {
-    return (req, res, next) => {
-      if (!arr.some(permission => req.token.permission.includes(permission))) {
-        return res.status(403).json({
-          success: false,
-          message: `Unauthorized`,
-        });
-      }
-      next();
-    };
+  return (req, res, next) => {
+    if (!arr.some((permission) => req.token.permission.includes(permission))) {
+      return res.status(403).json({
+        success: false,
+        message: `Unauthorized`,
+      });
+    }
+    next();
   };
-  module.exports = authorization;
+};
+module.exports = authorization;

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Popup from "../Core Component/Modal";
 import Select from "../Core Component/Select";
 import axios from "axios";
-import "./style.scss";
 import Input from "../Core Component/Input";
+import "./style.scss";
 const PermissionTable = () => {
   const [data, setData] = useState([]);
   const [permissions, setPermissions] = useState([]);

@@ -44,7 +44,6 @@ const Bar = () => {
       <div className="login-language">
         <div>
           <Select
-         
             options={options}
             placeholder={"select ..."}
             value={value}

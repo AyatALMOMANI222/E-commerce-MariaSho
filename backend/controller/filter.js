@@ -44,27 +44,33 @@ const getProductByFilter = (req, res) => {
   }
 
   // Count query
-  const countQuery = "SELECT COUNT(*) AS total FROM Products" + (filters.length > 0 ? " WHERE " + filters.join(" AND ") : "");
+  const countQuery =
+    "SELECT COUNT(*) AS total FROM Products" +
+    (filters.length > 0 ? " WHERE " + filters.join(" AND ") : "");
 
-  connection.query(query + ` LIMIT ?, ?`, params.concat([offset, limit]), (err, results) => {
-    if (err) {
-      console.error("Error fetching products:", err);
-      res.status(500).json({ error: "Internal server error", err });
-      return;
-    }
-    
-    connection.query(countQuery, params, (err, countResult) => {
+  connection.query(
+    query + ` LIMIT ?, ?`,
+    params.concat([offset, limit]),
+    (err, results) => {
       if (err) {
-        console.error("Error counting products:", err);
+        console.error("Error fetching products:", err);
         res.status(500).json({ error: "Internal server error", err });
         return;
       }
-      
-      const totalElements = countResult[0].total;
-      console.log(countResult);
-      res.json({ products: results, totalElement: totalElements });
-    });
-  });
+
+      connection.query(countQuery, params, (err, countResult) => {
+        if (err) {
+          console.error("Error counting products:", err);
+          res.status(500).json({ error: "Internal server error", err });
+          return;
+        }
+
+        const totalElements = countResult[0].total;
+        console.log(countResult);
+        res.json({ products: results, totalElement: totalElements });
+      });
+    }
+  );
 };
 
 module.exports = { getProductByFilter };

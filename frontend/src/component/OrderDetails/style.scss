@@ -1,32 +1,31 @@
 .order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .order-item {
     display: flex;
-    flex-direction: column;
     gap: 20px;
-  
-    .order-item {
-      display: flex;
-      gap: 20px;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 8px;
-  
-      .order-details,
-      .product-details {
-        flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+
+    .order-details,
+    .product-details {
+      flex: 1;
+    }
+
+    .order-details {
+      p {
+        margin: 5px 0;
+        font-weight: bold;
       }
-  
-      .order-details {
-        p {
-          margin: 5px 0;
-          font-weight: bold;
-        }
-      }
-  
-      .product-details {
-        p {
-          margin: 5px 0;
-        }
+    }
+
+    .product-details {
+      p {
+        margin: 5px 0;
       }
     }
   }
-  
+}

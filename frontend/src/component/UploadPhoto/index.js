@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import SVG from "react-inlinesvg";
-import  linkIcon from "../../icons/linkIcon.svg";
-import deleteIcon from "../../icons/deleteIcon.svg"
+import linkIcon from "../../icons/linkIcon.svg";
+import deleteIcon from "../../icons/deleteIcon.svg";
 import "./style.scss";
 
 const ImageUpload = ({

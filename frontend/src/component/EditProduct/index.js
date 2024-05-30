@@ -87,10 +87,6 @@ const EditProduct = ({ isOpen, setIsOpen, editProductId }) => {
       });
   };
 
-  // useEffect(() => {
-  //   getProductById();
-  // });
-
   return (
     <div>
       <Popup

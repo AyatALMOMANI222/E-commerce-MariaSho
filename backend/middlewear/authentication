@@ -4,7 +4,10 @@ const connection = require("../models/db");
 
 const auth = (req, res, next) => {
   try {
-    if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
+    if (
+      !req.headers.authorization ||
+      !req.headers.authorization.startsWith("Bearer")
+    ) {
       res.status(403).json({ message: "Forbidden" });
     } else {
       const token = req.headers.authorization.split(" ")[1];

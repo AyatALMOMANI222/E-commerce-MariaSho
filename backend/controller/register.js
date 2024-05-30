@@ -35,24 +35,24 @@ const createUser = (req, res) => {
           console.error("Error creating user:", err);
           return res.status(500).json({ message: "Failed to create user" });
         }
-        
+
         if (result.affectedRows > 0) {
           console.log("User created successfully");
 
-            const user_id = result.insertId
-            const cartSql = `INSERT INTO Cart (user_id) VALUES (?)`;
-            
-            connection.query(cartSql, [user_id], (err, result) => {
-                if (err) {
-                    console.error("Error creating cart:", err);
-                    return res.status(500).json({ message: "Failed to create cart" });
-                }
-                console.log("Cart created successfully");
-                res.status(201).json({
-                    message: "Cart created successfully",
-                    cartId: result.insertId,
-                });
+          const user_id = result.insertId;
+          const cartSql = `INSERT INTO Cart (user_id) VALUES (?)`;
+
+          connection.query(cartSql, [user_id], (err, result) => {
+            if (err) {
+              console.error("Error creating cart:", err);
+              return res.status(500).json({ message: "Failed to create cart" });
+            }
+            console.log("Cart created successfully");
+            res.status(201).json({
+              message: "Cart created successfully",
+              cartId: result.insertId,
             });
+          });
 
           return res.status(201).json({
             message: "User created successfully",
@@ -68,26 +68,30 @@ const createUser = (req, res) => {
 
 module.exports = createUser;
 
-
-
 const updateUserField = (req, res) => {
-  const user_id = req.token.user_id; // نفترض أن لديك middleware لتجاوز وسائل التواصل الخاصة بالمستخدم (req.token)
-  const { field, val } = req.body; // يجب أن ترسل الواجهة الأمامية field و val في الطلب
+  const user_id = req.token.user_id;
+  const { field, val } = req.body;
 
-  // الحقول المسموح بها للتحديث
-  const allowedFields = ['username', 'email', 'password', 'country', 'city', 'profile_picture', 'location'];
+  const allowedFields = [
+    "username",
+    "email",
+    "password",
+    "country",
+    "city",
+    "profile_picture",
+    "location",
+  ];
 
-  // التحقق مما إذا كان الحقل الذي يُرسل قابل للتحديث
   if (!allowedFields.includes(field)) {
-    return res.status(400).json({ message: 'Invalid field' });
+    return res.status(400).json({ message: "Invalid field" });
   }
 
-  if (field === 'password') {
+  if (field === "password") {
     // في حالة تحديث كلمة المرور، نقوم بتجزئتها وتحديث القيمة المجزئة في قاعدة البيانات
     bcrypt.hash(val, 10, (err, hashedPassword) => {
       if (err) {
         console.error(`Error hashing password:`, err);
-        return res.status(500).json({ message: 'Failed to hash password' });
+        return res.status(500).json({ message: "Failed to hash password" });
       }
 
       // استعدادا للتحديث في قاعدة البيانات
@@ -105,7 +109,7 @@ const updateUserField = (req, res) => {
       });
     });
   } else {
-  const { field, val } = req.body;
+    const { field, val } = req.body;
     const sql = `UPDATE Users SET ${field} = ? WHERE id = ?`;
     connection.query(sql, [val, user_id], (err, result) => {
       if (err) {
@@ -121,18 +125,15 @@ const updateUserField = (req, res) => {
   }
 };
 
-
-
-
 const getAllUsers = (req, res) => {
   const sql = "SELECT * FROM Users";
   connection.query(sql, (err, users) => {
-      if (err) {
-          console.error("Error fetching users:", err);
-          return res.status(500).json({ message: "Failed to fetch users" });
-      }
+    if (err) {
+      console.error("Error fetching users:", err);
+      return res.status(500).json({ message: "Failed to fetch users" });
+    }
 
-      res.status(200).json({ users });
+    res.status(200).json({ users });
   });
 };
 const getAllUsersAndPermission = (req, res) => {
@@ -156,58 +157,35 @@ const getAllUsersAndPermission = (req, res) => {
 const getUserById = (req, res) => {
   const user_id = req.token.user_id;
   const sql = "SELECT * FROM Users WHERE id = ?";
-  connection.query(sql,[user_id], (err, users) => {
-      if (err) {
-          console.error("Error fetching users:", err);
-          return res.status(500).json({ message: "Failed to fetch users" });
-      }
+  connection.query(sql, [user_id], (err, users) => {
+    if (err) {
+      console.error("Error fetching users:", err);
+      return res.status(500).json({ message: "Failed to fetch users" });
+    }
 
-      res.status(200).json({ users });
+    res.status(200).json({ users });
   });
 };
 const getProfilePictureById = (req, res) => {
   const user_id = req.token.user_id;
   const sql = "SELECT profile_picture FROM Users WHERE id = ?";
-  connection.query(sql,[user_id], (err, users) => {
-      if (err) {
-          console.error("Error fetching users:", err);
-          return res.status(500).json({ message: "Failed to fetch profile-picture" });
-      }
+  connection.query(sql, [user_id], (err, users) => {
+    if (err) {
+      console.error("Error fetching users:", err);
+      return res
+        .status(500)
+        .json({ message: "Failed to fetch profile-picture" });
+    }
 
-      res.status(200).json({ users });
+    res.status(200).json({ users });
   });
 };
-// const deleteUserByID = (req, res) => {
-//     const userId = req.params.id; // Assuming the user ID is passed as a route parameter
-//     const sql = "DELETE FROM Users WHERE id = ?";
-//     connection.query(sql, [userId], (err, result) => {
-//         if (err) {
-//             console.error("Error deleting user:", err);
-//             return res.status(500).json({ message: "Failed to delete user" });
-//         }
 
-//         if (result.affectedRows === 0) {
-//             return res.status(404).json({ message: "User not found" });
-//         }
-
-//         res.status(200).json({ message: "User deleted successfully" });
-//     });
-// };
 const updateUserById = (req, res) => {
   const user_id = req.token.user_id;
-  const {
-    username,
-    email,
-    country,
-    city,
-    profile_picture,
-    location,
-  } = req.body;
+  const { username, email, country, city, profile_picture, location } =
+    req.body;
 
-  // تشفير كلمة المرور
-  // هناك خطأ في هذا الجزء من الكود، يجب أن تقوم بتشفير كلمة المرور في حالة تغييرها
-
-  // بناء الاستعلام لتحديث بيانات المستخدم
   const sql = `
     UPDATE Users 
     SET 
@@ -220,7 +198,6 @@ const updateUserById = (req, res) => {
     WHERE 
       id = ?`;
 
-  // قيم الحقول المراد تحديثها
   const values = [
     username,
     email,
@@ -231,14 +208,12 @@ const updateUserById = (req, res) => {
     user_id,
   ];
 
-  // تنفيذ الاستعلام لتحديث بيانات المستخدم
   connection.query(sql, values, (err, result) => {
     if (err) {
       console.error("Error updating user:", err);
       return res.status(500).json({ message: "Failed to update user" });
     }
 
-    // التحقق مما إذا تم تحديث أي سجلات
     if (result.affectedRows > 0) {
       res.status(200).json({ message: "User updated successfully" });
     } else {
@@ -247,16 +222,10 @@ const updateUserById = (req, res) => {
   });
 };
 
-/////////////////////
-
-/////////////////////
 const updateProfilePicture = (req, res) => {
   const user_id = req.token.user_id;
   const { profile_picture } = req.body;
 
-  // const newProfilePicturePath = `path_to_profile_picture_folder/${user_id}.jpg`;
-
-  // تحديث مسار الصورة الشخصية في قاعدة البيانات
   const sql = `
     UPDATE Users 
     SET 
@@ -267,10 +236,11 @@ const updateProfilePicture = (req, res) => {
   connection.query(sql, [profile_picture, user_id], (err, result) => {
     if (err) {
       console.error("Error updating profile picture:", err);
-      return res.status(500).json({ message: "Failed to update profile picture" });
+      return res
+        .status(500)
+        .json({ message: "Failed to update profile picture" });
     }
 
-    // التحقق مما إذا تم تحديث أي سجلات
     if (result.affectedRows > 0) {
       res.status(200).json({ message: "Profile picture updated successfully" });
     } else {
@@ -279,4 +249,13 @@ const updateProfilePicture = (req, res) => {
   });
 };
 
-module.exports = {getAllUsersAndPermission ,getProfilePictureById,getUserById,createUser,updateUserField,getAllUsers,updateUserById,updateProfilePicture};
+module.exports = {
+  getAllUsersAndPermission,
+  getProfilePictureById,
+  getUserById,
+  createUser,
+  updateUserField,
+  getAllUsers,
+  updateUserById,
+  updateProfilePicture,
+};

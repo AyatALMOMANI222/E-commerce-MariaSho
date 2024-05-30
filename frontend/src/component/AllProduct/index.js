@@ -8,11 +8,11 @@ import ProductCard from "../Core Component/Card";
 import "./style.scss";
 
 const AllProduct = () => {
-    const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [editProductId, setEditProductId] = useState(null);
-  
-useEffect(() => {
+
+  useEffect(() => {
     axios
       .get("http://localhost:5000/product")
       .then((response) => {
@@ -47,57 +47,51 @@ useEffect(() => {
   };
 
   return (
-          <div className="one-product-container">
-        {product?.map((item) => {
-          return (
-            <div key={item.id} className="product">
-              <div className="header">
-                <div className="iconn">
-                  <SVG
-                    src={editIcon}
-                    width={24}
-                    height={24}
-                    onClick={() => handleEditClick(item.id)}
-                  ></SVG>
-                  <SVG
-                    src={closeIcon}
-                    onClick={() => deleteProduct(item.id)}
-                  ></SVG>
-                </div>
+    <div className="one-product-container">
+      {product?.map((item) => {
+        return (
+          <div key={item.id} className="product">
+            <div className="header">
+              <div className="iconn">
+                <SVG
+                  src={editIcon}
+                  width={24}
+                  height={24}
+                  onClick={() => handleEditClick(item.id)}
+                ></SVG>
+                <SVG
+                  src={closeIcon}
+                  onClick={() => deleteProduct(item.id)}
+                ></SVG>
               </div>
-              <div className="card-container">
-                <ProductCard
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  sizes={item.sizes}
-                  colors={item.colors}
-                  quantity={item.quantity}
-                  type={item.type}
-                  material={item.material}
-                  brand={item.brand}
-                  image={item.image}
-                  buttonName="Add to Cart"
-                />
-              </div>
-              {editProductId === item.id && isOpen && (
-                <EditProduct
-                  editProductId={editProductId}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                />
-              )}
-              {/* <ImagesList
-                productId={item.id}
-                images={images}
-                setImages={setImages}
-              /> */}
             </div>
-          );
-        })}
-      {/* </div> */}
+            <div className="card-container">
+              <ProductCard
+                name={item.name}
+                description={item.description}
+                price={item.price}
+                sizes={item.sizes}
+                colors={item.colors}
+                quantity={item.quantity}
+                type={item.type}
+                material={item.material}
+                brand={item.brand}
+                image={item.image}
+                buttonName="Add to Cart"
+              />
+            </div>
+            {editProductId === item.id && isOpen && (
+              <EditProduct
+                editProductId={editProductId}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            )}
+          </div>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default AllProduct
+export default AllProduct;

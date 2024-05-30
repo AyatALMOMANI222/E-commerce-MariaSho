@@ -131,8 +131,6 @@ const ProductAction = () => {
             onChange={(e) => setImage(e.target.value)}
             value={image}
           />
-        
-        
         </div>
         <div className="add-product-btn">
           <Buttons onClick={() => handleClick(productInfo)}>

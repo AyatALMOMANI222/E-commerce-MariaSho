@@ -15,10 +15,10 @@ const Login = () => {
         console.log(response?.data);
         const token = response?.data.userToken;
         const user_id = response?.data.user_id;
-        const permission =response?.data.permission
-        const cartId =response?.data.cartId
+        const permission = response?.data.permission;
+        const cartId = response?.data.cartId;
 
-        console.log({permission});
+        console.log({ permission });
         localStorage.setItem("token", token);
         localStorage.setItem("permission", permission);
         localStorage.setItem("cartId", cartId);

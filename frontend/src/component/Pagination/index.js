@@ -1,6 +1,6 @@
-import React from 'react';
-import "./style.scss"
-const Pagination = ({ totalElements , currentPage, setCurrentPage }) => {
+import React from "react";
+import "./style.scss";
+const Pagination = ({ totalElements, currentPage, setCurrentPage }) => {
   const totalPages = Math.ceil(totalElements / 10);
 
   const handlePageChange = (page) => {
@@ -13,7 +13,7 @@ const Pagination = ({ totalElements , currentPage, setCurrentPage }) => {
 
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
-        <li key={i} className={i === currentPage ? 'active' : ''}>
+        <li key={i} className={i === currentPage ? "active" : ""}>
           <button onClick={() => handlePageChange(i)}>{i}</button>
         </li>
       );
@@ -24,9 +24,7 @@ const Pagination = ({ totalElements , currentPage, setCurrentPage }) => {
 
   return (
     <div>
-      <ul className="pagination">
-        {renderPageNumbers()}
-      </ul>
+      <ul className="pagination">{renderPageNumbers()}</ul>
     </div>
   );
 };

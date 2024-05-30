@@ -5,13 +5,22 @@ import { closeIcon } from "../../icons";
 import CartContent from "../SideDrawer2";
 import "./style.scss";
 
-const SideDrawer = ({ setPrice, isOpen, setIsOpen, content, title , footer }) => {
+const SideDrawer = ({
+  setPrice,
+  isOpen,
+  setIsOpen,
+  content,
+  title,
+  footer,
+}) => {
   const closePopup = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className={`container-side-drawer ${!isOpen ? "container-close" : ""}`}>
+    <div
+      className={`container-side-drawer ${!isOpen ? "container-close" : ""}`}
+    >
       <div className={`popup2 ${isOpen ? "open" : "close"}`}>
         <div className="popup-content">
           <div className="header-section">

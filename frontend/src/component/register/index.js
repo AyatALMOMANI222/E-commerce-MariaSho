@@ -16,11 +16,10 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-      setRegData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    
+    setRegData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleClick = () => {
@@ -59,16 +58,18 @@ const Register = () => {
             name="password"
             value={regData.password}
           />
-   
         </div>
         <Buttons className="register-btn" onClick={() => handleClick()}>
           Register
         </Buttons>
         <div className="forget-password">
           <div className="forget">Forget-Password? </div>
-          <div className="lo" onClick={() =>{
-            Navigate("/login")
-          } }>
+          <div
+            className="lo"
+            onClick={() => {
+              Navigate("/login");
+            }}
+          >
             {" "}
             ..Login
           </div>

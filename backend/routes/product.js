@@ -16,7 +16,6 @@ const productRouter = express.Router();
 
 productRouter.get("/page", getPro);
 
-// POST request to add a product
 productRouter.post(
   "/",
   auth,
@@ -24,7 +23,6 @@ productRouter.post(
   addProduct
 );
 
-// PUT request to update a product by ID
 productRouter.put(
   "/:productId",
   auth,
@@ -32,20 +30,12 @@ productRouter.put(
   updateProductById
 );
 
-// DELETE request to delete a product by ID
-productRouter.delete(
-  "/:id",
-  auth,
-  deleteProductById
-);
+productRouter.delete("/:id", auth, deleteProductById);
 
-// GET request to get details of a specific product by ID
 productRouter.get("/one/:productId", getProductById);
 
-// GET request to get products by type
 productRouter.get("/:type", getProductsByType);
 
-// GET request to get all products
 productRouter.get("/", getAllProducts);
 
 module.exports = productRouter;

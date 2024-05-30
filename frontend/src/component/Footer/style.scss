@@ -1,17 +1,17 @@
-.footer{
-    width: 60%;
+.footer {
+  width: 60%;
   height: auto;
-margin: auto;
-margin-top: 5px;
-border-top: 1px solid black;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-.contact-icon{
+  margin: auto;
+  margin-top: 5px;
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .contact-icon {
     margin: 7px;
-    .icon{
-        cursor: pointer;
+    .icon {
+      cursor: pointer;
     }
-}
+  }
 }

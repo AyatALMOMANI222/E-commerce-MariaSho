@@ -118,32 +118,12 @@ const ViewProducts = () => {
   }, []);
   return (
     <div className="all-page">
-      {/* <div>
-        <div className="sidebar-container">
-          <div className="filter-radio-container">
-            <div className="name"> MARIASHOP</div>
-          </div>
-          <hr className="horizental-line" />
-          <div className="filter">
-            <Categorey2 categorey={categorey} setCategorey={setCategorey} />
-          </div>
-          <div className="filter">
-            <Price price={price} setPrice={setPrice} />
-          </div>
-          <div className="filter">
-            <Colors2 color={color} setColor={setColor} />
-          </div>
-        </div>
-      </div> */}
       <div className="pro">
         <PageNav hasAddProduct={hasAddProduct} />
         <div className="main-con">
           {product.map((item) => {
             return (
-              <div
-                className="view-products"
-                // onClick={() => handleClick(item.id)}
-              >
+              <div className="view-products">
                 <ProductSection
                   getProduct={getProduct}
                   details={item}

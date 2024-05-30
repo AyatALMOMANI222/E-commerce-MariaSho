@@ -173,7 +173,6 @@ const getOrdersByUserId = async (req, res) => {
   });
 };
 
-
 const getAllOrders = async (req, res) => {
   const user_id = req.token.user_id;
   const page = req.params.page;

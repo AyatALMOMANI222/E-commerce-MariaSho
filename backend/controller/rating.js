@@ -56,7 +56,7 @@ const getAvgRating = (req, res) => {
 
 const getUserRating = (req, res) => {
   const userId = req.token.user_id;
-  const productId = req.params.product_id; // Assuming product_id is also required to uniquely identify the rating
+  const productId = req.params.product_id;
 
   const sql = "SELECT rating FROM ratings WHERE user_id = ? AND product_id = ?";
 

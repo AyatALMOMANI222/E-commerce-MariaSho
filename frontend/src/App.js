@@ -17,14 +17,12 @@ import Home from "./component/home";
 import About from "./component/About";
 import Header from "./component/Header";
 import ProductsPage from "./component/ProductsPage";
-import "./App.scss";
 import OrdersList from "./component/OrdersList";
 import OrderDetails from "./component/OrderDetails";
-
+import "./App.scss";
 function App() {
   return (
     <div id="main" className="main-container">
-      
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
