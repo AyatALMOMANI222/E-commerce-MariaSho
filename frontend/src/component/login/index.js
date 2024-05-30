@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     axios
-      .post("http://localhost:5000/login", LoginData)
+      .post("https://e-commerce-maria-sho.vercel.app/login", LoginData)
       .then((response) => {
         console.log(response?.data);
         const token = response?.data.userToken;

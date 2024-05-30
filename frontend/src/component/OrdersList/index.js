@@ -33,7 +33,7 @@ const OrdersList = () => {
 
   const getAllOrders = () => {
     axios
-      .get(`http://localhost:5000/order/all/${pageNum}`, {
+      .get(`https://e-commerce-maria-sho.vercel.app/order/all/${pageNum}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

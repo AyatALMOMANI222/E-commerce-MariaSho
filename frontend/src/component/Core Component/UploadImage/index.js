@@ -25,7 +25,7 @@ const ImageUploade = ({
   };
   const getProfilePicture = () => {
     axios
-      .get("http://localhost:5000/register/profile", {
+      .get("https://e-commerce-maria-sho.vercel.app/register/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

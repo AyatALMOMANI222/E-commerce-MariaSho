@@ -14,7 +14,7 @@ const AllProduct = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/product")
+      .get("https://e-commerce-maria-sho.vercel.app/product")
       .then((response) => {
         console.log(response?.data.products);
         setProduct(response?.data.products);
@@ -28,7 +28,7 @@ const AllProduct = () => {
 
   const deleteProduct = (id) => {
     axios
-      .delete(`http://localhost:5000/product/${id}`, {
+      .delete(`https://e-commerce-maria-sho.vercel.app/product/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

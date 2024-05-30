@@ -35,7 +35,7 @@ const ProductSection = ({
     const token = localStorage.getItem("token");
 
     axios
-      .delete(`http://localhost:5000/product/${id}`, {
+      .delete(`https://e-commerce-maria-sho.vercel.app/product/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -24,7 +24,7 @@ const Register = () => {
 
   const handleClick = () => {
     axios
-      .post(`http://localhost:5000/register`, regData)
+      .post(`https://e-commerce-maria-sho.vercel.app/register`, regData)
       .then((response) => {
         console.log(response?.data);
         console.log(regData);

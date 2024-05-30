@@ -37,7 +37,7 @@ const SingleProduct = () => {
   const addRate = () => {
     axios
       .post(
-        `http://localhost:5000/rate`,
+        `https://e-commerce-maria-sho.vercel.app/rate`,
         { productId: id, rate: rate },
 
         {
@@ -57,7 +57,7 @@ const SingleProduct = () => {
   const togglePopup = () => {
     setIsOpen(!isOpen);
     axios
-      .get(`http://localhost:5000/cart/cartproduct`, {
+      .get(`https://e-commerce-maria-sho.vercel.app/cart/cartproduct`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +73,7 @@ const SingleProduct = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/rate/${id}`, {})
+      .get(`https://e-commerce-maria-sho.vercel.app/rate/${id}`, {})
       .then((response) => {
         setRatingAvg(Math.ceil(response.data.rate[0]["avg(rating)"]));
       })
@@ -84,7 +84,7 @@ const SingleProduct = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get(`http://localhost:5000/product/one/${id}`)
+      .get(`https://e-commerce-maria-sho.vercel.app/product/one/${id}`)
       .then((response) => {
         console.log(response?.data);
         const product = response?.data.product;
@@ -107,7 +107,7 @@ const SingleProduct = () => {
   useEffect(addRate, [rate]);
   const getCommentByProductId = (id) => {
     axios
-      .get(`http://localhost:5000/comment/${id}`)
+      .get(`https://e-commerce-maria-sho.vercel.app/comment/${id}`)
       .then((response) => {
         console.log(response?.data.results);
         const comment = response?.data.results;
@@ -125,7 +125,7 @@ const SingleProduct = () => {
   const handleCartClick = (productId, price) => {
     axios
       .post(
-        "http://localhost:5000/cart",
+        "https://e-commerce-maria-sho.vercel.app/cart",
         {
           product_id: productId,
           color: selectedColor,
@@ -142,7 +142,7 @@ const SingleProduct = () => {
       .then((response) => {
         console.log(response?.data);
         axios
-          .get(`http://localhost:5000/cart/cartproduct`, {
+          .get(`https://e-commerce-maria-sho.vercel.app/cart/cartproduct`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -166,7 +166,7 @@ const SingleProduct = () => {
   const handleCommentClick = (id, commentText) => {
     axios
       .post(
-        "http://localhost:5000/comment",
+        "https://e-commerce-maria-sho.vercel.app/comment",
         { product_id: id, comment: commentText },
         {
           headers: {
@@ -184,7 +184,7 @@ const SingleProduct = () => {
   };
   const handleDelete = (commentId) => {
     axios
-      .delete("http://localhost:5000/comment", {
+      .delete("https://e-commerce-maria-sho.vercel.app/comment", {
         params: {
           id: commentId,
         },
@@ -205,7 +205,7 @@ const SingleProduct = () => {
   const getRateByUserId = () => {
     const token = localStorage.getItem("token");
     axios
-      .get(`http://localhost:5000/rate/user/${id}`, {
+      .get(`https://e-commerce-maria-sho.vercel.app/rate/user/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

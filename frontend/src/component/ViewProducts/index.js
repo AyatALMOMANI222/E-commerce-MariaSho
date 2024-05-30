@@ -35,7 +35,7 @@ const ViewProducts = () => {
   };
   const getProduct = () => {
     axios
-      .get("http://localhost:5000/filter", {
+      .get("https://e-commerce-maria-sho.vercel.app/filter", {
         page: pageNum,
         limit: 10,
         //   name: "yourNameValue",
@@ -60,7 +60,7 @@ const ViewProducts = () => {
     const user_id = localStorage.getItem("user_id");
     console.log(user_id);
     axios
-      .get(`http://localhost:5000/per/${user_id}`)
+      .get(`https://e-commerce-maria-sho.vercel.app/per/${user_id}`)
       .then((response) => {
         console.log(response?.data);
         const per = response?.data.hasPermission;
