@@ -20,7 +20,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.9.2"
+    "mysql2": "^3.9.2",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "vercel": "^34.2.3"
