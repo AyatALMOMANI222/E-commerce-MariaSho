@@ -27,7 +27,7 @@ const EditProfile = () => {
 
   const getUserData = () => {
     axios
-      .get("https://e-commerce-maria-sho.vercel.app/register/id", {
+      .get("http://localhost:5000/register/id", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ const EditProfile = () => {
   const handleClick = () => {
     axios
       .put(
-        "https://e-commerce-maria-sho.vercel.app/register",
+        "http://localhost:5000/register",
         { ...userInfo, profile_picture: image },
         {
           headers: {

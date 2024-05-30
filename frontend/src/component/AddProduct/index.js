@@ -38,7 +38,7 @@ const ProductAction = () => {
     console.log(productInfo);
     axios
       .post(
-        `https://e-commerce-maria-sho.vercel.app/product`,
+        `http://localhost:5000/product`,
         { ...productInfo, image: image },
 
         {

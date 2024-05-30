@@ -1,6 +1,5 @@
 const express = require("express");
 const connection = require("./models/db");
-const multer = require("multer");
 const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();

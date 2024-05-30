@@ -22,7 +22,7 @@ const ProductsPage = () => {
 
   const getProducts = () => {
     axios
-      .get("https://e-commerce-maria-sho.vercel.app/filter", {
+      .get("http://localhost:5000/filter", {
         params: {
           page: pageNum,
           name: name,

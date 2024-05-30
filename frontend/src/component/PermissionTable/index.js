@@ -52,7 +52,7 @@ const PermissionTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://e-commerce-maria-sho.vercel.app/register/per");
+        const response = await axios.get("http://localhost:5000/register/per");
         setData(() => {
           return processData(response?.data.users)?.map((item) => {
             return {
@@ -103,7 +103,7 @@ const PermissionTable = () => {
 
   const fetchPermissions = async (id) => {
     try {
-      const response = await axios.get(`https://e-commerce-maria-sho.vercel.app/per/${id}`);
+      const response = await axios.get(`http://localhost:5000/per/${id}`);
       return response.data.permissions;
     } catch (error) {
       console.error("Error fetching Permission:", error);
@@ -113,7 +113,7 @@ const PermissionTable = () => {
   const addPermission = (userId) => {
     axios
       .post(
-        `https://e-commerce-maria-sho.vercel.app/per/${userId}`,
+        `http://localhost:5000/per/${userId}`,
         { name: selectedOption, description: "desc" },
         {
           headers: {

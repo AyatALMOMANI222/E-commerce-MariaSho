@@ -9,7 +9,7 @@ const UserManagement = ({ userId }) => {
     console.log(permission);
     axios
       .post(
-        `https://e-commerce-maria-sho.vercel.app/per/${userId}`,
+        `http://localhost:5000/per/${userId}`,
         { name: permission, description: "desc" },
         {
           headers: {

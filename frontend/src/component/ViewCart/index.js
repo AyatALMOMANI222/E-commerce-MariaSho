@@ -16,7 +16,7 @@ const ViewCart = () => {
 
   const getProduct = () => {
     axios
-      .get(`https://e-commerce-maria-sho.vercel.app/cart/cartproduct`, {
+      .get(`http://localhost:5000/cart/cartproduct`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -35,7 +35,7 @@ const ViewCart = () => {
   const handleOrder = () => {
     axios
       .post(
-        `https://e-commerce-maria-sho.vercel.app/order`,
+        `http://localhost:5000/order`,
         {
           user_id: user_id,
           cart_id: cartId,

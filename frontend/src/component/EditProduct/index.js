@@ -39,7 +39,7 @@ const EditProduct = ({ isOpen, setIsOpen, editProductId }) => {
   };
   const getProductById = () => {
     axios
-      .get(`https://e-commerce-maria-sho.vercel.app/product/one/${editProductId}`, {})
+      .get(`http://localhost:5000/product/one/${editProductId}`, {})
       .then((response) => {
         console.log("hhhhh");
         console.log(response.data.product);
@@ -73,7 +73,7 @@ const EditProduct = ({ isOpen, setIsOpen, editProductId }) => {
   const handleEditClick = (editProductId) => {
     console.log(productInfo);
     axios
-      .put(`https://e-commerce-maria-sho.vercel.app/product/${editProductId}`, productInfo, {
+      .put(`http://localhost:5000/product/${editProductId}`, productInfo, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

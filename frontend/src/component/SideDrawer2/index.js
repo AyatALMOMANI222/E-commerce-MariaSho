@@ -14,7 +14,7 @@ const CartContent = ({ cart, setCart }) => {
 
   const getCartProducts = () => {
     axios
-      .get(`https://e-commerce-maria-sho.vercel.app/cart/cartproduct`, {
+      .get(`http://localhost:5000/cart/cartproduct`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,7 +29,7 @@ const CartContent = ({ cart, setCart }) => {
 
   const handleDelete = (productId, size, color) => {
     axios
-      .delete(`https://e-commerce-maria-sho.vercel.app/cart/del/${productId}/${size}/${color}`, {
+      .delete(`http://localhost:5000/cart/del/${productId}/${size}/${color}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,7 +46,7 @@ const CartContent = ({ cart, setCart }) => {
   const handleUpdateQuantity = (cartItemId, operation) => {
     axios
       .put(
-        "https://e-commerce-maria-sho.vercel.app/cart/quantity",
+        "http://localhost:5000/cart/quantity",
         {
           cartItemId: cartItemId,
           operation: operation,
