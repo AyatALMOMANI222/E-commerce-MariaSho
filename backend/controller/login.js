@@ -4,6 +4,8 @@ const connection = require("../models/db");
 
 const login = (req, res) => {
   const { email, password } = req.body;
+  console.log("Login request received for email:", email);
+
   const query = `
     SELECT Users.id AS id, Users.username, Users.password,
     Permissions.name AS permission_name, Cart.id AS cartId
@@ -23,6 +25,8 @@ const login = (req, res) => {
       });
     }
 
+    console.log("Query result:", result);
+
     if (result.length === 0) {
       return res.status(404).json({
         success: false,
@@ -32,7 +36,8 @@ const login = (req, res) => {
 
     const user = result[0];
     const permissions = result?.map((item) => item?.permission_name);
-    console.log({ permissions });
+    console.log({ user, permissions });
+
     try {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {
@@ -45,13 +50,16 @@ const login = (req, res) => {
         };
         const userToken = jwt.sign(userPayload, process.env.SECRET);
 
+        console.log("User payload:", userPayload);
+        console.log("Generated token:", userToken);
+
         return res.status(200).json({
           success: true,
           userToken,
           user_id: user.id,
           username: user.username,
           permission: permissions,
-          cartId: userPayload.cartId, // استخدام cartId المحدث هنا
+          cartId: userPayload.cartId,
         });
       } else {
         return res.status(403).json({
