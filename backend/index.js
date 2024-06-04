@@ -44,6 +44,6 @@ app.use("/rate", rateRouter);
 const orderRouter = require("./routes/order");
 app.use("/order", orderRouter);
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${port}`);
 });
